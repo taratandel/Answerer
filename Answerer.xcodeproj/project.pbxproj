@@ -19,6 +19,7 @@
 		57A3D0C3207D34B6003A84AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0C2207D34B6003A84AB /* Extensions.swift */; };
 		57A3D0C5207D34D4003A84AB /* AppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0C4207D34D4003A84AB /* AppTools.swift */; };
 		57D663312125AF1A00551D14 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D663302125AF1A00551D14 /* Chat.swift */; };
+		57F747E2212E02F1003EEE8D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F747E1212E02F1003EEE8D /* ChatViewController.swift */; };
 		84A01DE9207CE80F00155842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A01DE8207CE80F00155842 /* AppDelegate.swift */; };
 		84A01DEB207CE80F00155842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A01DEA207CE80F00155842 /* ViewController.swift */; };
 		84A01DEE207CE80F00155842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A01DEC207CE80F00155842 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 		57A3D0C2207D34B6003A84AB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		57A3D0C4207D34D4003A84AB /* AppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTools.swift; sourceTree = "<group>"; };
 		57D663302125AF1A00551D14 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		57F747E1212E02F1003EEE8D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		824788DD0D6CDE9541DABDD7 /* Pods-AnswererUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnswererUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnswererUITests/Pods-AnswererUITests.release.xcconfig"; sourceTree = "<group>"; };
 		84A01DE5207CE80F00155842 /* Answerer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Answerer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A01DE8207CE80F00155842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				84FFED94207CEE1E00FB3A81 /* RegisterVC.swift */,
 				84FFED98207CF6E000FB3A81 /* ResetPasswordVC.swift */,
 				572D27CA211625FF00DBBA37 /* ConversationViewController.swift */,
+				57F747E1212E02F1003EEE8D /* ChatViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				572D27C52116027600DBBA37 /* ConversationTableViewCell.swift in Sources */,
 				84FFED99207CF6E000FB3A81 /* ResetPasswordVC.swift in Sources */,
 				84FFED95207CEE1E00FB3A81 /* RegisterVC.swift in Sources */,
+				57F747E2212E02F1003EEE8D /* ChatViewController.swift in Sources */,
 				57A3D0B9207D2B82003A84AB /* ViewHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
