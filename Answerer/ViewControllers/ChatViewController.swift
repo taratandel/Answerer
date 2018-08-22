@@ -25,6 +25,12 @@ class ChatViewController: UIViewController {
             name: NSNotification.Name.UIKeyboardWillShow,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: NSNotification.Name.UIKeyboardWillHide,
+            object: nil
+        )
         // Do any additional setup after loading the view.
     }
 
@@ -38,6 +44,9 @@ class ChatViewController: UIViewController {
             let keyboardHeight = keyboardRectangle.height
             self.viewBotton.constant = keyboardHeight * -1
         }
+    }
+    @objc func keyboardWillHide(_ notification: Notification){
+        self.viewBotton.constant = 0
     }
 
     /*
