@@ -37,7 +37,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatTextView.layer.borderWidth = 2
         chatHelper.sendDelegate = self
         chatTable.separatorStyle = .none
-
+        
         chatTable.re.delegate = self
         
         
@@ -128,10 +128,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if lstOFChats.count != lstChats.count {
             lstOFChats = lstChats
             self.chatTable.reloadData()
-//            let indexPath = IndexPath(row: self.lstOFChats.count - 1, section: 1)
-//            chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
+            if chatTable.numberOfRows(inSection: 0) > 0 {
+                let indexPath = IndexPath(row: 0, section: 0)
+                chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
         }
-
+        
         
     }
     
@@ -158,9 +160,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             ViewHelper.showToastMessage(message: "Error, Please check the internet and try again")
         }
         sendbutton.isEnabled = true
-//        let indexPath = IndexPath(row: self.lstOFChats.count - 1, section: 1)
-//        chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
-
+        if chatTable.numberOfRows(inSection: 0) > 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+        
     }
     
     /*
