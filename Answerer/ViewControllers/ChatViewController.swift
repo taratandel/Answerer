@@ -39,6 +39,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatTable.separatorStyle = .none
         
         chatTable.re.delegate = self
+        self.hideKeyboardWhenTappedAround()
         
         
         
