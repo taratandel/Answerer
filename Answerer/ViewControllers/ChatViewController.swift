@@ -87,14 +87,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             if currentChat.message != "" {
                 if currentChat.isTeacher {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextChatTableViewCell
-                    celsl.textMessage?.text = currentChat.message
+                    celsl.textMessage?.text = "\n" + currentChat.message + "\n"
                     celsl.textMessage?.layer.cornerRadius = 5
                     celsl.textMessage.clipsToBounds = true
                     cell = celsl
                 }
                 else {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "textCellstd") as! TextChatTableViewCell
-                    celsl.textMessage?.text = currentChat.message
+                    celsl.textMessage?.text = "\n" + currentChat.message + "\n"
                     celsl.textMessage.clipsToBounds = true
                     celsl.textMessage?.layer.cornerRadius = 5
                     cell = celsl
@@ -148,7 +148,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if isSucceded{
             let chat = Chat()
             chat.isTeacher = true
-            chat.message = chatTextView.text
+            chat.message = "\n" + chatTextView.text + "\n"
             lstOFChats.append(chat)
             chatTextView.text = ""
             chatTable.reloadData()
