@@ -39,7 +39,7 @@ class AlamofireReq : NSObject{
     func checkStatus(json:JSON,onCompletion:(JSON,Bool) -> Void) {
         let status = AppTools.convertStringToBool(data: json["status"].stringValue)
         if status{
-            onCompletion(json["message"],status)
+            onCompletion(json["messages"],status)
         }else {
             onCompletion(json["error"],status)
         }

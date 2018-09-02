@@ -21,8 +21,8 @@ class ChatHelper: NSObject{
     var sendDelegate : sendChatDelegate!
     
     @objc func getChat() {
-        let teacherId : String = ""
-        let studentId : String = ""
+        let teacherId : String = "09000000001"
+        let studentId : String = "09000000002"
         let lstParams = ["teacherId" : teacherId as AnyObject, "studentId" : studentId as AnyObject]
         AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.GET_MESSAGES, lstParam: lstParams){
             response, status in

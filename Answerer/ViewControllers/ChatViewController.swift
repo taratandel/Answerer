@@ -33,7 +33,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         chatTextView.layer.cornerRadius = 4.0
         chatTextView.layer.borderWidth = 2
-        
+        chatHelper.sendDelegate = self
         
         
         
@@ -119,10 +119,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func faildToGetChatSuccessfully(isSucceded: Bool, error: String) {
+        if !isSucceded {
         ViewHelper.showToastMessage(message: error)
+        }
     }
     @IBAction func sendChat(_ sender: Any) {
-        chatHelper.sendChat(teacherId: "09000000001", studentId: "09000000002", message: "" ?? chatTextView.text!, questionType: lstOFChats[0].questionType)
+        chatHelper.sendChat(teacherId: "09000000001", studentId: "09000000002", message: chatTextView.text ?? "", questionType: lstOFChats[0].questionType)
     }
     func sendChatStatus(isSucceded: Bool) {
         if isSucceded{
