@@ -13,7 +13,7 @@ protocol getChatDelegate : NSObjectProtocol {
     func faildToGetChatSuccessfully(isSucceded : Bool, error: String)
 
 }
-protocol sendChatDelegate {
+protocol sendChatDelegate: NSObjectProtocol {
     func sendChatStatus(isSucceded: Bool)
 }
 class ChatHelper: NSObject{
