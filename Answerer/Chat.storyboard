@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -171,7 +172,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BhW-dQ-oOz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BhW-dQ-oOz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -247,17 +248,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6an-Rd-aah">
-                                                    <rect key="frame" x="163" y="11" width="185" height="86"/>
+                                                    <rect key="frame" x="187.5" y="11" width="160.5" height="86"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="6an-Rd-aah" secondAttribute="height" multiplier="185:86" id="vJF-2F-WWq"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="6an-Rd-aah" firstAttribute="leading" secondItem="Mhr-No-sKd" secondAttribute="centerX" id="8Sd-tk-deD"/>
                                                 <constraint firstItem="6an-Rd-aah" firstAttribute="bottom" secondItem="Mhr-No-sKd" secondAttribute="bottomMargin" id="abh-GV-pS6"/>
                                                 <constraint firstItem="6an-Rd-aah" firstAttribute="top" secondItem="Mhr-No-sKd" secondAttribute="topMargin" id="hgX-5d-6CC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="6an-Rd-aah" secondAttribute="trailing" constant="12" id="kLw-aZ-vJD"/>
@@ -331,10 +330,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPk-c2-H6G">
-                                                    <rect key="frame" x="8" y="8" width="197" height="91.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="JPk-c2-H6G" secondAttribute="height" multiplier="185:86" id="kur-Sz-3BQ"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="8" y="8" width="179.5" height="91.5"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -343,6 +340,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="JPk-c2-H6G" firstAttribute="bottom" secondItem="yFU-ft-CE9" secondAttribute="bottomMargin" id="6Q1-Wb-EXy"/>
+                                                <constraint firstAttribute="centerX" secondItem="JPk-c2-H6G" secondAttribute="trailing" id="afH-jk-f52"/>
                                                 <constraint firstItem="JPk-c2-H6G" firstAttribute="top" secondItem="yFU-ft-CE9" secondAttribute="topMargin" id="hIf-wW-0Hv"/>
                                                 <constraint firstItem="JPk-c2-H6G" firstAttribute="leading" secondItem="yFU-ft-CE9" secondAttribute="leadingMargin" id="ycS-ST-Htj"/>
                                             </constraints>
@@ -426,7 +424,6 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="ZUj-S1-ilD" id="wWq-Uc-lHV"/>
-                                    <outlet property="delegate" destination="ZUj-S1-ilD" id="XCd-Hi-NbQ"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syn-0T-hEM">
@@ -514,6 +511,7 @@
                     <connections>
                         <outlet property="chatTable" destination="BhW-dQ-oOz" id="L1U-Fb-aVj"/>
                         <outlet property="chatTextView" destination="uEZ-PO-FR9" id="Ym5-pZ-6lZ"/>
+                        <outlet property="sendbutton" destination="6ha-RG-3Wz" id="Fcz-DI-GgU"/>
                         <outlet property="viewBotton" destination="0qG-V8-xZT" id="uEe-qn-TH7"/>
                     </connections>
                 </viewController>

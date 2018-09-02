@@ -13,6 +13,7 @@ import ReverseExtension
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, getChatDelegate, sendChatDelegate {
     
     
+    @IBOutlet weak var sendbutton: UIButton!
     @IBOutlet weak var viewBotton: NSLayoutConstraint!
     
     @IBOutlet weak var chatTable: UITableView!
@@ -21,6 +22,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var lstOFChats = [Chat]()
     let chatHelper = ChatHelper()
+    var lastIndexPath = IndexPath()
     
     
     
@@ -34,6 +36,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatTextView.layer.cornerRadius = 4.0
         chatTextView.layer.borderWidth = 2
         chatHelper.sendDelegate = self
+        chatTable.separatorStyle = .none
+
+        chatTable.re.delegate = self
         
         
         
@@ -71,29 +76,35 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return lstOFChats.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell : UITableViewCell = UITableViewCell()
         if lstOFChats.count > 0{
-            let currentChat = lstOFChats[indexPath.row]
+            let reverseindexpath = (lstOFChats.count - 1) - indexPath.row
+            let currentChat = lstOFChats[reverseindexpath]
             if currentChat.message != "" {
                 if currentChat.isTeacher {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextChatTableViewCell
-                    cell.detailTextLabel?.text = currentChat.message
-                    cell.detailTextLabel?.layer.cornerRadius = 5
+                    let celsl = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextChatTableViewCell
+                    celsl.textMessage?.text = currentChat.message
+                    celsl.textMessage?.layer.cornerRadius = 5
+                    celsl.textMessage.clipsToBounds = true
+                    cell = celsl
                 }
                 else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "textCellstd") as! TextChatTableViewCell
-                    cell.detailTextLabel?.text = currentChat.message
-                    cell.detailTextLabel?.layer.cornerRadius = 5
+                    let celsl = tableView.dequeueReusableCell(withIdentifier: "textCellstd") as! TextChatTableViewCell
+                    celsl.textMessage?.text = currentChat.message
+                    celsl.textMessage.clipsToBounds = true
+                    celsl.textMessage?.layer.cornerRadius = 5
+                    cell = celsl
                     
                 }
             }
             else if currentChat.file != "messageFile" {
                 if currentChat.isTeacher {
                     cell = tableView.dequeueReusableCell(withIdentifier: "fileCell") as! FileChatTableViewCell
+                    
                 }
                 else {
                     cell = tableView.dequeueReusableCell(withIdentifier: "fileCellstd") as! FileChatTableViewCell
@@ -114,16 +125,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     func getChatSuccessfully(lstChats: [Chat]) {
-        lstOFChats = lstChats
-        self.chatTable.reloadData()
+        if lstOFChats.count != lstChats.count {
+            lstOFChats = lstChats
+            self.chatTable.reloadData()
+//            let indexPath = IndexPath(row: self.lstOFChats.count - 1, section: 1)
+//            chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+
+        
     }
     
     func faildToGetChatSuccessfully(isSucceded: Bool, error: String) {
         if !isSucceded {
-        ViewHelper.showToastMessage(message: error)
+            ViewHelper.showToastMessage(message: error)
         }
     }
     @IBAction func sendChat(_ sender: Any) {
+        sendbutton.isEnabled = false
         chatHelper.sendChat(teacherId: "09000000001", studentId: "09000000002", message: chatTextView.text ?? "", questionType: lstOFChats[0].questionType)
     }
     func sendChatStatus(isSucceded: Bool) {
@@ -134,11 +152,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             lstOFChats.append(chat)
             chatTextView.text = ""
             chatTable.reloadData()
-
+            
         }
         else {
             ViewHelper.showToastMessage(message: "Error, Please check the internet and try again")
         }
+        sendbutton.isEnabled = true
+//        let indexPath = IndexPath(row: self.lstOFChats.count - 1, section: 1)
+//        chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
+
     }
     
     /*
