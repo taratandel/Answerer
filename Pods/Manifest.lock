@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.6.0)
+  - ReverseExtension (0.5.0)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - ReverseExtension
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - ReverseExtension
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 4ef2ac61c55a5b2468c4e9753af081e59be7308b
+PODFILE CHECKSUM: 0101dc4ba4b70500ddc00deb0c0e227fe348eb5f
 
 COCOAPODS: 1.5.3

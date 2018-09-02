@@ -16,11 +16,14 @@ protocol getChatDelegate : NSObjectProtocol {
 protocol sendChatDelegate {
     func sendChatStatus(isSucceded: Bool)
 }
-class chatHelper: NSObject{
+class ChatHelper: NSObject{
     var delegate : getChatDelegate!
     var sendDelegate : sendChatDelegate!
-    func getChat(teacherId : String, studentId : String) {
-        let lstParams = ["teacherId" : teacherId as AnyObject, "studentId" : studentId as AnyObject ]
+    
+    @objc func getChat() {
+        let teacherId : String = ""
+        let studentId : String = ""
+        let lstParams = ["teacherId" : teacherId as AnyObject, "studentId" : studentId as AnyObject]
         AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.GET_MESSAGES, lstParam: lstParams){
             response, status in
             if status {
@@ -49,5 +52,9 @@ class chatHelper: NSObject{
             
         }
         
+    }
+    func requestChatEverySecond(){
+        let _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getChat), userInfo: nil, repeats: true)
+
     }
 }

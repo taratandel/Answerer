@@ -10,6 +10,7 @@
 		572D27C221159C7500DBBA37 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572D27C121159C7500DBBA37 /* Chat.storyboard */; };
 		572D27C52116027600DBBA37 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D27C42116027600DBBA37 /* ConversationTableViewCell.swift */; };
 		572D27CB211625FF00DBBA37 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D27CA211625FF00DBBA37 /* ConversationViewController.swift */; };
+		577091BD21304D8700A15272 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577091BC21304D8700A15272 /* ChatTableViewCell.swift */; };
 		578682922126D2AD0001633A /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578682912126D2AD0001633A /* ChatHelper.swift */; };
 		57A3D0B9207D2B82003A84AB /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0B8207D2B82003A84AB /* ViewHelper.swift */; };
 		57A3D0BB207D2B90003A84AB /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0BA207D2B90003A84AB /* RequestHelper.swift */; };
@@ -60,6 +61,7 @@
 		572D27C121159C7500DBBA37 /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		572D27C42116027600DBBA37 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		572D27CA211625FF00DBBA37 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		577091BC21304D8700A15272 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		578682912126D2AD0001633A /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		57A3D0B8207D2B82003A84AB /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		57A3D0BA207D2B90003A84AB /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				572D27C42116027600DBBA37 /* ConversationTableViewCell.swift */,
+				577091BC21304D8700A15272 /* ChatTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -399,11 +402,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Answerer/Pods-Answerer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ReverseExtension/ReverseExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReverseExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +482,7 @@
 				572D27CB211625FF00DBBA37 /* ConversationViewController.swift in Sources */,
 				84FFED93207CEE0C00FB3A81 /* LoginVC.swift in Sources */,
 				57A3D0C1207D2C0E003A84AB /* URLHelper.swift in Sources */,
+				577091BD21304D8700A15272 /* ChatTableViewCell.swift in Sources */,
 				57D663312125AF1A00551D14 /* Chat.swift in Sources */,
 				57A3D0C5207D34D4003A84AB /* AppTools.swift in Sources */,
 				57A3D0BB207D2B90003A84AB /* RequestHelper.swift in Sources */,

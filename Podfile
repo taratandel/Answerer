@@ -8,6 +8,7 @@ target 'Answerer' do
   # Pods for Answerer
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'ReverseExtension'
   
   target 'AnswererTests' do
     inherit! :search_paths
