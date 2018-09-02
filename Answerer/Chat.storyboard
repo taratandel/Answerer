@@ -247,23 +247,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="107.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6an-Rd-aah">
-                                                    <rect key="frame" x="187.5" y="11" width="160.5" height="86"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6an-Rd-aah">
+                                                    <rect key="frame" x="187.5" y="11" width="172.5" height="84.5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxP-iu-cHI">
+                                                    <rect key="frame" x="187.5" y="95.5" width="172.5" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="6an-Rd-aah" firstAttribute="trailing" secondItem="UxP-iu-cHI" secondAttribute="trailing" id="8RI-ke-1tN"/>
                                                 <constraint firstItem="6an-Rd-aah" firstAttribute="leading" secondItem="Mhr-No-sKd" secondAttribute="centerX" id="8Sd-tk-deD"/>
-                                                <constraint firstItem="6an-Rd-aah" firstAttribute="bottom" secondItem="Mhr-No-sKd" secondAttribute="bottomMargin" id="abh-GV-pS6"/>
+                                                <constraint firstAttribute="bottom" secondItem="UxP-iu-cHI" secondAttribute="bottom" id="JUL-ic-Zld"/>
                                                 <constraint firstItem="6an-Rd-aah" firstAttribute="top" secondItem="Mhr-No-sKd" secondAttribute="topMargin" id="hgX-5d-6CC"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6an-Rd-aah" secondAttribute="trailing" constant="12" id="kLw-aZ-vJD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6an-Rd-aah" secondAttribute="trailing" id="kLw-aZ-vJD"/>
+                                                <constraint firstItem="UxP-iu-cHI" firstAttribute="leading" secondItem="Mhr-No-sKd" secondAttribute="centerX" id="rgf-4g-7C8"/>
+                                                <constraint firstItem="UxP-iu-cHI" firstAttribute="top" secondItem="6an-Rd-aah" secondAttribute="bottom" id="to4-Z6-yAj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="textMessage" destination="6an-Rd-aah" id="abn-2W-TBu"/>
+                                            <outlet property="timeStamp" destination="UxP-iu-cHI" id="mdk-1h-wgm"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="voiceCell" rowHeight="80" id="sfc-il-9Db" customClass="VoiceChatTableViewCell" customModule="Answerer" customModuleProvider="target">
@@ -322,35 +332,45 @@
                                             <outlet property="imageCell" destination="5Bi-7x-aFd" id="Zsg-td-hJS"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCellstd" rowHeight="108" id="im1-PO-pfg" customClass="TextChatTableViewCell" customModule="Answerer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="742" width="375" height="108"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCellstd" rowHeight="129" id="im1-PO-pfg" customClass="TextChatTableViewCell" customModule="Answerer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="742" width="375" height="129"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="im1-PO-pfg" id="yFU-ft-CE9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="107.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="128.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPk-c2-H6G">
-                                                    <rect key="frame" x="8" y="8" width="179.5" height="91.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPk-c2-H6G">
+                                                    <rect key="frame" x="8" y="8" width="179.5" height="108.5"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i13-6X-6ev">
+                                                    <rect key="frame" x="8" y="116.5" width="179.5" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="JPk-c2-H6G" firstAttribute="bottom" secondItem="yFU-ft-CE9" secondAttribute="bottomMargin" id="6Q1-Wb-EXy"/>
+                                                <constraint firstItem="i13-6X-6ev" firstAttribute="leading" secondItem="JPk-c2-H6G" secondAttribute="leading" id="6Nl-n0-Qm6"/>
+                                                <constraint firstItem="i13-6X-6ev" firstAttribute="top" secondItem="JPk-c2-H6G" secondAttribute="bottom" id="WfF-DD-0Nh"/>
                                                 <constraint firstAttribute="centerX" secondItem="JPk-c2-H6G" secondAttribute="trailing" id="afH-jk-f52"/>
                                                 <constraint firstItem="JPk-c2-H6G" firstAttribute="top" secondItem="yFU-ft-CE9" secondAttribute="topMargin" id="hIf-wW-0Hv"/>
+                                                <constraint firstAttribute="bottom" secondItem="i13-6X-6ev" secondAttribute="bottom" id="m9R-Pd-6hH"/>
+                                                <constraint firstAttribute="centerX" secondItem="i13-6X-6ev" secondAttribute="trailing" id="mRB-Rl-uMq"/>
                                                 <constraint firstItem="JPk-c2-H6G" firstAttribute="leading" secondItem="yFU-ft-CE9" secondAttribute="leadingMargin" id="ycS-ST-Htj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="textMessage" destination="JPk-c2-H6G" id="EWH-Ko-hzm"/>
+                                            <outlet property="timeStamp" destination="i13-6X-6ev" id="ebb-1Q-1nb"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="voiceCellstd" rowHeight="80" id="mXj-kI-JPD" customClass="VoiceChatTableViewCell" customModule="Answerer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="850" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="871" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mXj-kI-JPD" id="x18-wD-ptX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
@@ -382,7 +402,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fileCellstd" rowHeight="80" id="S8n-Rh-hma" customClass="FileChatTableViewCell" customModule="Answerer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="930" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="951" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S8n-Rh-hma" id="NC6-QR-j8U">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>

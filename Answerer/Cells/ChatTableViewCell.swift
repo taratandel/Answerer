@@ -10,6 +10,7 @@ import UIKit
 
 class TextChatTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var timeStamp: UILabel!
     @IBOutlet weak var textMessage: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

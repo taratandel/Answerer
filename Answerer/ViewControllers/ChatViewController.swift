@@ -90,6 +90,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     celsl.textMessage?.text = "\n" + currentChat.message + "\n"
                     celsl.textMessage?.layer.cornerRadius = 5
                     celsl.textMessage.clipsToBounds = true
+                    celsl.timeStamp?.text = AppTools.gettingDataOfTheMessage(dateStr: currentChat.timeStamp)
                     cell = celsl
                 }
                 else {
@@ -97,6 +98,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     celsl.textMessage?.text = "\n" + currentChat.message + "\n"
                     celsl.textMessage.clipsToBounds = true
                     celsl.textMessage?.layer.cornerRadius = 5
+                    celsl.timeStamp?.text = AppTools.gettingDataOfTheMessage(dateStr: currentChat.timeStamp)
                     cell = celsl
                     
                 }
@@ -150,7 +152,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if isSucceded{
             let chat = Chat()
             chat.isTeacher = true
-            chat.message = "\n" + chatTextView.text + "\n"
+            chat.message = chatTextView.text
+            chat.timeStamp = AppTools.gettingCurrentDateAndTime()
             lstOFChats.append(chat)
             chatTextView.text = ""
             chatTable.reloadData()
