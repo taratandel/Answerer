@@ -221,9 +221,9 @@ extension ChatViewController: UIDocumentPickerDelegate {
             "path": "\(filePath.path)", "original_name": fileName
             ], options: [])
         let stringBody = String(data: data, encoding: .utf8)
-        
-        message.body = stringBody!
-        sendMessageRequest(message: message, image: nil, filePath: filePath, location: nil)
+//        
+//        message.body = stringBody!
+//        sendMessageRequest(message: message, image: nil, filePath: filePath, location: nil)
     }
 }
 
