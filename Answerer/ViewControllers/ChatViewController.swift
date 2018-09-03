@@ -9,6 +9,7 @@
 
 import UIKit
 import ReverseExtension
+import MobileCoreServices
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, getChatDelegate, sendChatDelegate {
     
@@ -37,9 +38,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatTextView.layer.borderWidth = 2
         chatHelper.sendDelegate = self
         chatTable.separatorStyle = .none
-        
+        chatTextView.textContainerInset = UIEdgeInsetsMake(4, 4, 4, 4)
         chatTable.re.delegate = self
         self.hideKeyboardWhenTappedAround()
+        
         
         
         
@@ -146,6 +148,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     @IBAction func sendChat(_ sender: Any) {
+        if chatTextView.text.isEmpty { return }
         sendbutton.isEnabled = false
         chatHelper.sendChat(teacherId: "09000000001", studentId: "09000000002", message: chatTextView.text ?? "", questionType: lstOFChats[0].questionType)
     }
@@ -168,6 +171,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             let indexPath = IndexPath(row: 0, section: 0)
             chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
         }
+        textViewDidChange(self.chatTextView)
         
     }
     
@@ -182,4 +186,45 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
      */
     
 }
+extension ChatViewController : UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        sendbutton.isEnabled = textView.text.count > 0
+    }
+}
+extension ChatViewController: UIDocumentPickerDelegate {
+    func chooseFile() {
+        let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeCompositeContent)], in: .import)
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func documentPicker(_: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        var tempURL = URL(fileURLWithPath: NSTemporaryDirectory())
+        tempURL.appendPathComponent(url.lastPathComponent)
+        do {
+            if FileManager.default.fileExists(atPath: tempURL.path) {
+                try FileManager.default.removeItem(atPath: tempURL.path)
+            }
+            try FileManager.default.moveItem(atPath: url.path, toPath: tempURL.path)
+            sendFile(filePath: tempURL)
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    fileprivate func sendFile(filePath: URL) {
+        let fizeSize = try? FileManager.default.attributesOfItem(atPath: filePath.path)[FileAttributeKey.size] ?? 0
+        let fileName = filePath.path.split(separator: "/").last
+        let data = try! JSONSerialization.data(withJSONObject: [
+            "type": "file",
+            "size": fizeSize,
+            "path": "\(filePath.path)", "original_name": fileName
+            ], options: [])
+        let stringBody = String(data: data, encoding: .utf8)
+        
+        message.body = stringBody!
+        sendMessageRequest(message: message, image: nil, filePath: filePath, location: nil)
+    }
+}
+
 
