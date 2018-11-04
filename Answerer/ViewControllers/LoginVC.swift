@@ -41,15 +41,19 @@ class LoginVC: UIViewController, UserDelegate {
         self.indic.isHidden = true
         self.indic.stopAnimating()
         ViewHelper.showToastMessage(message: "Logged In Succesfully")
-        
-        //indicator
-        //segue
+        let teacher = Teacher()
+        teacher.password = passwordTF.text ?? ""
+        teacher.userName = usernameTF.text ?? ""
+        if !CoreDataHelper().saveUserToCoreData(info: teacher) {
+            userLoggedIn()
+        }
+        let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
+        SegueHelper.pushViewController(sourceViewController: self, destinationViewController: chatVC)
     }
     func userCouldNotLoggedIn(error: String) {
         self.indic.isHidden = true
         self.indic.stopAnimating()
         ViewHelper.showToastMessage(message: error)
-        
     }
 
     

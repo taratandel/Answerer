@@ -10,7 +10,11 @@
 		572D27C221159C7500DBBA37 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572D27C121159C7500DBBA37 /* Chat.storyboard */; };
 		572D27C52116027600DBBA37 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D27C42116027600DBBA37 /* ConversationTableViewCell.swift */; };
 		572D27CB211625FF00DBBA37 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D27CA211625FF00DBBA37 /* ConversationViewController.swift */; };
+		57535E55217C6F0B00BA7C6A /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57535E54217C6F0B00BA7C6A /* CoreDataHelper.swift */; };
 		577091BD21304D8700A15272 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577091BC21304D8700A15272 /* ChatTableViewCell.swift */; };
+		57725EBA217D126B0066F803 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57725EB9217D126B0066F803 /* Teacher.swift */; };
+		57725EBC217D8FAD0066F803 /* WelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57725EBB217D8FAD0066F803 /* WelcomViewController.swift */; };
+		57725EBE217D90A60066F803 /* SegueHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57725EBD217D90A60066F803 /* SegueHelper.swift */; };
 		578682922126D2AD0001633A /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578682912126D2AD0001633A /* ChatHelper.swift */; };
 		57A3D0B9207D2B82003A84AB /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0B8207D2B82003A84AB /* ViewHelper.swift */; };
 		57A3D0BB207D2B90003A84AB /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0BA207D2B90003A84AB /* RequestHelper.swift */; };
@@ -61,7 +65,11 @@
 		572D27C121159C7500DBBA37 /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		572D27C42116027600DBBA37 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		572D27CA211625FF00DBBA37 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		57535E54217C6F0B00BA7C6A /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		577091BC21304D8700A15272 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		57725EB9217D126B0066F803 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		57725EBB217D8FAD0066F803 /* WelcomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomViewController.swift; sourceTree = "<group>"; };
+		57725EBD217D90A60066F803 /* SegueHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHelper.swift; sourceTree = "<group>"; };
 		578682912126D2AD0001633A /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		57A3D0B8207D2B82003A84AB /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		57A3D0BA207D2B90003A84AB /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
@@ -157,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				57D663302125AF1A00551D14 /* Chat.swift */,
+				57725EB9217D126B0066F803 /* Teacher.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,6 +239,7 @@
 				84FFED98207CF6E000FB3A81 /* ResetPasswordVC.swift */,
 				572D27CA211625FF00DBBA37 /* ConversationViewController.swift */,
 				57F747E1212E02F1003EEE8D /* ChatViewController.swift */,
+				57725EBB217D8FAD0066F803 /* WelcomViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -242,6 +252,8 @@
 				57A3D0BC207D2BA4003A84AB /* UserDefultHelper.swift */,
 				57A3D0BE207D2BAF003A84AB /* FontHelper.swift */,
 				578682912126D2AD0001633A /* ChatHelper.swift */,
+				57535E54217C6F0B00BA7C6A /* CoreDataHelper.swift */,
+				57725EBD217D90A60066F803 /* SegueHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -480,6 +492,7 @@
 				84A01DEB207CE80F00155842 /* ViewController.swift in Sources */,
 				84A01DF1207CE80F00155842 /* Answerer.xcdatamodeld in Sources */,
 				572D27CB211625FF00DBBA37 /* ConversationViewController.swift in Sources */,
+				57725EBC217D8FAD0066F803 /* WelcomViewController.swift in Sources */,
 				84FFED93207CEE0C00FB3A81 /* LoginVC.swift in Sources */,
 				57A3D0C1207D2C0E003A84AB /* URLHelper.swift in Sources */,
 				577091BD21304D8700A15272 /* ChatTableViewCell.swift in Sources */,
@@ -487,7 +500,9 @@
 				57A3D0C5207D34D4003A84AB /* AppTools.swift in Sources */,
 				57A3D0BB207D2B90003A84AB /* RequestHelper.swift in Sources */,
 				578682922126D2AD0001633A /* ChatHelper.swift in Sources */,
+				57535E55217C6F0B00BA7C6A /* CoreDataHelper.swift in Sources */,
 				57A3D0BF207D2BAF003A84AB /* FontHelper.swift in Sources */,
+				57725EBA217D126B0066F803 /* Teacher.swift in Sources */,
 				57A3D0BD207D2BA4003A84AB /* UserDefultHelper.swift in Sources */,
 				57A3D0C3207D34B6003A84AB /* Extensions.swift in Sources */,
 				84A01DE9207CE80F00155842 /* AppDelegate.swift in Sources */,
@@ -495,6 +510,7 @@
 				84FFED99207CF6E000FB3A81 /* ResetPasswordVC.swift in Sources */,
 				84FFED95207CEE1E00FB3A81 /* RegisterVC.swift in Sources */,
 				57F747E2212E02F1003EEE8D /* ChatViewController.swift in Sources */,
+				57725EBE217D90A60066F803 /* SegueHelper.swift in Sources */,
 				57A3D0B9207D2B82003A84AB /* ViewHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,10 +679,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 687BB68TVP;
+				DEVELOPMENT_TEAM = 2Z93C3477W;
 				INFOPLIST_FILE = Answerer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = negar.Answerer;
+				PRODUCT_BUNDLE_IDENTIFIER = teams.Answerer.Com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -679,10 +695,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 687BB68TVP;
+				DEVELOPMENT_TEAM = 2Z93C3477W;
 				INFOPLIST_FILE = Answerer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = negar.Answerer;
+				PRODUCT_BUNDLE_IDENTIFIER = teams.Answerer.Com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

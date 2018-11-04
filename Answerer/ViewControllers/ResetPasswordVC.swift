@@ -44,6 +44,7 @@ class ResetPasswordVC: UIViewController, UserDelegate {
         self.indic.isHidden = true
         self.indic.stopAnimating()
         ViewHelper.showToastMessage(message: "Reset successfully")
+        self.navigationController?.popViewController(animated: true)
         // indicator segue
     }
     func userCouldNotLoggedIn(error: String) {
