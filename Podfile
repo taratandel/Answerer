@@ -9,6 +9,8 @@ target 'Answerer' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'ReverseExtension'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
   
   target 'AnswererTests' do
     inherit! :search_paths

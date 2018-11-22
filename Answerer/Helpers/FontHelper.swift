@@ -8,16 +8,16 @@
 
 import UIKit
 class FontHelper: NSObject {
-    
-    class func getFooFont(size:CGFloat) -> UIFont!{
+
+    class func getFooFont(size: CGFloat) -> UIFont! {
         let font = UIFont(name: "foo.ttf", size: size)
         return font
     }
-    
-    class func getSHOWGFont(size:CGFloat) -> UIFont!{
+
+    class func getSHOWGFont(size: CGFloat) -> UIFont! {
         let font = UIFont(name: "SHOWGF.ttf", size: size)
         return font
     }
-    
+
 }
 

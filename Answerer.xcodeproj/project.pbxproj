@@ -18,13 +18,14 @@
 		578682922126D2AD0001633A /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578682912126D2AD0001633A /* ChatHelper.swift */; };
 		57A3D0B9207D2B82003A84AB /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0B8207D2B82003A84AB /* ViewHelper.swift */; };
 		57A3D0BB207D2B90003A84AB /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0BA207D2B90003A84AB /* RequestHelper.swift */; };
-		57A3D0BD207D2BA4003A84AB /* UserDefultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0BC207D2BA4003A84AB /* UserDefultHelper.swift */; };
+		57A3D0BD207D2BA4003A84AB /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0BC207D2BA4003A84AB /* UserHelper.swift */; };
 		57A3D0BF207D2BAF003A84AB /* FontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0BE207D2BAF003A84AB /* FontHelper.swift */; };
 		57A3D0C1207D2C0E003A84AB /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0C0207D2C0E003A84AB /* URLHelper.swift */; };
 		57A3D0C3207D34B6003A84AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0C2207D34B6003A84AB /* Extensions.swift */; };
 		57A3D0C5207D34D4003A84AB /* AppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0C4207D34D4003A84AB /* AppTools.swift */; };
 		57D663312125AF1A00551D14 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D663302125AF1A00551D14 /* Chat.swift */; };
 		57F747E2212E02F1003EEE8D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F747E1212E02F1003EEE8D /* ChatViewController.swift */; };
+		845B357121A1C23E0031D1C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 845B357021A1C23E0031D1C3 /* GoogleService-Info.plist */; };
 		84A01DE9207CE80F00155842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A01DE8207CE80F00155842 /* AppDelegate.swift */; };
 		84A01DEB207CE80F00155842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A01DEA207CE80F00155842 /* ViewController.swift */; };
 		84A01DEE207CE80F00155842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A01DEC207CE80F00155842 /* Main.storyboard */; };
@@ -73,7 +74,7 @@
 		578682912126D2AD0001633A /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		57A3D0B8207D2B82003A84AB /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		57A3D0BA207D2B90003A84AB /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
-		57A3D0BC207D2BA4003A84AB /* UserDefultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefultHelper.swift; sourceTree = "<group>"; };
+		57A3D0BC207D2BA4003A84AB /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
 		57A3D0BE207D2BAF003A84AB /* FontHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontHelper.swift; sourceTree = "<group>"; };
 		57A3D0C0207D2C0E003A84AB /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		57A3D0C2207D34B6003A84AB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		57D663302125AF1A00551D14 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		57F747E1212E02F1003EEE8D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		824788DD0D6CDE9541DABDD7 /* Pods-AnswererUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnswererUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnswererUITests/Pods-AnswererUITests.release.xcconfig"; sourceTree = "<group>"; };
+		845B357021A1C23E0031D1C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84A01DE5207CE80F00155842 /* Answerer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Answerer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A01DE8207CE80F00155842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A01DEA207CE80F00155842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -203,12 +205,12 @@
 				84A01DE8207CE80F00155842 /* AppDelegate.swift */,
 				84A01DEA207CE80F00155842 /* ViewController.swift */,
 				84A01DEC207CE80F00155842 /* Main.storyboard */,
+				572D27C121159C7500DBBA37 /* Chat.storyboard */,
 				84A01DF2207CE80F00155842 /* Assets.xcassets */,
 				84A01DF4207CE80F00155842 /* LaunchScreen.storyboard */,
+				845B357021A1C23E0031D1C3 /* GoogleService-Info.plist */,
 				84A01DF7207CE80F00155842 /* Info.plist */,
 				84A01DEF207CE80F00155842 /* Answerer.xcdatamodeld */,
-				57A3D0C0207D2C0E003A84AB /* URLHelper.swift */,
-				572D27C121159C7500DBBA37 /* Chat.storyboard */,
 			);
 			path = Answerer;
 			sourceTree = "<group>";
@@ -249,9 +251,10 @@
 			children = (
 				57A3D0B8207D2B82003A84AB /* ViewHelper.swift */,
 				57A3D0BA207D2B90003A84AB /* RequestHelper.swift */,
-				57A3D0BC207D2BA4003A84AB /* UserDefultHelper.swift */,
+				57A3D0BC207D2BA4003A84AB /* UserHelper.swift */,
 				57A3D0BE207D2BAF003A84AB /* FontHelper.swift */,
 				578682912126D2AD0001633A /* ChatHelper.swift */,
+				57A3D0C0207D2C0E003A84AB /* URLHelper.swift */,
 				57535E54217C6F0B00BA7C6A /* CoreDataHelper.swift */,
 				57725EBD217D90A60066F803 /* SegueHelper.swift */,
 			);
@@ -384,6 +387,7 @@
 			files = (
 				84A01DF6207CE80F00155842 /* LaunchScreen.storyboard in Resources */,
 				84A01DF3207CE80F00155842 /* Assets.xcassets in Resources */,
+				845B357121A1C23E0031D1C3 /* GoogleService-Info.plist in Resources */,
 				572D27C221159C7500DBBA37 /* Chat.storyboard in Resources */,
 				84A01DEE207CE80F00155842 /* Main.storyboard in Resources */,
 			);
@@ -414,14 +418,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Answerer/Pods-Answerer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReverseExtension/ReverseExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReverseExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -503,7 +513,7 @@
 				57535E55217C6F0B00BA7C6A /* CoreDataHelper.swift in Sources */,
 				57A3D0BF207D2BAF003A84AB /* FontHelper.swift in Sources */,
 				57725EBA217D126B0066F803 /* Teacher.swift in Sources */,
-				57A3D0BD207D2BA4003A84AB /* UserDefultHelper.swift in Sources */,
+				57A3D0BD207D2BA4003A84AB /* UserHelper.swift in Sources */,
 				57A3D0C3207D34B6003A84AB /* Extensions.swift in Sources */,
 				84A01DE9207CE80F00155842 /* AppDelegate.swift in Sources */,
 				572D27C52116027600DBBA37 /* ConversationTableViewCell.swift in Sources */,
@@ -682,7 +692,7 @@
 				DEVELOPMENT_TEAM = 2Z93C3477W;
 				INFOPLIST_FILE = Answerer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = teams.Answerer.Com;
+				PRODUCT_BUNDLE_IDENTIFIER = kod.Answerer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -698,7 +708,7 @@
 				DEVELOPMENT_TEAM = 2Z93C3477W;
 				INFOPLIST_FILE = Answerer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = teams.Answerer.Com;
+				PRODUCT_BUNDLE_IDENTIFIER = kod.Answerer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

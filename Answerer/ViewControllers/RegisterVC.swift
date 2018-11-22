@@ -18,7 +18,7 @@ class RegisterVC: UIViewController, UserDelegate {
     
     @IBOutlet weak var indic: UIActivityIndicatorView!
     
-    var userHelper = UserDefaultHelper()
+    var userHelper = UserHelper()
 
     
     override func viewDidLoad() {

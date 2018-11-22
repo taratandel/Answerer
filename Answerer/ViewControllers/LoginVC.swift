@@ -14,7 +14,7 @@ class LoginVC: UIViewController, UserDelegate {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var indic: UIActivityIndicatorView!
     
-    var userHelper = UserDefaultHelper()
+    var userHelper = UserHelper()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indic.isHidden = true
@@ -41,12 +41,7 @@ class LoginVC: UIViewController, UserDelegate {
         self.indic.isHidden = true
         self.indic.stopAnimating()
         ViewHelper.showToastMessage(message: "Logged In Succesfully")
-        let teacher = Teacher()
-        teacher.password = passwordTF.text ?? ""
-        teacher.userName = usernameTF.text ?? ""
-        if !CoreDataHelper().saveUserToCoreData(info: teacher) {
-            userLoggedIn()
-        }
+
         let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
         SegueHelper.pushViewController(sourceViewController: self, destinationViewController: chatVC)
     }

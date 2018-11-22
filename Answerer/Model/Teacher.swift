@@ -7,11 +7,33 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Teacher {
-    var email = ""
+    var userName = ""
     var password = ""
     var phone = ""
-    var userName = ""
-    
+    var email = ""
+
+    var profile = ""
+    var fcmToken = ""
+
+    class func buildSingle(jsonData: JSON) -> Teacher {
+        let teacher = Teacher()
+
+        teacher.userName = jsonData["userName"].stringValue
+        teacher.password = jsonData["password"].stringValue
+        teacher.phone = jsonData["phone"].stringValue
+        teacher.email = jsonData["email"].stringValue
+
+        if jsonData["profile"].exists(){
+            teacher.profile = jsonData["profile"].stringValue
+        }
+        if jsonData["fcmToken"].exists(){
+            teacher.fcmToken = jsonData["fcmToken"].stringValue
+        }
+
+        return teacher
+    }
+
 }

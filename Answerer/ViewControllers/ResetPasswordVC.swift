@@ -12,7 +12,7 @@ class ResetPasswordVC: UIViewController, UserDelegate {
 
     @IBOutlet weak var password2TF: UITextField!
     @IBOutlet weak var password1TF: UITextField!
-    var userHelper = UserDefaultHelper()
+    var userHelper = UserHelper()
     
     @IBOutlet weak var indic: UIActivityIndicatorView!
     
