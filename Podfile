@@ -11,6 +11,7 @@ target 'Answerer' do
   pod 'ReverseExtension'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'TGCameraViewController'
   
   target 'AnswererTests' do
     inherit! :search_paths

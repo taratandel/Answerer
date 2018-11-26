@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZUj-S1-ilD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZUj-S1-ilD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -448,71 +445,9 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syn-0T-hEM">
                                 <rect key="frame" x="0.0" y="595" width="375" height="72"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uEZ-PO-FR9">
-                                        <rect key="frame" x="62" y="5" width="251" height="62"/>
-                                        <color key="backgroundColor" red="0.92774428929999997" green="0.92774428929999997" blue="0.92774428929999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" calendarEvent="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="1000"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
-                                                <real key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
-                                                <real key="value" value="100"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="trimWhiteSpaceWhenEndEditing" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Type Here ... "/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="ZUj-S1-ilD" id="5mp-h6-TlW"/>
-                                        </connections>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7QN-eO-acq">
-                                        <rect key="frame" x="8" y="8" width="42" height="30"/>
-                                        <state key="normal" title="file"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MY0-1N-fPg">
-                                        <rect key="frame" x="8" y="38" width="42" height="30"/>
-                                        <state key="normal" title="image"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xjz-bt-Ozp">
-                                        <rect key="frame" x="325" y="38" width="42" height="30"/>
-                                        <state key="normal" title="voice"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ha-RG-3Wz">
-                                        <rect key="frame" x="325" y="8" width="42" height="30"/>
-                                        <state key="normal" title="send"/>
-                                        <connections>
-                                            <action selector="sendChat:" destination="ZUj-S1-ilD" eventType="touchUpInside" id="maR-E1-gOB"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="7QN-eO-acq" firstAttribute="leading" secondItem="syn-0T-hEM" secondAttribute="leading" constant="8" id="19o-dI-ZtZ"/>
-                                    <constraint firstItem="6ha-RG-3Wz" firstAttribute="width" secondItem="7QN-eO-acq" secondAttribute="width" id="4R1-1K-6aj"/>
-                                    <constraint firstItem="6ha-RG-3Wz" firstAttribute="leading" secondItem="uEZ-PO-FR9" secondAttribute="trailing" constant="12" id="4gZ-mb-4Db"/>
-                                    <constraint firstItem="uEZ-PO-FR9" firstAttribute="top" secondItem="syn-0T-hEM" secondAttribute="top" constant="5" id="Ayf-hS-Dd5"/>
-                                    <constraint firstAttribute="trailing" secondItem="Xjz-bt-Ozp" secondAttribute="trailing" constant="8" id="P2j-7X-UD5"/>
-                                    <constraint firstItem="MY0-1N-fPg" firstAttribute="leading" secondItem="syn-0T-hEM" secondAttribute="leading" constant="8" id="XOr-nl-ydg"/>
-                                    <constraint firstItem="6ha-RG-3Wz" firstAttribute="top" secondItem="syn-0T-hEM" secondAttribute="top" constant="8" id="ZOG-OJ-IHJ"/>
-                                    <constraint firstItem="7QN-eO-acq" firstAttribute="height" secondItem="MY0-1N-fPg" secondAttribute="height" id="aaz-AB-U4p"/>
-                                    <constraint firstItem="uEZ-PO-FR9" firstAttribute="leading" secondItem="7QN-eO-acq" secondAttribute="trailing" constant="12" id="cqX-kS-XER"/>
-                                    <constraint firstItem="MY0-1N-fPg" firstAttribute="height" secondItem="Xjz-bt-Ozp" secondAttribute="height" id="dSd-AX-Mvm"/>
                                     <constraint firstAttribute="height" constant="72" id="eio-gI-8Ng"/>
-                                    <constraint firstItem="6ha-RG-3Wz" firstAttribute="height" secondItem="7QN-eO-acq" secondAttribute="height" id="nWo-gx-npe"/>
-                                    <constraint firstAttribute="trailing" secondItem="6ha-RG-3Wz" secondAttribute="trailing" constant="8" id="oSK-Md-8Yt"/>
-                                    <constraint firstItem="MY0-1N-fPg" firstAttribute="width" secondItem="Xjz-bt-Ozp" secondAttribute="width" id="oWU-YE-LDW"/>
-                                    <constraint firstItem="7QN-eO-acq" firstAttribute="width" secondItem="MY0-1N-fPg" secondAttribute="width" id="qaJ-11-2Yv"/>
-                                    <constraint firstItem="MY0-1N-fPg" firstAttribute="top" secondItem="7QN-eO-acq" secondAttribute="bottom" id="qz7-LM-5J7"/>
-                                    <constraint firstItem="Xjz-bt-Ozp" firstAttribute="top" secondItem="6ha-RG-3Wz" secondAttribute="bottom" id="txZ-ry-VtZ"/>
-                                    <constraint firstItem="7QN-eO-acq" firstAttribute="top" secondItem="syn-0T-hEM" secondAttribute="top" constant="8" id="uTw-ug-ITw"/>
-                                    <constraint firstAttribute="bottom" secondItem="uEZ-PO-FR9" secondAttribute="bottom" constant="5" id="wbf-VQ-d38"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -530,8 +465,8 @@
                     </view>
                     <connections>
                         <outlet property="chatTable" destination="BhW-dQ-oOz" id="L1U-Fb-aVj"/>
-                        <outlet property="chatTextView" destination="uEZ-PO-FR9" id="Ym5-pZ-6lZ"/>
-                        <outlet property="sendbutton" destination="6ha-RG-3Wz" id="Fcz-DI-GgU"/>
+                        <outlet property="inputAreaHeightConstraint" destination="eio-gI-8Ng" id="Ppd-Hk-mRU"/>
+                        <outlet property="inputAreaView" destination="syn-0T-hEM" id="Y7h-8j-tJi"/>
                         <outlet property="viewBotton" destination="0qG-V8-xZT" id="uEe-qn-TH7"/>
                     </connections>
                 </viewController>
