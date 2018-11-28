@@ -13,11 +13,12 @@ class WelcomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _ = CoreDataHelper().fetchUserFromCoreDate(){
+
+        let defaults = UserDefaults()
+        if defaults.object(forKey: "TeacherData") != nil{
             let vc = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
             SegueHelper.presentViewController(sourceViewController: self, destinationViewController: vc)
-        }
-        else {
+        }else {
             performSegue(withIdentifier: "ToLoginView", sender: self)
         }
         // Do any additional setup after loading the view.
