@@ -63,6 +63,7 @@ PODS:
   - Protobuf (3.6.1)
   - ReverseExtension (0.5.0)
   - SwiftyJSON (4.0.0)
+  - TGCameraViewController (2.2.8)
 
 DEPENDENCIES:
   - Alamofire
@@ -70,9 +71,10 @@ DEPENDENCIES:
   - Firebase/Messaging
   - ReverseExtension
   - SwiftyJSON
+  - TGCameraViewController
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Firebase
     - FirebaseAnalytics
@@ -86,6 +88,7 @@ SPEC REPOS:
     - Protobuf
     - ReverseExtension
     - SwiftyJSON
+    - TGCameraViewController
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -101,7 +104,8 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  TGCameraViewController: 0768b534800e6136e70dd3cc5aafe1310b448480
 
-PODFILE CHECKSUM: 3c1126abd6a4a998e49535817f3f0850a197e347
+PODFILE CHECKSUM: 2ac806a77130d088c2cda106e4630011a5fbe9e4
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18D3B68F21A86F3C00ED56D3 /* MessageInputAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */; };
+		18D3B69021A86F3C00ED56D3 /* VoiceRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */; };
+		18D3B69121A86F3C00ED56D3 /* MessageInputAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3B68D21A86F3C00ED56D3 /* MessageInputAreaViewController.swift */; };
+		18D3B69221A86F3C00ED56D3 /* VoiceRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D3B68E21A86F3C00ED56D3 /* VoiceRecorderViewController.xib */; };
+		18D3B69421A9F10900ED56D3 /* ChatConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3B69321A9F10900ED56D3 /* ChatConversation.swift */; };
 		572D27C221159C7500DBBA37 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572D27C121159C7500DBBA37 /* Chat.storyboard */; };
 		572D27C52116027600DBBA37 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D27C42116027600DBBA37 /* ConversationTableViewCell.swift */; };
 		572D27CB211625FF00DBBA37 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D27CA211625FF00DBBA37 /* ConversationViewController.swift */; };
@@ -60,6 +65,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInputAreaViewController.xib; sourceTree = "<group>"; };
+		18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecorderViewController.swift; sourceTree = "<group>"; };
+		18D3B68D21A86F3C00ED56D3 /* MessageInputAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInputAreaViewController.swift; sourceTree = "<group>"; };
+		18D3B68E21A86F3C00ED56D3 /* VoiceRecorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceRecorderViewController.xib; sourceTree = "<group>"; };
+		18D3B69321A9F10900ED56D3 /* ChatConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConversation.swift; sourceTree = "<group>"; };
 		2427BBE1F704E119622C5DAF /* Pods_Answerer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Answerer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		359B054133CC804E52AB8C8A /* Pods-Answerer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Answerer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Answerer/Pods-Answerer.release.xcconfig"; sourceTree = "<group>"; };
 		4BDECEEA1F49F34FF4081CA4 /* Pods-AnswererTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnswererTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnswererTests/Pods-AnswererTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +178,7 @@
 			children = (
 				57D663302125AF1A00551D14 /* Chat.swift */,
 				57725EB9217D126B0066F803 /* Teacher.swift */,
+				18D3B69321A9F10900ED56D3 /* ChatConversation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,6 +217,10 @@
 				84A01DEA207CE80F00155842 /* ViewController.swift */,
 				84A01DEC207CE80F00155842 /* Main.storyboard */,
 				572D27C121159C7500DBBA37 /* Chat.storyboard */,
+				18D3B68D21A86F3C00ED56D3 /* MessageInputAreaViewController.swift */,
+				18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */,
+				18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */,
+				18D3B68E21A86F3C00ED56D3 /* VoiceRecorderViewController.xib */,
 				84A01DF2207CE80F00155842 /* Assets.xcassets */,
 				84A01DF4207CE80F00155842 /* LaunchScreen.storyboard */,
 				845B357021A1C23E0031D1C3 /* GoogleService-Info.plist */,
@@ -387,7 +402,9 @@
 			files = (
 				84A01DF6207CE80F00155842 /* LaunchScreen.storyboard in Resources */,
 				84A01DF3207CE80F00155842 /* Assets.xcassets in Resources */,
+				18D3B68F21A86F3C00ED56D3 /* MessageInputAreaViewController.xib in Resources */,
 				845B357121A1C23E0031D1C3 /* GoogleService-Info.plist in Resources */,
+				18D3B69221A86F3C00ED56D3 /* VoiceRecorderViewController.xib in Resources */,
 				572D27C221159C7500DBBA37 /* Chat.storyboard in Resources */,
 				84A01DEE207CE80F00155842 /* Main.storyboard in Resources */,
 			);
@@ -422,6 +439,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReverseExtension/ReverseExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TGCameraViewController/TGCameraViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -431,6 +449,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReverseExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TGCameraViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,11 +518,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D3B69121A86F3C00ED56D3 /* MessageInputAreaViewController.swift in Sources */,
 				84A01DEB207CE80F00155842 /* ViewController.swift in Sources */,
 				84A01DF1207CE80F00155842 /* Answerer.xcdatamodeld in Sources */,
 				572D27CB211625FF00DBBA37 /* ConversationViewController.swift in Sources */,
 				57725EBC217D8FAD0066F803 /* WelcomViewController.swift in Sources */,
 				84FFED93207CEE0C00FB3A81 /* LoginVC.swift in Sources */,
+				18D3B69421A9F10900ED56D3 /* ChatConversation.swift in Sources */,
 				57A3D0C1207D2C0E003A84AB /* URLHelper.swift in Sources */,
 				577091BD21304D8700A15272 /* ChatTableViewCell.swift in Sources */,
 				57D663312125AF1A00551D14 /* Chat.swift in Sources */,
@@ -512,6 +533,7 @@
 				578682922126D2AD0001633A /* ChatHelper.swift in Sources */,
 				57535E55217C6F0B00BA7C6A /* CoreDataHelper.swift in Sources */,
 				57A3D0BF207D2BAF003A84AB /* FontHelper.swift in Sources */,
+				18D3B69021A86F3C00ED56D3 /* VoiceRecorderViewController.swift in Sources */,
 				57725EBA217D126B0066F803 /* Teacher.swift in Sources */,
 				57A3D0BD207D2BA4003A84AB /* UserHelper.swift in Sources */,
 				57A3D0C3207D34B6003A84AB /* Extensions.swift in Sources */,
@@ -694,7 +716,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kod.Answerer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -710,7 +732,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kod.Answerer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="IRANSans_Light.ttf">
+            <string>IRANSans-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoiceRecorderViewController" customModule="Divar" customModuleProvider="target">
+            <connections>
+                <outlet property="blinkingView" destination="RVZ-yS-4JZ" id="oKs-kx-GRD"/>
+                <outlet property="duration" destination="q68-O7-qOn" id="wr8-xz-qVG"/>
+                <outlet property="eraseButton" destination="aWR-YL-JHe" id="17x-uk-Aax"/>
+                <outlet property="view" destination="fc9-rm-My3" id="3MZ-8r-i77"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fc9-rm-My3">
+            <rect key="frame" x="0.0" y="0.0" width="327" height="42"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adfafa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q68-O7-qOn">
+                    <rect key="frame" x="32" y="8" width="45.5" height="26"/>
+                    <fontDescription key="fontDescription" name="IRANSans-Light" family="IRANSans" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVZ-yS-4JZ">
+                    <rect key="frame" x="16" y="17" width="8" height="8"/>
+                    <color key="backgroundColor" red="1" green="0.024170271515557173" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="V2r-0z-wPw"/>
+                        <constraint firstAttribute="width" constant="8" id="fTa-c7-HsV"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWR-YL-JHe">
+                    <rect key="frame" x="295" y="9" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="7Jp-ae-dBU"/>
+                        <constraint firstAttribute="height" constant="24" id="9oP-Nd-pbC"/>
+                    </constraints>
+                    <state key="normal" image="deleteVoice"/>
+                    <connections>
+                        <action selector="dismissVoice:" destination="-1" eventType="touchUpInside" id="b8i-a0-leE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="aWR-YL-JHe" firstAttribute="centerY" secondItem="TA3-xV-kda" secondAttribute="centerY" id="0az-Te-R3t"/>
+                <constraint firstItem="RVZ-yS-4JZ" firstAttribute="left" secondItem="fc9-rm-My3" secondAttribute="left" constant="16" id="C8z-tx-dee"/>
+                <constraint firstItem="q68-O7-qOn" firstAttribute="left" secondItem="RVZ-yS-4JZ" secondAttribute="left" constant="16" id="GAv-pX-2mg"/>
+                <constraint firstItem="aWR-YL-JHe" firstAttribute="centerY" secondItem="q68-O7-qOn" secondAttribute="centerY" id="YHh-Vn-k1S"/>
+                <constraint firstItem="q68-O7-qOn" firstAttribute="right" relation="lessThanOrEqual" secondItem="aWR-YL-JHe" secondAttribute="left" constant="200" id="bin-d2-hIn"/>
+                <constraint firstAttribute="right" secondItem="aWR-YL-JHe" secondAttribute="right" constant="8" id="hqb-dK-lzz"/>
+                <constraint firstItem="RVZ-yS-4JZ" firstAttribute="centerY" secondItem="q68-O7-qOn" secondAttribute="centerY" id="n5I-nc-gnF"/>
+                <constraint firstItem="q68-O7-qOn" firstAttribute="top" secondItem="fc9-rm-My3" secondAttribute="top" constant="8" id="nEJ-4Q-jPT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="TA3-xV-kda"/>
+            <point key="canvasLocation" x="79" y="-161"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="deleteVoice" width="48" height="48"/>
+    </resources>
+</document>

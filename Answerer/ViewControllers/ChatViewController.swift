@@ -12,33 +12,41 @@ import ReverseExtension
 import MobileCoreServices
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, getChatDelegate, sendChatDelegate {
-    
-    
-    @IBOutlet weak var sendbutton: UIButton!
     @IBOutlet weak var viewBotton: NSLayoutConstraint!
+    @IBOutlet weak var inputAreaHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var chatTable: UITableView!
     
-    @IBOutlet weak var chatTextView: UITextView!
+    @IBOutlet weak var inputAreaView: UIView!
     
     var lstOFChats = [Chat]()
     let chatHelper = ChatHelper()
     var lastIndexPath = IndexPath()
+    let conversation = ChatConversation()
+    let conversationID = ""
     
-    
+    lazy var messageInputAreaVC: MessageInputAreaViewController = {
+        MessageInputAreaViewController(conversation: conversation, conversationID: conversationID)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         chatHelper.delegate = self
-        chatTable.rowHeight = UITableViewAutomaticDimension
+        chatTable.rowHeight = UITableView.automaticDimension
         chatTable.estimatedRowHeight = 44
         chatHelper.requestChatEverySecond()
+        messageInputAreaVC.messageVC = self
+        messageInputAreaVC.delegate = self
+        addChild(messageInputAreaVC)
+        view.addSubview(messageInputAreaVC.view)
+        messageInputAreaVC.didMove(toParent: self)
         
-        chatTextView.layer.cornerRadius = 4.0
-        chatTextView.layer.borderWidth = 2
+        UIView.performWithoutAnimation {
+            inputAreaView.addSubview(messageInputAreaVC.view)
+        }
+        
         chatHelper.sendDelegate = self
         chatTable.separatorStyle = .none
-        chatTextView.textContainerInset = UIEdgeInsetsMake(4, 4, 4, 4)
         chatTable.re.delegate = self
         self.hideKeyboardWhenTappedAround()
         
@@ -48,13 +56,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIApplication.keyboardWillShowNotification,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillHide),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIApplication.keyboardWillHideNotification,
             object: nil
         )
         // Do any additional setup after loading the view.
@@ -65,7 +73,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     @objc func keyboardWillShow(_ notification: Notification){
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             self.viewBotton.constant = keyboardHeight * -1
@@ -174,56 +182,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         textViewDidChange(self.chatTextView)
         
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
-extension ChatViewController : UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        sendbutton.isEnabled = textView.text.count > 0
-    }
-}
-extension ChatViewController: UIDocumentPickerDelegate {
-    func chooseFile() {
-        let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeCompositeContent)], in: .import)
-        picker.delegate = self
-        present(picker, animated: true, completion: nil)
-    }
-    
-    func documentPicker(_: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        var tempURL = URL(fileURLWithPath: NSTemporaryDirectory())
-        tempURL.appendPathComponent(url.lastPathComponent)
-        do {
-            if FileManager.default.fileExists(atPath: tempURL.path) {
-                try FileManager.default.removeItem(atPath: tempURL.path)
-            }
-            try FileManager.default.moveItem(atPath: url.path, toPath: tempURL.path)
-            sendFile(filePath: tempURL)
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    fileprivate func sendFile(filePath: URL) {
-        let fizeSize = try? FileManager.default.attributesOfItem(atPath: filePath.path)[FileAttributeKey.size] ?? 0
-        let fileName = filePath.path.split(separator: "/").last
-        let data = try! JSONSerialization.data(withJSONObject: [
-            "type": "file",
-            "size": fizeSize,
-            "path": "\(filePath.path)", "original_name": fileName
-            ], options: [])
-        let stringBody = String(data: data, encoding: .utf8)
-//        
-//        message.body = stringBody!
-//        sendMessageRequest(message: message, image: nil, filePath: filePath, location: nil)
+
+extension ChatViewController: MessageInputAreaViewControllerDelegate {
+    func adjustInputAreaHeightConstraint(height: CGFloat) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.inputAreaHeightConstraint.constant = height
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }
 
