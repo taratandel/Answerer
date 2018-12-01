@@ -19,6 +19,13 @@ class Chat: NSObject {
     var questionType : String = ""
     var file : String = ""
     var teacherId : Int = 0
+    var type: Int = 0
+    
+    enum MessageType: Int, CaseIterable {
+        case text = 1
+        case image = 2
+        case voice = 4
+    }
     
     class func buildSingle (data : JSON) -> Chat {
         let chat = Chat()

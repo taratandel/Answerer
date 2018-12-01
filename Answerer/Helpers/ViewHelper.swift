@@ -57,12 +57,12 @@ class ViewHelper {
         //        basketTopFrame.origin.x = 0
 
         UIView.animate(withDuration
-                : 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+            : 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: UIView.AnimationOptions.curveEaseOut, animations: { () -> Void in
                     //                label.frame = basketTopFrame
                     holder.frame = basketTopFrame
             }, completion: {
                     (value: Bool) in
-                    UIView.animate(withDuration: 1.0, delay: 1.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
+                UIView.animate(withDuration: 1.0, delay: 1.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: UIView.AnimationOptions.curveEaseIn, animations: { () -> Void in
                         holder.frame = CGRect(x: 0, y: -64, width: appDelegate.window!.frame.size.width, height: 64)
                     }, completion: {
                             (value: Bool) in

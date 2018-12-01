@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         FirebaseApp.configure()
