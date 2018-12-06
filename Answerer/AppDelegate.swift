@@ -18,13 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
 
-        let dataDict: [String: String] = ["token": fcmToken]
+        let dataDict: [String: String] = ["token": fcmToken, "deviceId": UUID().uuidString, "deviceName": UIDevice.current.name]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        guard
+            let data = response[AnyHashable("data")] as? NSDictionary,
+            let conversationId = data["studentId"] as? String,
+            let questionType = data["questionType"] as? String,
+            let message = data["message"] as? String
+            else {
+                // handle any error here
+                return
+        }
+    }
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
         // Override point for customization after application launch.
 
         FirebaseApp.configure()
