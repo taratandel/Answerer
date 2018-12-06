@@ -155,32 +155,26 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             ViewHelper.showToastMessage(message: error)
         }
     }
-    @IBAction func sendChat(_ sender: Any) {
-        if chatTextView.text.isEmpty { return }
-        sendbutton.isEnabled = false
-        chatHelper.sendChat(teacherId: "09000000001", studentId: "09000000002", message: chatTextView.text ?? "", questionType: lstOFChats[0].questionType)
+    func sendChat(_ message: Chat) {
+        chatHelper.sendChat(teacherId: "09000000001", studentId: "09000000002", message: "", questionType: lstOFChats[0].questionType)
     }
     func sendChatStatus(isSucceded: Bool) {
         if isSucceded{
             let chat = Chat()
             chat.isTeacher = true
-            chat.message = chatTextView.text
+            chat.message = ""
             chat.timeStamp = AppTools.gettingCurrentDateAndTime()
             lstOFChats.append(chat)
-            chatTextView.text = ""
             chatTable.reloadData()
             
         }
         else {
             ViewHelper.showToastMessage(message: "Error, Please check the internet and try again")
         }
-        sendbutton.isEnabled = true
         if chatTable.numberOfRows(inSection: 0) > 0 {
             let indexPath = IndexPath(row: 0, section: 0)
             chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
-        }
-        textViewDidChange(self.chatTextView)
-        
+        }        
     }
 }
 

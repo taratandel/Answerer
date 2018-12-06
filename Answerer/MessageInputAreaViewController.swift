@@ -73,7 +73,7 @@ class MessageInputAreaViewController: UIViewController {
 
         textView.text = ""
         textViewDidChange(textView)
-        sendMessageRequest(message: message, image: nil, filePath: nil, location: nil)
+        sendMessageRequest(message: message, image: nil, filePath: nil)
     }
 }
 
@@ -81,52 +81,29 @@ class MessageInputAreaViewController: UIViewController {
 extension MessageInputAreaViewController {
     fileprivate func sendPhotoRequest(_ message: Chat, image: UIImage) {
         DispatchQueue.global().async {
-            ChatSendFileRequest(message, image: image, filePath: nil, networkManager: self.service.networkManager).execute(completionBlock: {
-                if self.conversation == nil { self.createConversationIfNeeded(message) }
-                ChatSendFileRequest.uploadingFileIDs.remove(message.id)
-            }, errorHandlingBlock: { reason in
-                self.parentVeiwController?.handleChatErrorMessages(reason, defaultMessages: self.service.networkManager.meta?.errors)
-                self.messageVC?.firstUnreadMessageIndex = nil
-            })
+            //decode the image to string and send
         }
     }
 
-    fileprivate func sendVoiceMessage(_ message: ChatConversationMessage, filePath: URL) {
+    fileprivate func sendVoiceMessage(_ message: Chat, filePath: URL) {
         DispatchQueue.global().async {
-            ChatSendFileRequest(message, image: nil, filePath: filePath, networkManager: self.service.networkManager).execute(completionBlock: {
-                if self.conversation == nil { self.createConversationIfNeeded(message) }
-                ChatSendFileRequest.uploadingFileIDs.remove(message.id)
-            }, errorHandlingBlock: { reason in
-                self.parentVeiwController?.handleChatErrorMessages(reason, defaultMessages: self.service.networkManager.meta?.errors)
-                self.messageVC?.tableView.reloadRows(at: self.messageVC?.tableView.indexPathsForVisibleRows ?? [], with: .automatic)
-            })
+            //decode the voice to string and send
         }
     }
 
-    fileprivate func sendMessageRequest(_ message: ChatConversationMessage) {
-        ChatSendMessageRequest(message, networkManager: service.networkManager).execute(completionBlock: {
-            if self.conversation == nil {
-                self.createConversationIfNeeded(message)
-            }
-        }, errorHandlingBlock: { reason in
-            self.parentVeiwController?.handleChatErrorMessages(reason, defaultMessages: self.service.networkManager.meta?.errors)
-        })
+    fileprivate func sendMessageRequest(_ message: Chat) {
+        //pass to the protocol to send
     }
 
-    fileprivate func sendMessageRequest(message: ChatConversationMessage, image: UIImage?, filePath: URL?, location: Location?) {
-        message.conversationID = conversation?.id ?? conversationID
-        message.id = message.id.isEmpty ? UUID().uuidString : message.id
-        message.timeUUID = message.id.getTimeUUID()
-        message.sent = false
-        message.fromMe = true
-        message.blocked = false
+    fileprivate func sendMessageRequest(message: Chat, image: UIImage?, filePath: URL?) {
+        //fill the message structure
 
         switch message.type {
-        case ChatConversationMessage.MessageType.image.rawValue:
+        case Chat.MessageType.image.rawValue:
             sendPhotoRequest(message, image: image!)
-        case ChatConversationMessage.MessageType.text.rawValue:
+        case Chat.MessageType.text.rawValue:
             sendMessageRequest(message)
-        case ChatConversationMessage.MessageType.voice.rawValue:
+        case Chat.MessageType.voice.rawValue:
             sendVoiceMessage(message, filePath: filePath!)
         default:
             break
@@ -163,13 +140,13 @@ extension MessageInputAreaViewController: TGCameraDelegate, UINavigationControll
 
 extension MessageInputAreaViewController {
     fileprivate func sendPhoto(image: UIImage) {
-        let message = ChatConversationMessage.getImageMessage(width: image.size.width, height: image.size.height)
-        sendMessageRequest(message: message, image: image, filePath: nil, location: nil)
+//        let message = ChatConversationMessage.getImageMessage(width: image.size.width, height: image.size.height)
+//        sendMessageRequest(message: Chat(), image: image, filePath: nil, location: nil)
     }
 
     fileprivate func sendVoice(voicePath: URL) {
-        let message = ChatConversationMessage.getVoiceMessage(voicePath: voicePath)
-        sendMessageRequest(message: message, image: nil, filePath: voicePath, location: nil)
+//        let message = ChatConversationMessage.getVoiceMessage(voicePath: voicePath)
+//        sendMessageRequest(message: Chat(), image: nil, filePath: voicePath, location: nil)
     }
 }
 

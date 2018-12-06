@@ -49,7 +49,7 @@ class VoiceRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.frame.size.width = 327.0
-        blinkingView.cornerRadius = blinkingView.frame.width/2
+        blinkingView.layer.cornerRadius = blinkingView.frame.width/2
         checkRecordPermission()
         duration.text = ""
         if isAudioRecordingGranted {
@@ -88,7 +88,7 @@ class VoiceRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
             return
         }
 
-        duration.text = formatSecondsToString(TimeInterval(counter)).persianNumber
+        duration.text = formatSecondsToString(TimeInterval(counter))
         counter += 1
     }
 

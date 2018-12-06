@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
+
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         guard
             let data = response[AnyHashable("data")] as? NSDictionary,
@@ -34,7 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return
         }
     }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
         // Override point for customization after application launch.
 
         FirebaseApp.configure()
