@@ -35,14 +35,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatTable.rowHeight = UITableView.automaticDimension
         chatTable.estimatedRowHeight = 44
         chatHelper.requestChatEverySecond()
-        messageInputAreaVC.messageVC = self
-        messageInputAreaVC.delegate = self
-        addChild(messageInputAreaVC)
-        view.addSubview(messageInputAreaVC.view)
-        messageInputAreaVC.didMove(toParent: self)
-        
-        UIView.performWithoutAnimation {
-            inputAreaView.addSubview(messageInputAreaVC.view)
+        if true {
+            messageInputAreaVC.messageVC = self
+            messageInputAreaVC.delegate = self
+            addChild(messageInputAreaVC)
+            view.addSubview(messageInputAreaVC.view)
+            messageInputAreaVC.didMove(toParent: self)
+            
+            UIView.performWithoutAnimation {
+                inputAreaView.addSubview(messageInputAreaVC.view)
+            }
         }
         
         chatHelper.sendDelegate = self

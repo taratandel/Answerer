@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -8,17 +12,10 @@
         <array key="IRANSans.ttf">
             <string>IRANSans</string>
         </array>
-        <array key="IRANSans_Light.ttf">
-            <string>IRANSans-Light</string>
-        </array>
-        <array key="IRANSans_Medium.ttf">
-            <string>IRANSans-Medium</string>
-        </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageInputAreaViewController" customModule="Divar" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageInputAreaViewController" customModule="Answerer" customModuleProvider="target">
             <connections>
-                <outlet property="blockView" destination="muO-fl-bga" id="OS7-Kt-Mkm"/>
                 <outlet property="recordingView" destination="5dR-hu-37K" id="vG2-ae-ZGK"/>
                 <outlet property="sendButton" destination="DVa-Kn-Q6v" id="OG5-cV-iYh"/>
                 <outlet property="sendButtonBackground" destination="A53-pn-QqW" id="1q0-4O-ZuA"/>
@@ -78,7 +75,7 @@
                             <real key="value" value="0.5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -90,7 +87,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A53-pn-QqW">
                     <rect key="frame" x="331" y="9" width="32" height="32"/>
-                    <color key="backgroundColor" red="0.65098039215686276" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="0.024170271520000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="RvT-eu-VR3"/>
                         <constraint firstAttribute="width" constant="32" id="aAO-Bd-Iya"/>
@@ -114,77 +111,19 @@
                         <constraint firstAttribute="width" constant="48" id="55D-VI-282"/>
                     </constraints>
                     <state key="normal">
-                        <color key="titleColor" red="0.65098039215686276" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="0.024170271520000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
                     <state key="disabled">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
-                <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muO-fl-bga" customClass="BlockView" customModule="Divar" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-j8-HoF">
-                            <rect key="frame" x="16" y="5" width="148" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="148" id="Liu-9R-thY"/>
-                                <constraint firstAttribute="height" constant="40" id="ZKa-NF-6QY"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="IRANSans-Medium" family="IRANSans" pointSize="15"/>
-                            <state key="normal" title=" "/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <integer key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="unblockUser" destination="muO-fl-bga" eventType="touchUpInside" id="COT-Q3-vIP"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="این کاربر را مسدود کرده‌اید." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TM7-j1-UtL">
-                            <rect key="frame" x="214" y="16.5" width="145" height="17.5"/>
-                            <fontDescription key="fontDescription" name="IRANSans-Light" family="IRANSans" pointSize="15"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6g-SO-9am">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="IRANSans" family="IRANSans" pointSize="14"/>
-                            <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="B6g-SO-9am" secondAttribute="bottom" id="4Pt-HU-Q0l"/>
-                        <constraint firstItem="uNQ-j8-HoF" firstAttribute="left" secondItem="muO-fl-bga" secondAttribute="left" constant="16" id="7pA-wL-eXU"/>
-                        <constraint firstItem="uNQ-j8-HoF" firstAttribute="centerY" secondItem="muO-fl-bga" secondAttribute="centerY" id="GKO-Ms-NmD"/>
-                        <constraint firstAttribute="right" secondItem="TM7-j1-UtL" secondAttribute="right" constant="16" id="MmS-Dl-iFq"/>
-                        <constraint firstItem="B6g-SO-9am" firstAttribute="leading" secondItem="muO-fl-bga" secondAttribute="leading" id="Yhn-rM-Qfb"/>
-                        <constraint firstItem="TM7-j1-UtL" firstAttribute="left" relation="greaterThanOrEqual" secondItem="uNQ-j8-HoF" secondAttribute="right" constant="4" id="ZgJ-4E-4Qt"/>
-                        <constraint firstItem="TM7-j1-UtL" firstAttribute="centerY" secondItem="uNQ-j8-HoF" secondAttribute="centerY" id="lfm-QF-mit"/>
-                        <constraint firstItem="B6g-SO-9am" firstAttribute="top" secondItem="muO-fl-bga" secondAttribute="top" id="uo8-lJ-dWC"/>
-                        <constraint firstAttribute="trailing" secondItem="B6g-SO-9am" secondAttribute="trailing" id="vEn-vs-Xxu"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="backGroundView" destination="B6g-SO-9am" id="zm3-Mx-8yT"/>
-                        <outlet property="blockButton" destination="uNQ-j8-HoF" id="QEO-pD-cYC"/>
-                        <outlet property="blockLabel" destination="TM7-j1-UtL" id="K9L-bk-nR6"/>
-                    </connections>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="819-vg-c6i" firstAttribute="centerX" secondItem="A53-pn-QqW" secondAttribute="centerX" id="147-uY-jkR"/>
                 <constraint firstAttribute="bottom" secondItem="5dR-hu-37K" secondAttribute="bottom" id="2bo-zd-YcK"/>
                 <constraint firstItem="5dR-hu-37K" firstAttribute="left" secondItem="i5M-Pr-FkT" secondAttribute="left" id="5zK-vb-o65"/>
-                <constraint firstAttribute="trailing" secondItem="muO-fl-bga" secondAttribute="trailing" id="77H-9I-H1g"/>
                 <constraint firstItem="9VO-WB-P8E" firstAttribute="centerX" secondItem="Xa1-6b-BcS" secondAttribute="centerX" id="Bul-ww-jz1"/>
-                <constraint firstItem="muO-fl-bga" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DLp-en-mo8"/>
                 <constraint firstAttribute="bottom" secondItem="Xa1-6b-BcS" secondAttribute="bottom" constant="4" id="F53-vE-01E"/>
                 <constraint firstItem="B6X-IT-djb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IaC-JN-ogP"/>
                 <constraint firstItem="BwS-Qd-gNv" firstAttribute="left" secondItem="i5M-Pr-FkT" secondAttribute="left" constant="8" id="MDm-ZV-JhM"/>
@@ -196,11 +135,9 @@
                 <constraint firstItem="DVa-Kn-Q6v" firstAttribute="centerY" secondItem="Xa1-6b-BcS" secondAttribute="centerY" constant="0.5" id="ZLq-zz-2YM"/>
                 <constraint firstItem="Xa1-6b-BcS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="4" id="bgY-Go-f3p"/>
                 <constraint firstItem="9VO-WB-P8E" firstAttribute="centerY" secondItem="Xa1-6b-BcS" secondAttribute="centerY" id="dsq-et-z7g"/>
-                <constraint firstItem="muO-fl-bga" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gyr-Vm-ybv"/>
                 <constraint firstItem="A53-pn-QqW" firstAttribute="centerY" secondItem="DVa-Kn-Q6v" secondAttribute="centerY" constant="-0.5" id="hr5-mb-Hwi"/>
                 <constraint firstItem="819-vg-c6i" firstAttribute="centerY" secondItem="A53-pn-QqW" secondAttribute="centerY" id="iVg-4A-9NR"/>
                 <constraint firstItem="DVa-Kn-Q6v" firstAttribute="left" secondItem="Xa1-6b-BcS" secondAttribute="right" id="l2W-0p-qPI"/>
-                <constraint firstAttribute="bottom" secondItem="muO-fl-bga" secondAttribute="bottom" id="lE9-Z6-RSB"/>
                 <constraint firstItem="5dR-hu-37K" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="1" id="nap-FP-KL6"/>
                 <constraint firstItem="A53-pn-QqW" firstAttribute="width" secondItem="DVa-Kn-Q6v" secondAttribute="width" constant="-16" id="r1P-jY-5PA"/>
                 <constraint firstAttribute="bottom" secondItem="BwS-Qd-gNv" secondAttribute="bottom" constant="4" id="vPu-CH-bZq"/>
@@ -213,7 +150,7 @@
         </view>
     </objects>
     <resources>
-        <image name="attachment" width="72" height="72"/>
-        <image name="mic" width="72" height="72"/>
+        <image name="attachment" width="48" height="48"/>
+        <image name="mic" width="48" height="48"/>
     </resources>
 </document>

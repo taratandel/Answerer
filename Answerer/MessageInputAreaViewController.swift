@@ -20,8 +20,7 @@ class MessageInputAreaViewController: UIViewController {
 
     var conversationID: String
     var recordingViewController: VoiceRecorderViewController?
-    var isRecordingEnded = false
-    var timerFinished = false
+    var isRecording = false
 
     @IBOutlet var textView: UITextView!
     @IBOutlet weak var sendButtonBackground: UIView!
@@ -43,7 +42,8 @@ class MessageInputAreaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        textView.layer.borderColor = UIColor.black.cgColor
+        textView.layer.borderWidth = 1
         textView.textContainerInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(sendMessage(_:)))
         let longgesture = UILongPressGestureRecognizer(target: self, action: #selector(startRecording(_:)))
@@ -58,15 +58,17 @@ class MessageInputAreaViewController: UIViewController {
     }
 
     @objc func sendMessage(_ sender: UIGestureRecognizer) {
-        if isRecordingEnded, recordingViewController != nil {
+        if !isRecording, recordingViewController != nil {
             recordingViewController!.saveAudio()
-            isRecordingEnded = false
+            isRecording = false
+            return
+        } else if isRecording, recordingViewController != nil {
+            self.stopRecording()
             return
         } else if textView.text.isEmpty { return }
 
         let message = Chat()
         message.message = textView.text.trimmingCharacters(in: CharacterSet.whitespaces)
-//        message. = ChatConversationMessage.MessageType.text.rawValue
         if message.message.count > 1000 {
             return
         }
@@ -81,7 +83,7 @@ class MessageInputAreaViewController: UIViewController {
 extension MessageInputAreaViewController {
     fileprivate func sendPhotoRequest(_ message: Chat, image: UIImage) {
         DispatchQueue.global().async {
-            //decode the image to string and send
+//            message.image = String(
         }
     }
 
@@ -152,13 +154,13 @@ extension MessageInputAreaViewController {
 
 extension MessageInputAreaViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-  if textView.text.count == 0 { delegate?.adjustInputAreaHeightConstraint(height: 42)
+        if textView.text.count == 0 { delegate?.adjustInputAreaHeightConstraint(height: 50)
             self.changeConstraintOfTextView(shouldGrow: false); return }
         let newSize = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         if newSize.height > 100 {
             textView.isScrollEnabled = true
         } else {
-            delegate?.adjustInputAreaHeightConstraint(height: max(42, newSize.height + 12))
+            delegate?.adjustInputAreaHeightConstraint(height: max(50, newSize.height + 12))
             textView.isScrollEnabled = false
         }
         if textView.text.count > 0 {
@@ -198,8 +200,11 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
             if self.recordingViewController != nil && self.recordingViewController?.duration.text != "" {
                 self.changeBackgroundAnPictureOfTheSendButton(backGroundColor: .white, pictureName: "send")
                 self.recordingViewController!.stopRecording()
-                self.isRecordingEnded = true
-            } else { self.audioRecorderViewControllerDismissed(withFileURL: nil) }
+                self.isRecording = false
+            } else {
+                self.audioRecorderViewControllerDismissed(withFileURL: nil)
+                self.isRecording = false
+            }
         })
     }
 
@@ -222,16 +227,16 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
                         self.recordingViewController!.didMove(toParent: self)
                         self.recordingView.addSubview(self.recordingViewController!.view)
                         self.recordingView.alpha = 1
+                        self.isRecording = true
                     }
                 })
             }
-        } else if sender.state == UIGestureRecognizer.State.ended && !timerFinished {
+        } else if sender.state == UIGestureRecognizer.State.ended && isRecording {
             stopRecording()
         }
     }
 
     func timerFinishedCounting() {
         stopRecording()
-        timerFinished = true
     }
 }

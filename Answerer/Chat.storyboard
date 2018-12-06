@@ -444,10 +444,32 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syn-0T-hEM">
-                                <rect key="frame" x="0.0" y="595" width="375" height="72"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snt-1O-eQh">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7b-Ch-co3">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                                                <state key="normal" title="Accept"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbE-VG-3gS">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
+                                                <state key="normal" title="Reject"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="M7b-Ch-co3" firstAttribute="width" secondItem="AbE-VG-3gS" secondAttribute="width" id="fWQ-Nd-UHt"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="eio-gI-8Ng"/>
+                                    <constraint firstItem="snt-1O-eQh" firstAttribute="centerY" secondItem="syn-0T-hEM" secondAttribute="centerY" id="Cvl-Sf-vZT"/>
+                                    <constraint firstItem="snt-1O-eQh" firstAttribute="width" secondItem="syn-0T-hEM" secondAttribute="width" id="Epb-pl-3xx"/>
+                                    <constraint firstAttribute="height" constant="50" id="eio-gI-8Ng"/>
+                                    <constraint firstItem="snt-1O-eQh" firstAttribute="centerX" secondItem="syn-0T-hEM" secondAttribute="centerX" id="ig4-Yg-Gpb"/>
+                                    <constraint firstItem="snt-1O-eQh" firstAttribute="height" secondItem="syn-0T-hEM" secondAttribute="height" id="ykf-0p-TrB"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -459,7 +481,7 @@
                             <constraint firstItem="BhW-dQ-oOz" firstAttribute="leading" secondItem="Rv0-Pf-4A2" secondAttribute="leading" id="VMo-2a-ccj"/>
                             <constraint firstItem="syn-0T-hEM" firstAttribute="leading" secondItem="Rv0-Pf-4A2" secondAttribute="leading" id="ifb-oj-x0L"/>
                             <constraint firstItem="BhW-dQ-oOz" firstAttribute="trailing" secondItem="Rv0-Pf-4A2" secondAttribute="trailing" id="kZz-c3-5QT"/>
-                            <constraint firstItem="syn-0T-hEM" firstAttribute="top" secondItem="BhW-dQ-oOz" secondAttribute="bottom" id="yrN-dZ-kpw"/>
+                            <constraint firstItem="syn-0T-hEM" firstAttribute="top" secondItem="BhW-dQ-oOz" secondAttribute="bottom" constant="22" id="yrN-dZ-kpw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rv0-Pf-4A2"/>
                     </view>
