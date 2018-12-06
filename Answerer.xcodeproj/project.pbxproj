@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18B9E14121B98061000F1B4F /* AcceptOrDeclineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9E14021B98061000F1B4F /* AcceptOrDeclineViewController.swift */; };
 		18D3B68F21A86F3C00ED56D3 /* MessageInputAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */; };
 		18D3B69021A86F3C00ED56D3 /* VoiceRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */; };
 		18D3B69121A86F3C00ED56D3 /* MessageInputAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3B68D21A86F3C00ED56D3 /* MessageInputAreaViewController.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18B9E14021B98061000F1B4F /* AcceptOrDeclineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptOrDeclineViewController.swift; sourceTree = "<group>"; };
 		18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInputAreaViewController.xib; sourceTree = "<group>"; };
 		18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecorderViewController.swift; sourceTree = "<group>"; };
 		18D3B68D21A86F3C00ED56D3 /* MessageInputAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInputAreaViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				572D27CA211625FF00DBBA37 /* ConversationViewController.swift */,
 				57F747E1212E02F1003EEE8D /* ChatViewController.swift */,
 				57725EBB217D8FAD0066F803 /* WelcomViewController.swift */,
+				18B9E14021B98061000F1B4F /* AcceptOrDeclineViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				84FFED93207CEE0C00FB3A81 /* LoginVC.swift in Sources */,
 				18D3B69421A9F10900ED56D3 /* ChatConversation.swift in Sources */,
 				57A3D0C1207D2C0E003A84AB /* URLHelper.swift in Sources */,
+				18B9E14121B98061000F1B4F /* AcceptOrDeclineViewController.swift in Sources */,
 				577091BD21304D8700A15272 /* ChatTableViewCell.swift in Sources */,
 				57D663312125AF1A00551D14 /* Chat.swift in Sources */,
 				57A3D0C5207D34D4003A84AB /* AppTools.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZUj-S1-ilD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mUF-jk-mx6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -445,31 +445,9 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syn-0T-hEM">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snt-1O-eQh">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7b-Ch-co3">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
-                                                <state key="normal" title="Accept"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbE-VG-3gS">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
-                                                <state key="normal" title="Reject"/>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="M7b-Ch-co3" firstAttribute="width" secondItem="AbE-VG-3gS" secondAttribute="width" id="fWQ-Nd-UHt"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="snt-1O-eQh" firstAttribute="centerY" secondItem="syn-0T-hEM" secondAttribute="centerY" id="Cvl-Sf-vZT"/>
-                                    <constraint firstItem="snt-1O-eQh" firstAttribute="width" secondItem="syn-0T-hEM" secondAttribute="width" id="Epb-pl-3xx"/>
                                     <constraint firstAttribute="height" constant="50" id="eio-gI-8Ng"/>
-                                    <constraint firstItem="snt-1O-eQh" firstAttribute="centerX" secondItem="syn-0T-hEM" secondAttribute="centerX" id="ig4-Yg-Gpb"/>
-                                    <constraint firstItem="snt-1O-eQh" firstAttribute="height" secondItem="syn-0T-hEM" secondAttribute="height" id="ykf-0p-TrB"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -495,6 +473,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOP-Gy-YpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1836" y="143.47826086956522"/>
+        </scene>
+        <!--Accept Or Decline View Controller-->
+        <scene sceneID="yBr-d1-8sg">
+            <objects>
+                <viewController storyboardIdentifier="acceptOrDecline" id="SWF-5T-7l1" customClass="AcceptOrDeclineViewController" customModule="Answerer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dG1-Wu-6Hq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1M-BJ-c8L">
+                                <rect key="frame" x="0.0" y="378.5" width="187.5" height="288.5"/>
+                                <state key="normal" title="Accept"/>
+                                <connections>
+                                    <action selector="acceptQuestion:" destination="SWF-5T-7l1" eventType="touchUpInside" id="3ti-ck-rmK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-Xu-eKE">
+                                <rect key="frame" x="152.5" y="308.5" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="71B-e5-VUp"/>
+                                    <constraint firstAttribute="width" constant="70" id="Hnt-VX-n4V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uej-0Q-gTm">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Ntq-ew-JOo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-eJ-Mas">
+                                <rect key="frame" x="187.5" y="378.5" width="187.5" height="288.5"/>
+                                <state key="normal" title="Decline"/>
+                                <connections>
+                                    <action selector="declineQuestions:" destination="SWF-5T-7l1" eventType="touchUpInside" id="s2Z-Zm-sbL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="H1M-BJ-c8L" firstAttribute="top" secondItem="s7S-Xu-eKE" secondAttribute="bottom" id="30c-rD-n7O"/>
+                            <constraint firstItem="H1M-BJ-c8L" firstAttribute="width" secondItem="9rD-eJ-Mas" secondAttribute="width" id="4CO-dc-ciD"/>
+                            <constraint firstItem="Uej-0Q-gTm" firstAttribute="top" secondItem="uMi-Ip-T2A" secondAttribute="top" id="BTO-xY-gRy"/>
+                            <constraint firstItem="H1M-BJ-c8L" firstAttribute="leading" secondItem="uMi-Ip-T2A" secondAttribute="leading" id="DOx-Ko-Vcn"/>
+                            <constraint firstItem="Uej-0Q-gTm" firstAttribute="leading" secondItem="uMi-Ip-T2A" secondAttribute="leading" id="NWx-O2-RyR"/>
+                            <constraint firstItem="9rD-eJ-Mas" firstAttribute="leading" secondItem="H1M-BJ-c8L" secondAttribute="trailing" id="PkH-nN-SHc"/>
+                            <constraint firstItem="H1M-BJ-c8L" firstAttribute="bottom" secondItem="uMi-Ip-T2A" secondAttribute="bottom" id="QXC-2a-E30"/>
+                            <constraint firstItem="uMi-Ip-T2A" firstAttribute="trailing" secondItem="Uej-0Q-gTm" secondAttribute="trailing" id="TUj-Ja-w1K"/>
+                            <constraint firstItem="9rD-eJ-Mas" firstAttribute="leading" secondItem="H1M-BJ-c8L" secondAttribute="trailing" id="b82-R9-RY9"/>
+                            <constraint firstItem="9rD-eJ-Mas" firstAttribute="top" secondItem="s7S-Xu-eKE" secondAttribute="bottom" id="jA6-Pg-H5j"/>
+                            <constraint firstItem="uMi-Ip-T2A" firstAttribute="trailing" secondItem="9rD-eJ-Mas" secondAttribute="trailing" id="jw4-rq-H8N"/>
+                            <constraint firstItem="s7S-Xu-eKE" firstAttribute="centerX" secondItem="uMi-Ip-T2A" secondAttribute="centerX" id="tcx-b0-ylh"/>
+                            <constraint firstItem="s7S-Xu-eKE" firstAttribute="centerY" secondItem="uMi-Ip-T2A" secondAttribute="centerY" id="x9P-nW-fVu"/>
+                            <constraint firstItem="9rD-eJ-Mas" firstAttribute="bottom" secondItem="uMi-Ip-T2A" secondAttribute="bottom" id="zmz-70-Cll"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uMi-Ip-T2A"/>
+                    </view>
+                    <connections>
+                        <outlet property="Timerss" destination="s7S-Xu-eKE" id="VSB-Xd-fiO"/>
+                        <outlet property="questionTitle" destination="Uej-0Q-gTm" id="iK2-Vn-kPK"/>
+                        <segue destination="ZUj-S1-ilD" kind="show" identifier="acceptedChat" id="0xv-XN-hOJ"/>
+                        <segue destination="mUF-jk-mx6" kind="show" identifier="declinedChat" id="eVj-Df-2P2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PP9-bD-Esp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1836" y="1102"/>
         </scene>
     </scenes>
 </document>

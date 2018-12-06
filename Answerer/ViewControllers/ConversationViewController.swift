@@ -14,7 +14,9 @@ class ConversationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // request teacherID/ userdefaults
+        // types 1- read
+        //
         // Do any additional setup after loading the view.
     }
 

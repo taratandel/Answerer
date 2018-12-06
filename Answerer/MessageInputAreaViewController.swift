@@ -83,7 +83,7 @@ class MessageInputAreaViewController: UIViewController {
 extension MessageInputAreaViewController {
     fileprivate func sendPhotoRequest(_ message: Chat, image: UIImage) {
         DispatchQueue.global().async {
-//            message.image = String(
+            message.image = image.toBase64()!
         }
     }
 
@@ -240,3 +240,4 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
         stopRecording()
     }
 }
+

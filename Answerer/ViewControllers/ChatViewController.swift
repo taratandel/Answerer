@@ -23,7 +23,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     let chatHelper = ChatHelper()
     var lastIndexPath = IndexPath()
     let conversation = ChatConversation()
-    let conversationID = ""
+    var conversationID = ""
     
     lazy var messageInputAreaVC: MessageInputAreaViewController = {
         MessageInputAreaViewController(conversation: conversation, conversationID: conversationID)
