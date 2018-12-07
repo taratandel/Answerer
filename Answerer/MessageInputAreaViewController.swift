@@ -11,34 +11,36 @@ import TGCameraViewController
 
 protocol MessageInputAreaViewControllerDelegate: class {
     func adjustInputAreaHeightConstraint(height: CGFloat)
-     func sendChat(message: String?, image: UIImage?, filePath: URL?, type: Int)
+    func sendChat(message: String?, image: UIImage?, filePath: URL?, type: Int)
 }
 
 class MessageInputAreaViewController: UIViewController {
     weak var messageVC: ChatViewController?
     weak var delegate: MessageInputAreaViewControllerDelegate?
-
+    
     var conversationID: String
     var recordingViewController: VoiceRecorderViewController?
     var isRecording = false
-
+    var conversationIsEnd: Bool!
+    
     @IBOutlet var textView: UITextView!
     @IBOutlet weak var sendButtonBackground: UIView!
     @IBOutlet weak var sendButtonImage: UIImageView!
     @IBOutlet weak var textViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordingView: UIView!
     @IBOutlet weak var sendButton: UIButton!
-
-
-    init(conversationID: String) {
+    
+    
+    init(conversationID: String, conversationIsEnded: Bool) {
         self.conversationID = conversationID
+        self.conversationIsEnd = conversationIsEnded
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.layer.borderColor = UIColor.black.cgColor
@@ -46,35 +48,44 @@ class MessageInputAreaViewController: UIViewController {
         textView.textContainerInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(sendMessage(_:)))
         let longgesture = UILongPressGestureRecognizer(target: self, action: #selector(startRecording(_:)))
-
+        
         longgesture.delegate = self
         sendButton.addGestureRecognizer(tapgesture)
         sendButton.addGestureRecognizer(longgesture)
+        if !conversationIsEnd {
+            sendButton.isEnabled = true
+        } else {
+            sendButton.isEnabled = false
+        }
     }
-
+    
     @IBAction func showAttachOptions() {
         chooseImage()
     }
-
+    
     @objc func sendMessage(_ sender: UIGestureRecognizer) {
-        if !isRecording, recordingViewController != nil {
-            recordingViewController!.saveAudio()
-            isRecording = false
-            return
-        } else if isRecording, recordingViewController != nil {
-            self.stopRecording()
-            return
-        } else if textView.text.isEmpty { return }
-
-        let message = Chat()
-        message.message = textView.text.trimmingCharacters(in: CharacterSet.whitespaces)
-        if message.message.count > 1000 {
-            return
+        if !conversationIsEnd {
+            if !isRecording, recordingViewController != nil {
+                recordingViewController!.saveAudio()
+                isRecording = false
+                return
+            } else if isRecording, recordingViewController != nil {
+                self.stopRecording()
+                return
+            } else if textView.text.isEmpty { return }
+            
+            let message = Chat()
+            message.message = textView.text.trimmingCharacters(in: CharacterSet.whitespaces)
+            if message.message.count > 1000 {
+                return
+            }
+            
+            textView.text = ""
+            textViewDidChange(textView)
+            delegate?.sendChat(message: message.message, image: nil, filePath: nil, type: 0)
+        } else {
+            ViewHelper.showToastMessage(message: "The Conversation Is Ended")
         }
-
-        textView.text = ""
-        textViewDidChange(textView)
-        delegate?.sendChat(message: message.message, image: nil, filePath: nil, type: 0)
     }
 }
 
@@ -85,20 +96,20 @@ extension MessageInputAreaViewController: TGCameraDelegate, UINavigationControll
         TGCamera.setOption("kTGCameraOptionUseOriginalAspect", value: 1)
         present(cameraController, animated: true) {}
     }
-
+    
     func cameraDidCancel() {
         dismiss(animated: true, completion: nil)
     }
-
+    
     func cameraDidSelectAlbumPhoto(_ image: UIImage!) {
-
+        
         dismiss(animated: true, completion: {
             self.sendPhoto(image: image)
         })
     }
-
+    
     func cameraDidTakePhoto(_ image: UIImage!) {
-
+        
         dismiss(animated: true, completion: {
             self.sendPhoto(image: image)
         })
@@ -109,7 +120,7 @@ extension MessageInputAreaViewController {
     fileprivate func sendPhoto(image: UIImage) {
         delegate?.sendChat(message: nil, image: image, filePath: nil, type: 1)
     }
-
+    
     fileprivate func sendVoice(voicePath: URL) {
         delegate?.sendChat(message: nil, image: nil, filePath: voicePath, type: 2)
     }
@@ -130,7 +141,7 @@ extension MessageInputAreaViewController: UITextViewDelegate {
             changeConstraintOfTextView(shouldGrow: true)
         }
     }
-
+    
     func changeConstraintOfTextView(shouldGrow: Bool) {
         textViewLeftConstraint.constant = shouldGrow ? 4 : 40
         self.changeBackgroundAnPictureOfTheSendButton(backGroundColor: shouldGrow ? .white : .red, pictureName: shouldGrow ? "send" : "mic")
@@ -141,12 +152,12 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isKind(of: UILongPressGestureRecognizer.self) { startRecording(gestureRecognizer) }; return true
     }
-
+    
     func audioRecorderViewControllerDismissed(withFileURL fileURL: URL?) {
         if let url = fileURL {
             sendVoice(voicePath: url)
         } else {
-
+            
         }
         if recordingViewController != nil {
             recordingViewController!.cleanup()
@@ -155,7 +166,7 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
             recordingView.alpha = 0
         }
     }
-
+    
     func stopRecording() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
             self.sendButtonBackground.transform = .init(scaleX: 1, y: 1)
@@ -170,12 +181,12 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
             }
         })
     }
-
+    
     func changeBackgroundAnPictureOfTheSendButton(backGroundColor: UIColor, pictureName: String) {
         self.sendButtonImage.image = UIImage(named: "\(pictureName)")
         self.sendButtonBackground.backgroundColor = backGroundColor
     }
-
+    
     @objc func startRecording(_ sender: UIGestureRecognizer) {
         if sender.state == .possible {
             if textView.text.isEmpty {
@@ -198,7 +209,7 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
             stopRecording()
         }
     }
-
+    
     func timerFinishedCounting() {
         stopRecording()
     }
