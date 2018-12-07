@@ -119,12 +119,12 @@ class ChatHelper: NSObject {
                     let msg = JSON(response["conversations"])
                     conversations = ChatConversation.buildList(jsonData: msg)
                     
-                    if self.delegate.responds (to: #selector(getConversationsDelegate.getConversationSuccessfully)){
-                        self.delegate!.getConversationSuccessfully!(Chatconversations: conversations)
+                    if self.convDelegate != nil {
+                        self.convDelegate?.getConversationSuccessfully(lstOfConversations: conversations)
                     }
                 } else {
-                    if self.delegate.responds (to: #selector(getConversationsDelegate.getConversationsUnsuccessfully(error:))){
-                        self.delegate!.failedTogetConv!(error: JSON(response).stringValue)
+                    if self.convDelegate != nil {
+                        self.convDelegate?.failedTogetConv(isSucceded: false, error: "\(response)")
                     }
                 }
             })
