@@ -8,11 +8,9 @@
 
 import UIKit
 
-class ConversationViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource, MessageDelegate{
-    
-    
+class ConversationViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource, getConversationsDelegate{
     let defaults = UserDefaults.standard
-    let messageHelper = MessageHelper()
+    let messageHelper = ChatHelper()
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var conversationTable: UITableView!
@@ -24,7 +22,7 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
         conversationTable.delegate = self
         conversationTable.dataSource = self
         conversationTable.isHidden = true
-        
+        messageHelper.convDelegate = self
         indicator.startAnimating()
     }
     
@@ -37,23 +35,11 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
         if (defaults.object(forKey: "TeacherData") != nil){
             let stdData = defaults.object(forKey: "TeacherData") as! Teacher
                 let stdPhone = stdData.phone
-                messageHelper.getConversation(studentId: stdPhone)
+            messageHelper.getConversations(teacherId: stdPhone)
         }else{
             ViewHelper.showToastMessage(message: "please login!")
         }
         
-    }
-    
-    func getConversationsSuccessfully(conversations: [ChatConversation]) {
-        self.conversations = conversations
-        conversationTable.reloadData()
-        indicator.isHidden = true
-        indicator.stopAnimating()
-        conversationTable.isHidden = false
-    }
-    
-    func getMessagesUnsuccessfully(error: String) {
-        ViewHelper.showToastMessage(message: error)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,22 +60,20 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! ConversationTableViewCell
-        let chatVC = SegueHelper.createViewController(storyboardName: "Main", viewControllerId: "ChatVC") as! ChatVC
-        chatVC.conversationId = cell.conversationId
-        switch cell.questionType {
-        case "science":
-            chatVC.type = .science
-        case "math":
-            chatVC.type = .math
-        case "english":
-            chatVC.type = .english
-        case "toefl":
-            chatVC.type = .toefl
-        default:
-            break
-        }
-        SegueHelper.presentViewController(sourceViewController: self, destinationViewController: chatVC)
-        
-}
+        let chatVC = SegueHelper.createViewController(storyboardName: "Main", viewControllerId: "ChatVC") as! ChatViewController
+        chatVC.conversationID = cell.conversationId
+        SegueHelper.pushViewController(sourceViewController: self, destinationViewController: chatVC)
+    }
+    func getConversationSuccessfully(lstOfConversations: [ChatConversation]) {
+        self.conversations = lstOfConversations
+        conversationTable.reloadData()
+        indicator.isHidden = true
+        indicator.stopAnimating()
+        conversationTable.isHidden = false
+    }
+    
+    func failedTogetConv(isSucceded: Bool, error: String) {
+        ViewHelper.showToastMessage(message: error)
+    }
 
 }

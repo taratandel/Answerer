@@ -81,6 +81,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.viewBotton.constant = keyboardHeight * -1
         }
     }
+    @IBAction func endChat(_ sender: Any) {
+        chatHelper.sendChat(message: "", filePath: nil, type: 4, images: nil)
+    }
     @objc func keyboardWillHide(_ notification: Notification){
         self.viewBotton.constant = 0
     }

@@ -94,6 +94,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0e0-GR-cmt">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="ubq-ti-b1v">
+                                    <rect key="frame" x="0.0" y="128" width="375" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="BBb-LW-LaY" customClass="ConversationTableViewCell" customModule="Answerer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
@@ -155,6 +159,7 @@
                     </view>
                     <connections>
                         <outlet property="conversationTable" destination="0e0-GR-cmt" id="Zh8-YP-h5f"/>
+                        <outlet property="indicator" destination="ubq-ti-b1v" id="CH1-eH-JxC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qJ-lB-tUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,8 +174,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llM-HT-6ZB">
+                                <rect key="frame" x="0.0" y="20" width="375" height="35"/>
+                                <state key="normal" title="End the Chat"/>
+                                <connections>
+                                    <action selector="endChat:" destination="ZUj-S1-ilD" eventType="touchUpInside" id="4nB-BB-aqT"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BhW-dQ-oOz">
-                                <rect key="frame" x="0.0" y="20" width="375" height="575"/>
+                                <rect key="frame" x="0.0" y="55" width="375" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="imageCell" rowHeight="223" id="JtB-sD-bif" customClass="ImageChatTableViewCell" customModule="Answerer" customModuleProvider="target">
@@ -454,11 +466,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="syn-0T-hEM" firstAttribute="bottom" secondItem="Rv0-Pf-4A2" secondAttribute="bottom" id="0qG-V8-xZT"/>
+                            <constraint firstItem="Rv0-Pf-4A2" firstAttribute="trailing" secondItem="llM-HT-6ZB" secondAttribute="trailing" id="4kt-0Y-wvd"/>
+                            <constraint firstItem="llM-HT-6ZB" firstAttribute="top" secondItem="Rv0-Pf-4A2" secondAttribute="top" id="8mD-Et-PYg"/>
                             <constraint firstItem="Rv0-Pf-4A2" firstAttribute="trailing" secondItem="syn-0T-hEM" secondAttribute="trailing" id="9lh-34-36w"/>
-                            <constraint firstItem="BhW-dQ-oOz" firstAttribute="top" secondItem="Rv0-Pf-4A2" secondAttribute="top" id="VHR-Mb-FEl"/>
+                            <constraint firstItem="llM-HT-6ZB" firstAttribute="leading" secondItem="Rv0-Pf-4A2" secondAttribute="leading" id="Rrm-NO-baX"/>
+                            <constraint firstItem="BhW-dQ-oOz" firstAttribute="top" secondItem="Rv0-Pf-4A2" secondAttribute="top" constant="35" id="VHR-Mb-FEl"/>
                             <constraint firstItem="BhW-dQ-oOz" firstAttribute="leading" secondItem="Rv0-Pf-4A2" secondAttribute="leading" id="VMo-2a-ccj"/>
                             <constraint firstItem="syn-0T-hEM" firstAttribute="leading" secondItem="Rv0-Pf-4A2" secondAttribute="leading" id="ifb-oj-x0L"/>
                             <constraint firstItem="BhW-dQ-oOz" firstAttribute="trailing" secondItem="Rv0-Pf-4A2" secondAttribute="trailing" id="kZz-c3-5QT"/>
+                            <constraint firstItem="llM-HT-6ZB" firstAttribute="bottom" secondItem="BhW-dQ-oOz" secondAttribute="top" id="xyR-TL-Ptf"/>
                             <constraint firstItem="syn-0T-hEM" firstAttribute="top" secondItem="BhW-dQ-oOz" secondAttribute="bottom" constant="22" id="yrN-dZ-kpw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rv0-Pf-4A2"/>

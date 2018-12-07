@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 protocol getChatDelegate: NSObjectProtocol {
     func getChatSuccessfully(lstChats: [Chat])
@@ -17,10 +18,15 @@ protocol getChatDelegate: NSObjectProtocol {
 protocol sendChatDelegate: NSObjectProtocol {
     func sendChatStatus(isSucceded: Bool)
 }
+
+protocol getConversationsDelegate: class {
+    func getConversationSuccessfully(lstOfConversations: [ChatConversation])
+    func failedTogetConv(isSucceded: Bool, error:String)
+}
 class ChatHelper: NSObject {
     var delegate: getChatDelegate!
     var sendDelegate: sendChatDelegate!
-    
+    weak var convDelegate: getConversationsDelegate?
     var conversationId = ""
     
     @objc func getChat() {
@@ -46,7 +52,7 @@ class ChatHelper: NSObject {
         switch type {
         case 2:
             url = URLHelper.SEND_VOICE
-            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject]
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": "" as AnyObject]
             AlamofireReq.sharedApi.sendPostMPReq(urlString: url, lstParam: lstParams, image: nil, filePath: filePath, onCompletion: {
                 response, status in
                 if status {
@@ -58,7 +64,7 @@ class ChatHelper: NSObject {
 
         case 1:
             url = URLHelper.SEND_IMAGE
-            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject]
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": "" as AnyObject]
             AlamofireReq.sharedApi.sendPostMPReq(urlString: url, lstParam: lstParams, image: images, filePath: nil, onCompletion: {
                 response, status in
                 if status {
@@ -67,6 +73,21 @@ class ChatHelper: NSObject {
                     self.sendDelegate.sendChatStatus(isSucceded: false)
                     }
             })
+        case 4:
+            url = URLHelper.SEND_MESSAGES
+            let lstParams: [String:AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": ""
+                as AnyObject, "isEnd": true as AnyObject]
+            
+            AlamofireReq.sharedApi.sendPostReq(urlString: url, lstParam: lstParams) {
+                
+                response, status in
+                if status {
+                    self.sendDelegate.sendChatStatus(isSucceded: true)
+                }
+                else {
+                    self.sendDelegate.sendChatStatus(isSucceded: false)
+                }
+            }
         default:
             url = URLHelper.SEND_MESSAGES
             let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": message
@@ -86,5 +107,27 @@ class ChatHelper: NSObject {
     }
     func requestChatEverySecond() {
         let _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getChat), userInfo: nil, repeats: true)
+    }
+    
+    func getConversations(teacherId: String) {
+        func getConversation(studentId: String) {
+            let lstParams: [String: AnyObject] = ["studentId": studentId as AnyObject]
+            AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.GET_CONVS, lstParam: lstParams, onCompletion: {
+                response, status in
+                if status {
+                    var conversations = [ChatConversation]()
+                    let msg = JSON(response["conversations"])
+                    conversations = ChatConversation.buildList(jsonData: msg)
+                    
+                    if self.delegate.responds (to: #selector(getConversationsDelegate.getConversationSuccessfully)){
+                        self.delegate!.getConversationSuccessfully!(Chatconversations: conversations)
+                    }
+                } else {
+                    if self.delegate.responds (to: #selector(getConversationsDelegate.getConversationsUnsuccessfully(error:))){
+                        self.delegate!.failedTogetConv!(error: JSON(response).stringValue)
+                    }
+                }
+            })
+        }
     }
 }
