@@ -1,4 +1,3 @@
-
 //
 //  ChatViewController.swift
 //  Answerer
@@ -100,7 +99,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if lstOFChats.count > 0{
             let reverseindexpath = (lstOFChats.count - 1) - indexPath.row
             let currentChat = lstOFChats[reverseindexpath]
-            if currentChat.message != "" {
+            if currentChat.type == 0 {
                 if currentChat.isTeacher {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextChatTableViewCell
                     celsl.textMessage?.text = "\n" + currentChat.message + "\n"
@@ -119,18 +118,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                 }
             }
-            else if currentChat.file != "messageFile" {
+            else if currentChat.type == 2 {
                 if currentChat.isTeacher {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "fileCell") as! FileChatTableViewCell
+                    cell = tableView.dequeueReusableCell(withIdentifier: "voiceCell") as! VoiceChatTableViewCell
                     
                 }
                 else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "fileCellstd") as! FileChatTableViewCell
+                    cell = tableView.dequeueReusableCell(withIdentifier: "voiceCellstd") as! VoiceChatTableViewCell
                     
                 }
             }
                 
-            else if currentChat.image != "messageImage" {
+            else if currentChat.type == 1 {
                 if currentChat.isTeacher {
                     cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImageChatTableViewCell
                 }
