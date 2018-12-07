@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol getChatDelegate: NSObjectProtocol {
     func getChatSuccessfully(lstChats: [Chat])
@@ -19,11 +20,12 @@ protocol sendChatDelegate: NSObjectProtocol {
 class ChatHelper: NSObject {
     var delegate: getChatDelegate!
     var sendDelegate: sendChatDelegate!
-
+    
+    var conversationId = ""
+    
     @objc func getChat() {
-        let teacherId: String = "09000000001"
-        let studentId: String = "09000000002"
-        let lstParams = ["teacherId": teacherId as AnyObject, "studentId": studentId as AnyObject]
+
+        let lstParams = ["conversationId": conversationId as AnyObject]
         AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.GET_MESSAGES, lstParam: lstParams) {
             response, status in
             if status {
@@ -38,17 +40,48 @@ class ChatHelper: NSObject {
             }
         }
     }
-    func sendChat(teacherId: String, studentId: String, message: String, questionType: String) {
-        let lstParams = ["teacherId": teacherId as AnyObject, "studentId": studentId as AnyObject, "message": message as AnyObject, "questionType": questionType as AnyObject, "isTeacher": true as AnyObject]
-        AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_MESSAGES, lstParam: lstParams) {
+    
+    func sendChat(message: String?, filePath: URL?, type: Int, images: UIImage?) {
+        var url = ""
+        switch type {
+        case 2:
+            url = URLHelper.SEND_VOICE
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject]
+            AlamofireReq.sharedApi.sendPostMPReq(urlString: url, lstParam: lstParams, image: nil, filePath: filePath, onCompletion: {
+                response, status in
+                if status {
+                    self.sendDelegate.sendChatStatus(isSucceded: true)
+                } else {
+                    self.sendDelegate.sendChatStatus(isSucceded: false)
+                }
+            })
 
-            response, status in
-            if status {
-                self.sendDelegate.sendChatStatus(isSucceded: true)
+        case 1:
+            url = URLHelper.SEND_IMAGE
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject]
+            AlamofireReq.sharedApi.sendPostMPReq(urlString: url, lstParam: lstParams, image: images, filePath: nil, onCompletion: {
+                response, status in
+                if status {
+                    self.sendDelegate.sendChatStatus(isSucceded: true)
+                } else {
+                    self.sendDelegate.sendChatStatus(isSucceded: false)
+                    }
+            })
+        default:
+            url = URLHelper.SEND_MESSAGES
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": message
+             as AnyObject]
+            AlamofireReq.sharedApi.sendPostReq(urlString: url, lstParam: lstParams) {
+                
+                response, status in
+                if status {
+                    self.sendDelegate.sendChatStatus(isSucceded: true)
+                }
+                else {
+                    self.sendDelegate.sendChatStatus(isSucceded: false)
+                }
             }
-            else {
-                self.sendDelegate.sendChatStatus(isSucceded: false)
-            }
+
         }
     }
     func requestChatEverySecond() {

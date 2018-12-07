@@ -11,6 +11,8 @@ import UIKit
 import ReverseExtension
 import MobileCoreServices
 
+
+
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, getChatDelegate, sendChatDelegate {
     @IBOutlet weak var viewBotton: NSLayoutConstraint!
     @IBOutlet weak var inputAreaHeightConstraint: NSLayoutConstraint!
@@ -22,20 +24,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var lstOFChats = [Chat]()
     let chatHelper = ChatHelper()
     var lastIndexPath = IndexPath()
-    let conversation = ChatConversation()
     var conversationID = ""
     
     lazy var messageInputAreaVC: MessageInputAreaViewController = {
-        MessageInputAreaViewController(conversation: conversation, conversationID: conversationID)
+        MessageInputAreaViewController(conversationID: conversationID)
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         chatHelper.delegate = self
+        chatHelper.conversationId = conversationID
         chatTable.rowHeight = UITableView.automaticDimension
         chatTable.estimatedRowHeight = 44
         chatHelper.requestChatEverySecond()
-        if true {
             messageInputAreaVC.messageVC = self
             messageInputAreaVC.delegate = self
             addChild(messageInputAreaVC)
@@ -45,7 +46,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             UIView.performWithoutAnimation {
                 inputAreaView.addSubview(messageInputAreaVC.view)
             }
-        }
         
         chatHelper.sendDelegate = self
         chatTable.separatorStyle = .none
@@ -157,9 +157,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             ViewHelper.showToastMessage(message: error)
         }
     }
-    func sendChat(_ message: Chat) {
-        chatHelper.sendChat(teacherId: "09000000001", studentId: "09000000002", message: "", questionType: lstOFChats[0].questionType)
-    }
     func sendChatStatus(isSucceded: Bool) {
         if isSucceded{
             let chat = Chat()
@@ -181,6 +178,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 }
 
 extension ChatViewController: MessageInputAreaViewControllerDelegate {
+    func sendChat(message: String?, image: UIImage?, filePath: URL?, type: Int) {
+        chatHelper.sendChat(message: message, filePath: filePath, type: type, images: image)
+    }
+    
     func adjustInputAreaHeightConstraint(height: CGFloat) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
             self.inputAreaHeightConstraint.constant = height

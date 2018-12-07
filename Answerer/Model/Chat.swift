@@ -36,6 +36,7 @@ class Chat: NSObject {
         chat.message = data["message"].stringValue
         chat.questionType = data["questionType"].stringValue
         chat.teacherId = data["teacherId"].intValue
+        chat.type = data["messageType"].intValue
         return chat
     }
     

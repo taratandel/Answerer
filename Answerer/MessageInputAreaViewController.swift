@@ -11,10 +11,10 @@ import TGCameraViewController
 
 protocol MessageInputAreaViewControllerDelegate: class {
     func adjustInputAreaHeightConstraint(height: CGFloat)
+     func sendChat(message: String?, image: UIImage?, filePath: URL?, type: Int)
 }
 
 class MessageInputAreaViewController: UIViewController {
-    weak var conversation: ChatConversation?
     weak var messageVC: ChatViewController?
     weak var delegate: MessageInputAreaViewControllerDelegate?
 
@@ -30,8 +30,7 @@ class MessageInputAreaViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
 
 
-    init(conversation: ChatConversation?, conversationID: String) {
-        self.conversation = conversation
+    init(conversationID: String) {
         self.conversationID = conversationID
         super.init(nibName: nil, bundle: nil)
     }
@@ -75,41 +74,7 @@ class MessageInputAreaViewController: UIViewController {
 
         textView.text = ""
         textViewDidChange(textView)
-        sendMessageRequest(message: message, image: nil, filePath: nil)
-    }
-}
-
-
-extension MessageInputAreaViewController {
-    fileprivate func sendPhotoRequest(_ message: Chat, image: UIImage) {
-        DispatchQueue.global().async {
-            message.image = image.toBase64()!
-        }
-    }
-
-    fileprivate func sendVoiceMessage(_ message: Chat, filePath: URL) {
-        DispatchQueue.global().async {
-            //decode the voice to string and send
-        }
-    }
-
-    fileprivate func sendMessageRequest(_ message: Chat) {
-        //pass to the protocol to send
-    }
-
-    fileprivate func sendMessageRequest(message: Chat, image: UIImage?, filePath: URL?) {
-        //fill the message structure
-
-        switch message.type {
-        case Chat.MessageType.image.rawValue:
-            sendPhotoRequest(message, image: image!)
-        case Chat.MessageType.text.rawValue:
-            sendMessageRequest(message)
-        case Chat.MessageType.voice.rawValue:
-            sendVoiceMessage(message, filePath: filePath!)
-        default:
-            break
-        }
+        delegate?.sendChat(message: message.message, image: nil, filePath: nil, type: 0)
     }
 }
 
@@ -142,13 +107,11 @@ extension MessageInputAreaViewController: TGCameraDelegate, UINavigationControll
 
 extension MessageInputAreaViewController {
     fileprivate func sendPhoto(image: UIImage) {
-//        let message = ChatConversationMessage.getImageMessage(width: image.size.width, height: image.size.height)
-//        sendMessageRequest(message: Chat(), image: image, filePath: nil, location: nil)
+        delegate?.sendChat(message: nil, image: image, filePath: nil, type: 1)
     }
 
     fileprivate func sendVoice(voicePath: URL) {
-//        let message = ChatConversationMessage.getVoiceMessage(voicePath: voicePath)
-//        sendMessageRequest(message: Chat(), image: nil, filePath: voicePath, location: nil)
+        delegate?.sendChat(message: nil, image: nil, filePath: voicePath, type: 2)
     }
 }
 
@@ -181,7 +144,7 @@ extension MessageInputAreaViewController: UIGestureRecognizerDelegate, AudioReco
 
     func audioRecorderViewControllerDismissed(withFileURL fileURL: URL?) {
         if let url = fileURL {
-            sendVoice(voicePath: url )
+            sendVoice(voicePath: url)
         } else {
 
         }

@@ -10,6 +10,10 @@ import UIKit
 
 class ConversationTableViewCell: UITableViewCell {
 
+    var conversationId = ""
+    var questionType = ""
+    var isEnd = false
+
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var idOfSender: UILabel!
     @IBOutlet weak var SomePartOfTheLastMessage: UILabel!
@@ -23,5 +27,7 @@ class ConversationTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

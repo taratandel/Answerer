@@ -8,32 +8,88 @@
 
 import UIKit
 
-class ConversationViewController: UIViewController {
-
-    @IBOutlet weak var conversationTable: UITableView!
+class ConversationViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource, MessageDelegate{
     
+    
+    let defaults = UserDefaults.standard
+    let messageHelper = MessageHelper()
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var conversationTable: UITableView!
+    var conversations = [ChatConversation()]
     override func viewDidLoad() {
         super.viewDidLoad()
-        // request teacherID/ userdefaults
-        // types 1- read
-        //
+        
         // Do any additional setup after loading the view.
+        conversationTable.delegate = self
+        conversationTable.dataSource = self
+        conversationTable.isHidden = true
+        
+        indicator.startAnimating()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func getConversations() {
+        if (defaults.object(forKey: "TeacherData") != nil){
+            let stdData = defaults.object(forKey: "TeacherData") as! Teacher
+                let stdPhone = stdData.phone
+                messageHelper.getConversation(studentId: stdPhone)
+        }else{
+            ViewHelper.showToastMessage(message: "please login!")
+        }
+        
     }
-    */
+    
+    func getConversationsSuccessfully(conversations: [ChatConversation]) {
+        self.conversations = conversations
+        conversationTable.reloadData()
+        indicator.isHidden = true
+        indicator.stopAnimating()
+        conversationTable.isHidden = false
+    }
+    
+    func getMessagesUnsuccessfully(error: String) {
+        ViewHelper.showToastMessage(message: error)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return conversations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath) as! ConversationTableViewCell
+        let conversation = conversations[indexPath.row]
+        cell.idOfSender.text = conversation.name
+        cell.SomePartOfTheLastMessage.text = conversation.date
+        cell.conversationId = conversation.conversationId
+        cell.isEnd = conversation.isEnd
+        cell.questionType = conversation.questionType
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ConversationTableViewCell
+        let chatVC = SegueHelper.createViewController(storyboardName: "Main", viewControllerId: "ChatVC") as! ChatVC
+        chatVC.conversationId = cell.conversationId
+        switch cell.questionType {
+        case "science":
+            chatVC.type = .science
+        case "math":
+            chatVC.type = .math
+        case "english":
+            chatVC.type = .english
+        case "toefl":
+            chatVC.type = .toefl
+        default:
+            break
+        }
+        SegueHelper.presentViewController(sourceViewController: self, destinationViewController: chatVC)
+        
+}
 
 }

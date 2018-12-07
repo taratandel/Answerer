@@ -16,8 +16,8 @@ class AcceptOrDeclineViewController: UIViewController {
     var timer: Timer?
     var i = 0
     
-    let conversationId = ""
-    var questoinType = ""
+    var conversationId = ""
+    var questionType = ""
     var message = ""
     
     override func viewDidLoad() {
