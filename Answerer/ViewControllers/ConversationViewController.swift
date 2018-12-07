@@ -62,6 +62,7 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
         let cell = tableView.cellForRow(at: indexPath) as! ConversationTableViewCell
         let chatVC = SegueHelper.createViewController(storyboardName: "Main", viewControllerId: "ChatVC") as! ChatViewController
         chatVC.conversationID = cell.conversationId
+        chatVC.conversationIsEnded = conversations[indexPath.row].isEnd
         SegueHelper.pushViewController(sourceViewController: self, destinationViewController: chatVC)
     }
     func getConversationSuccessfully(lstOfConversations: [ChatConversation]) {
