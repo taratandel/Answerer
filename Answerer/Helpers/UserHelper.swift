@@ -79,7 +79,10 @@ class UserHelper {
                 //login handler
                 let data = JSON(response["userData"])
                 let tchrData = Teacher.buildSingle(jsonData: data)
-                self.defaults.set(tchrData, forKey: "TeacherData")
+                let encoder = JSONEncoder()
+                if let teacherData = try? encoder.encode(tchrData) {
+                    UserDefaults.standard.set(teacherData, forKey: "TeacherData")
+                }
 
                 if self.delegate.responds (to: #selector(UserDelegate.userLoggedIn)) {
                     self.delegate!.userLoggedIn!()

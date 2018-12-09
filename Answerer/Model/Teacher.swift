@@ -9,14 +9,22 @@
 import Foundation
 import SwiftyJSON
 
-class Teacher {
+class Teacher: Codable {
     var userName = ""
     var password = ""
     var phone = ""
     var email = ""
-
     var profile = ""
     var fcmToken = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case userName
+        case password
+        case phone
+        case email
+        case profile
+        case fcmToken
+    }
 
     class func buildSingle(jsonData: JSON) -> Teacher {
         let teacher = Teacher()

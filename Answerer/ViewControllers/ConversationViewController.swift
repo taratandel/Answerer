@@ -33,9 +33,10 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
     
     func getConversations() {
         if (defaults.object(forKey: "TeacherData") != nil){
-            let stdData = defaults.object(forKey: "TeacherData") as! Teacher
-                let stdPhone = stdData.phone
+            let decoder = try? JSONDecoder().decode(Teacher.self, from: defaults.object(forKey: "TeacherData") as! Data)
+            if let stdPhone = decoder?.phone {
             messageHelper.getConversations(teacherId: stdPhone)
+            }
         }else{
             ViewHelper.showToastMessage(message: "please login!")
         }
