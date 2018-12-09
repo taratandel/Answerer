@@ -35,8 +35,9 @@ class AcceptOrDeclineViewController: UIViewController {
         var payload = [String: AnyObject]()
         conversationId =  UUID().uuidString
         payload["conversationId"] = conversationId as AnyObject
-        if let teacherDic = UserDefaults.standard.dictionary(forKey: "TeacherData") {
-            payload["teacherId"]  = teacherDic["phone"] as AnyObject
+        let decoder = try? JSONDecoder().decode(Teacher.self, from: UserDefaults.standard.object(forKey: "TeacherData") as! Data)
+        if let teacherDic = decoder {
+            payload["teacherId"]  = teacherDic.phone as AnyObject
         }
         else {
             return

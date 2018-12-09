@@ -46,9 +46,9 @@ class UserHelper {
         var success = true
 
         defaults.set(token, forKey: "Token")
-
-        if let tchrData = defaults.dictionary(forKey: "TeacherData") {
-            let lstParams: [String: AnyObject] = ["phone": tchrData["phone"] as AnyObject, "fcmToken": token as AnyObject]
+        let decoder = try? JSONDecoder().decode(Teacher.self, from: defaults.object(forKey: "TeacherData") as! Data)
+        if let tchrData = decoder {
+            let lstParams: [String: AnyObject] = ["phone": tchrData.phone as AnyObject, "fcmToken": token as AnyObject]
             AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_TOKEN, lstParam: lstParams) {
                 response, status in
                 if status {
