@@ -12,24 +12,27 @@ import Firebase
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
 
-        let dataDict: [String: String] = ["token": fcmToken, "deviceId": UUID().uuidString, "deviceName": UIDevice.current.name]
+        let dataDict: [String: String] = ["token": fcmToken, "deviceId": UIDevice.current.identifierForVendor!.uuidString, "deviceName": UIDevice.current.name]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+
     func application(_ application: UIApplication, didReceiveRemoteNotification response: [AnyHashable : Any]) {
         guard
-            let data = response[AnyHashable("data")] as? NSDictionary,
-            let conversationId = data["studentId"] as? String,
-            let questionType = data["questionType"] as? String,
-            let message = data["message"] as? String
+            let conversationId = response[AnyHashable("studentId")] as? String,
+            let questionType = response[AnyHashable("questionType")] as? String,
+            let message = response[AnyHashable("message")] as? String
             else {
                 // handle any error here
                 return
@@ -48,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
 
-        Messaging.messaging().delegate = self as? MessagingDelegate
+        Messaging.messaging().delegate = self
 
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
