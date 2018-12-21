@@ -45,7 +45,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             addChild(messageInputAreaVC)
             view.addSubview(messageInputAreaVC.view)
             messageInputAreaVC.didMove(toParent: self)
-            
+
+        AudioPlayInstance.delegate = self
             UIView.performWithoutAnimation {
                 inputAreaView.addSubview(messageInputAreaVC.view)
             }
