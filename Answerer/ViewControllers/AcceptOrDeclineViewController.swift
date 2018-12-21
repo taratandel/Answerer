@@ -44,16 +44,22 @@ class AcceptOrDeclineViewController: UIViewController {
         }
         
         AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_RESPONSE, lstParam: payload) {
-        response, status in
-        if !status {
-            ViewHelper.showToastMessage(message: "You lost Your Chance to Accept")
-            self.rejectTheQuestion()
-        } else {
-            
-            self.performSegue(withIdentifier: "acceptedChat", sender: self)
-            self.timer = nil
-            self.i = 0
-
+            response, status in
+            if !status {
+                ViewHelper.showToastMessage(message: "You lost Your Chance to Accept")
+                self.rejectTheQuestion()
+            } else {
+                let lstParams: [String: AnyObject] = ["conversationId": self.conversationId as AnyObject, "isTeacher": false as AnyObject, "message": self.message
+                    as AnyObject]
+                AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_MESSAGES, lstParam: lstParams, onCompletion: {sendMessageResponse, sendMessageStatus in
+                    if sendMessageStatus {
+                        self.performSegue(withIdentifier: "acceptedChat", sender: self)
+                        self.timer = nil
+                        self.i = 0
+                    } else {
+                        
+                    }
+                })
             }
         }
     }
