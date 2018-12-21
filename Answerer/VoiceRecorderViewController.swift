@@ -31,9 +31,8 @@ class VoiceRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
     weak var audioRecorderDelegate: AudioRecorderViewControllerDelegate?
 
     init(size: CGFloat) {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        outPutUrl = documentsDirectory.appendingPathComponent("\(UUID().uuidString).m4a")
+        outPutUrl = ChatAudioFileManager.m4aPathWithName("\(UUID().uuidString).m4a")
+
         sizeOfTheView = size
         super.init(nibName: nil, bundle: nil)
     }

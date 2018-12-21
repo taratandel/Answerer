@@ -25,6 +25,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var lastIndexPath = IndexPath()
     var conversationID = ""
     var conversationIsEnded = false
+
+    var currentVoiceCell: VoiceChatTableViewCell!
+
     
     lazy var messageInputAreaVC: MessageInputAreaViewController = {
         MessageInputAreaViewController(conversationID: conversationID, conversationIsEnded: conversationIsEnded)
@@ -121,22 +124,38 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             else if currentChat.type == 2 {
                 if currentChat.isTeacher {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "voiceCell") as! VoiceChatTableViewCell
-                    
+                    let celsl = tableView.dequeueReusableCell(withIdentifier: "voiceCell") as! VoiceChatTableViewCell
+                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.delegate = self
+                    celsl.indexpathraw = indexPath.row
+                    celsl.parentVeiwController = self
+                    cell = celsl
                 }
                 else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "voiceCellstd") as! VoiceChatTableViewCell
+                    let celsl = tableView.dequeueReusableCell(withIdentifier: "voiceCellstd") as! VoiceChatTableViewCell
+                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.delegate = self
+                    celsl.indexpathraw = indexPath.row
+                    celsl.parentVeiwController = self
+                    cell = celsl
                     
                 }
             }
                 
             else if currentChat.type == 1 {
                 if currentChat.isTeacher {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImageChatTableViewCell
+                    let celsl = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImageChatTableViewCell
+                    celsl.parentVC = self
+                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.showImage()
+                    cell = celsl
                 }
                 else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "imageCellstd") as! ImageChatTableViewCell
-                    
+                    let celsl = tableView.dequeueReusableCell(withIdentifier: "imageCellstd") as! ImageChatTableViewCell
+                    celsl.parentVC = self
+                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.showImage()
+                    cell = celsl
                 }
             }
         }
@@ -193,4 +212,24 @@ extension ChatViewController: MessageInputAreaViewControllerDelegate {
     }
 }
 
+
+extension ChatViewController: PlayAudioDelegate, ContactAndVoiceMessageCellProtocol {
+
+    func audioPlayStatus(status: AudioPlayerStatus) {
+        ViewHelper.showToastMessage(message: status.rawValue)
+    }
+
+    func cellDidTapedVoiceButton(_ cell: VoiceChatTableViewCell, isPlayingVoice: Bool, index: Int) {
+        if self.currentVoiceCell != nil && self.currentVoiceCell != cell {
+            ViewHelper.showToastMessage(message:"finished")
+        }
+        if isPlayingVoice {
+            self.currentVoiceCell = cell
+            let dataDecoded:Data = Data(base64Encoded: lstOFChats[index].file, options: Data.Base64DecodingOptions(rawValue: 0)) ?? Data()
+            AudioPlayInstance.playSoundWithPath(dataDecoded)
+        } else {
+            AudioPlayInstance.stopPlayer()
+        }
+    }
+}
 

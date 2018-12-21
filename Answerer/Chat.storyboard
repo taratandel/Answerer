@@ -125,10 +125,20 @@
                                                         <constraint firstAttribute="width" secondItem="cE1-5M-NcN" secondAttribute="height" multiplier="1:1" id="Y7b-IV-s5r"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQk-cd-qOk">
+                                                    <rect key="frame" x="159" y="11" width="201" height="201"/>
+                                                    <connections>
+                                                        <action selector="loadData:" destination="JtB-sD-bif" eventType="touchUpInside" id="2Xq-CV-fjz"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cE1-5M-NcN" firstAttribute="trailing" secondItem="iE8-bt-JGu" secondAttribute="trailingMargin" id="20e-d4-KhC"/>
+                                                <constraint firstItem="pQk-cd-qOk" firstAttribute="centerY" secondItem="cE1-5M-NcN" secondAttribute="centerY" id="9qL-Vp-fw2"/>
+                                                <constraint firstItem="pQk-cd-qOk" firstAttribute="width" secondItem="cE1-5M-NcN" secondAttribute="width" id="K2k-Y3-2lg"/>
                                                 <constraint firstItem="cE1-5M-NcN" firstAttribute="bottom" secondItem="iE8-bt-JGu" secondAttribute="bottomMargin" id="Nmr-6V-zaF"/>
+                                                <constraint firstItem="pQk-cd-qOk" firstAttribute="height" secondItem="cE1-5M-NcN" secondAttribute="height" id="RKR-M3-OxU"/>
+                                                <constraint firstItem="pQk-cd-qOk" firstAttribute="centerX" secondItem="cE1-5M-NcN" secondAttribute="centerX" id="Roq-P1-GB9"/>
                                                 <constraint firstItem="cE1-5M-NcN" firstAttribute="top" secondItem="iE8-bt-JGu" secondAttribute="topMargin" id="hZE-tM-jYF"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -223,9 +233,12 @@
                                                     <rect key="frame" x="133" y="11" width="227" height="58"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4d-jf-9yJ">
-                                                            <rect key="frame" x="8" y="0.0" width="56" height="58"/>
+                                                            <rect key="frame" x="8" y="0.0" width="211" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <state key="normal" title="PlayVoice"/>
+                                                            <connections>
+                                                                <action selector="playVoice:" destination="sfc-il-9Db" eventType="touchUpInside" id="z9M-UJ-Rtu"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -257,10 +270,20 @@
                                                         <constraint firstAttribute="width" secondItem="5Bi-7x-aFd" secondAttribute="height" multiplier="1:1" id="azc-Ef-elW"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pv-GN-XPG">
+                                                    <rect key="frame" x="15" y="11" width="201" height="201"/>
+                                                    <connections>
+                                                        <action selector="loadData:" destination="anq-gY-ylW" eventType="touchUpInside" id="HDM-1a-Y6k"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="5Bi-7x-aFd" firstAttribute="bottom" secondItem="zv1-Iq-OFh" secondAttribute="bottomMargin" id="9f2-dq-jc5"/>
+                                                <constraint firstItem="3Pv-GN-XPG" firstAttribute="height" secondItem="5Bi-7x-aFd" secondAttribute="height" id="A0K-oI-Yxc"/>
                                                 <constraint firstItem="5Bi-7x-aFd" firstAttribute="leading" secondItem="zv1-Iq-OFh" secondAttribute="leadingMargin" id="UmA-mT-zgh"/>
+                                                <constraint firstItem="3Pv-GN-XPG" firstAttribute="centerX" secondItem="5Bi-7x-aFd" secondAttribute="centerX" id="VpZ-Eo-kew"/>
+                                                <constraint firstItem="3Pv-GN-XPG" firstAttribute="centerY" secondItem="5Bi-7x-aFd" secondAttribute="centerY" id="eK8-rZ-lLR"/>
+                                                <constraint firstItem="3Pv-GN-XPG" firstAttribute="width" secondItem="5Bi-7x-aFd" secondAttribute="width" id="hPg-N8-3MK"/>
                                                 <constraint firstItem="5Bi-7x-aFd" firstAttribute="top" secondItem="zv1-Iq-OFh" secondAttribute="topMargin" id="tMV-mi-v23"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -415,7 +438,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOP-Gy-YpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1836" y="143.47826086956522"/>
+            <point key="canvasLocation" x="1836" y="121"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="EPr-Mm-BKd">
+            <objects>
+                <viewController storyboardIdentifier="imagePreview" id="bYb-EG-xFY" customClass="ImageViewController" customModule="Answerer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gSv-vT-LaY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QaJ-EW-PDQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QaJ-EW-PDQ" firstAttribute="leading" secondItem="2MA-gu-Q4l" secondAttribute="leading" id="GWp-su-RSV"/>
+                            <constraint firstItem="2MA-gu-Q4l" firstAttribute="bottom" secondItem="QaJ-EW-PDQ" secondAttribute="bottom" id="HGK-ro-Xxb"/>
+                            <constraint firstItem="2MA-gu-Q4l" firstAttribute="trailing" secondItem="QaJ-EW-PDQ" secondAttribute="trailing" id="pje-5W-ea4"/>
+                            <constraint firstItem="QaJ-EW-PDQ" firstAttribute="top" secondItem="2MA-gu-Q4l" secondAttribute="top" id="z5m-mG-Ytm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2MA-gu-Q4l"/>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="QaJ-EW-PDQ" id="Lx9-gs-lV4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ke3-iE-zMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2560" y="137"/>
         </scene>
         <!--Accept Or Decline View Controller-->
         <scene sceneID="yBr-d1-8sg">

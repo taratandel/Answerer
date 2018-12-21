@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18B420F321CC6446002B01F9 /* ChatAudioFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B420F121CC6446002B01F9 /* ChatAudioFileManager.swift */; };
+		18B420F421CC6446002B01F9 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B420F221CC6446002B01F9 /* AudioPlayerController.swift */; };
+		18B420F621CC6780002B01F9 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B420F521CC6780002B01F9 /* ImageViewController.swift */; };
 		18B9E14121B98061000F1B4F /* AcceptOrDeclineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9E14021B98061000F1B4F /* AcceptOrDeclineViewController.swift */; };
 		18D3B68F21A86F3C00ED56D3 /* MessageInputAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */; };
 		18D3B69021A86F3C00ED56D3 /* VoiceRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */; };
@@ -65,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18B420F121CC6446002B01F9 /* ChatAudioFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatAudioFileManager.swift; sourceTree = "<group>"; };
+		18B420F221CC6446002B01F9 /* AudioPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
+		18B420F521CC6780002B01F9 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		18B9E14021B98061000F1B4F /* AcceptOrDeclineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptOrDeclineViewController.swift; sourceTree = "<group>"; };
 		18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInputAreaViewController.xib; sourceTree = "<group>"; };
 		18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecorderViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +263,7 @@
 				57F747E1212E02F1003EEE8D /* ChatViewController.swift */,
 				57725EBB217D8FAD0066F803 /* WelcomViewController.swift */,
 				18B9E14021B98061000F1B4F /* AcceptOrDeclineViewController.swift */,
+				18B420F521CC6780002B01F9 /* ImageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -264,6 +271,8 @@
 		84FFED9A207CFFD100FB3A81 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				18B420F221CC6446002B01F9 /* AudioPlayerController.swift */,
+				18B420F121CC6446002B01F9 /* ChatAudioFileManager.swift */,
 				57A3D0B8207D2B82003A84AB /* ViewHelper.swift */,
 				57A3D0BA207D2B90003A84AB /* RequestHelper.swift */,
 				57A3D0BC207D2BA4003A84AB /* UserHelper.swift */,
@@ -519,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D3B69121A86F3C00ED56D3 /* MessageInputAreaViewController.swift in Sources */,
+				18B420F421CC6446002B01F9 /* AudioPlayerController.swift in Sources */,
 				84A01DEB207CE80F00155842 /* ViewController.swift in Sources */,
 				572D27CB211625FF00DBBA37 /* ConversationViewController.swift in Sources */,
 				57725EBC217D8FAD0066F803 /* WelcomViewController.swift in Sources */,
@@ -535,6 +545,7 @@
 				57A3D0BF207D2BAF003A84AB /* FontHelper.swift in Sources */,
 				18D3B69021A86F3C00ED56D3 /* VoiceRecorderViewController.swift in Sources */,
 				57725EBA217D126B0066F803 /* Teacher.swift in Sources */,
+				18B420F321CC6446002B01F9 /* ChatAudioFileManager.swift in Sources */,
 				57A3D0BD207D2BA4003A84AB /* UserHelper.swift in Sources */,
 				57A3D0C3207D34B6003A84AB /* Extensions.swift in Sources */,
 				84A01DE9207CE80F00155842 /* AppDelegate.swift in Sources */,
@@ -544,6 +555,7 @@
 				57F747E2212E02F1003EEE8D /* ChatViewController.swift in Sources */,
 				57725EBE217D90A60066F803 /* SegueHelper.swift in Sources */,
 				57A3D0B9207D2B82003A84AB /* ViewHelper.swift in Sources */,
+				18B420F621CC6780002B01F9 /* ImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
