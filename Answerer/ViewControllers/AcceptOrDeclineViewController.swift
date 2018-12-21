@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class AcceptOrDeclineViewController: UIViewController {
     
@@ -51,17 +53,31 @@ class AcceptOrDeclineViewController: UIViewController {
             } else {
                 let lstParams: [String: AnyObject] = ["conversationId": self.conversationId as AnyObject, "isTeacher": false as AnyObject, "message": self.message
                     as AnyObject]
-                AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_MESSAGES, lstParam: lstParams, onCompletion: {sendMessageResponse, sendMessageStatus in
-                    if sendMessageStatus {
-                        self.performSegue(withIdentifier: "acceptedChat", sender: self)
-                        self.timer = nil
-                        self.i = 0
-                    } else {
-                        
+                var j = 0
+                while j < 5 {
+                    do {
+                        self.sendMessageFromStudent(lstParams: lstParams, completionHandler: {
+                            sendMessageResponse, sendMessageStatus in
+                            if sendMessageStatus {
+                                self.performSegue(withIdentifier: "acceptedChat", sender: self)
+                                self.timer = nil
+                                self.i = 0
+                                return
+                            } else {
+                                j += 1
+                            }
+                        })
                     }
-                })
+                }
+                self.performSegue(withIdentifier: "acceptedChat", sender: self)
+                self.timer = nil
+                self.i = 0
             }
         }
+    }
+
+    func sendMessageFromStudent(lstParams: [String: AnyObject], completionHandler: @escaping (JSON, Bool) -> Void) {
+        AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_MESSAGES, lstParam: lstParams, onCompletion: completionHandler)
     }
     
     @IBAction func declineQuestions(_ sender: Any) {
