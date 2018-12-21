@@ -13,8 +13,8 @@ import SwiftyJSON
 protocol getChatDelegate: NSObjectProtocol {
     func getChatSuccessfully(lstChats: [Chat])
     func faildToGetChatSuccessfully(isSucceded: Bool, error: String)
-
 }
+
 protocol sendChatDelegate: NSObjectProtocol {
     func sendChatStatus(isSucceded: Bool)
 }
@@ -23,6 +23,7 @@ protocol getConversationsDelegate: class {
     func getConversationSuccessfully(lstOfConversations: [ChatConversation])
     func failedTogetConv(isSucceded: Bool, error:String)
 }
+
 class ChatHelper: NSObject {
     var delegate: getChatDelegate!
     var sendDelegate: sendChatDelegate!
@@ -105,10 +106,11 @@ class ChatHelper: NSObject {
 
         }
     }
+
     func requestChatEverySecond() {
         let _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getChat), userInfo: nil, repeats: true)
     }
-    
+
     func getConversations(teacherId: String) {
         func getConversation(studentId: String) {
             let lstParams: [String: AnyObject] = ["studentId": studentId as AnyObject]

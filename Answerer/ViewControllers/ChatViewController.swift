@@ -177,8 +177,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
             }
         }
-        
-        
     }
     
     func faildToGetChatSuccessfully(isSucceded: Bool, error: String) {
