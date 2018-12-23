@@ -20,7 +20,7 @@ class AlamofireReq: NSObject {
     }()
     func sendPostReq(urlString: String, lstParam: [String: AnyObject], onCompletion: @escaping(JSON, Bool) -> Void) {
         let url = BASE_URL + urlString
-        _ = Alamofire.request(url, method: .post, parameters: lstParam, encoding: JSONEncoding.default, headers: [:]).responseJSON { response in
+        _ = Alamofire.request(url, method: .post, parameters: lstParam, encoding: JSONEncoding.prettyPrinted, headers: [:]).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
