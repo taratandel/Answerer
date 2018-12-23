@@ -14,6 +14,12 @@ class WelcomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Do any additional setup after loading the view.
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
         let defaults = UserDefaults()
         if defaults.object(forKey: "TeacherData") != nil{
             let vc = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
@@ -21,7 +27,6 @@ class WelcomViewController: UIViewController {
         }else {
             performSegue(withIdentifier: "ToLoginView", sender: self)
         }
-        // Do any additional setup after loading the view.
     }
     
 
