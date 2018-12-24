@@ -17,7 +17,10 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
     var conversations = [ChatConversation()]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationItem.hidesBackButton = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "logOut", style: .plain, target: self, action: #selector(logout))
         // Do any additional setup after loading the view.
         conversationTable.delegate = self
         conversationTable.dataSource = self
@@ -25,7 +28,20 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
         messageHelper.convDelegate = self
         indicator.startAnimating()
     }
-    
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+
+    @objc func logout() {
+        UserDefaults.standard.removeObject(forKey: "TeacherData")
+        let vc = SegueHelper.createViewController(storyboardName: "Main", viewControllerId: "welcomViewController")
+        let nv = UINavigationController()
+        nv.viewControllers = [vc]
+        present(nv, animated: true, completion: nil)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

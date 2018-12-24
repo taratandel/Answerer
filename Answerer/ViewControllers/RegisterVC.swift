@@ -26,10 +26,6 @@ class RegisterVC: UIViewController, UserDelegate {
         self.indic.isHidden = true
         userHelper.delegate = self
         self.hideKeyboardWhenTappedAround()
-        // Do any additional setup after loading the view.
-        
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,15 +59,14 @@ class RegisterVC: UIViewController, UserDelegate {
         teacher.password = password1TF.text ?? ""
         teacher.phone = phoneTF.text ?? ""
         teacher.userName = usernameTF.text ?? ""
-        if !CoreDataHelper().saveUserToCoreData(info: teacher) {
-            userLoggedIn()
+        let encoder = JSONEncoder()
+        if let teacherData = try? encoder.encode(teacher) {
+            UserDefaults.standard.set(teacherData, forKey: "TeacherData")
         }
         let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
-        SegueHelper.pushViewController(sourceViewController: self, destinationViewController: chatVC)
-        
-        //indicator
-        //segue
-    }
+        let nv = UINavigationController()
+        nv.viewControllers = [chatVC]
+        present(nv, animated: true, completion: nil)    }
     
     func userCouldNotLoggedIn(error: String) {
         self.indic.isHidden = true
