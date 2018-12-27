@@ -113,6 +113,7 @@
 		84A01E07207CE81000155842 /* AnswererUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnswererUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A01E0B207CE81000155842 /* AnswererUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswererUITests.swift; sourceTree = "<group>"; };
 		84A01E0D207CE81000155842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F9FCDE21D594D6007761EA /* Answerer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Answerer.entitlements; sourceTree = "<group>"; };
 		84FFED92207CEE0C00FB3A81 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		84FFED94207CEE1E00FB3A81 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		84FFED98207CF6E000FB3A81 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
@@ -214,6 +215,7 @@
 		84A01DE7207CE80F00155842 /* Answerer */ = {
 			isa = PBXGroup;
 			children = (
+				84F9FCDE21D594D6007761EA /* Answerer.entitlements */,
 				57D6632F2125AF0D00551D14 /* Model */,
 				572D27C32116024D00DBBA37 /* Cells */,
 				57A3D0B7207D2AAC003A84AB /* Tools */,
@@ -371,6 +373,11 @@
 					84A01DE4207CE80F00155842 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					84A01DFB207CE81000155842 = {
 						CreatedOnToolsVersion = 9.2;
@@ -722,6 +729,7 @@
 			baseConfigurationReference = FC16741E1C4520C96DD0931A /* Pods-Answerer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Answerer/Answerer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Z93C3477W;
 				INFOPLIST_FILE = Answerer/Info.plist;
@@ -738,6 +746,7 @@
 			baseConfigurationReference = 359B054133CC804E52AB8C8A /* Pods-Answerer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Answerer/Answerer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Z93C3477W;
 				INFOPLIST_FILE = Answerer/Info.plist;
