@@ -20,11 +20,6 @@ class UserHelper {
     
     let defaults = UserDefaults.standard
 
-    init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setFCMToken(notification:)),
-                                               name: Notification.Name("FCMToken"), object: nil)
-    }
-
     class func isAppAlreadyLaunchedOnce() -> Bool {
         let defaults = UserDefaults.standard
         if defaults.string(forKey: "isAppAlreadyLaunchedOnce") != nil {
@@ -32,42 +27,6 @@ class UserHelper {
         } else {
             defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
             return false
-        }
-    }
-
-    @objc func setFCMToken(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        if let fcmToken = userInfo["token"] as? String, let devId = userInfo["deviceId"] as? String, let devName = userInfo["deviceName"] as? String {
-            saveFCMToken(token: fcmToken, deviceId: devId, deviceName: devName)
-        }
-    }
-
-    func saveFCMToken(token: String, deviceId: String, deviceName: String) {
-        var success = true
-
-        defaults.set(token, forKey: "Token")
-        let decoder = try? JSONDecoder().decode(Teacher.self, from: defaults.object(forKey: "TeacherData") as! Data)
-        if let tchrData = decoder {
-            let lstParams: [String: AnyObject] = ["phone": tchrData.phone as AnyObject, "fcmToken": token as AnyObject, "deviceName": deviceName as AnyObject, "deviceId": deviceId as AnyObject]
-            AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_TOKEN, lstParam: lstParams) {
-                response, status in
-                if status {
-                    success = true
-                } else {
-                    success = false
-                }
-            }
-        } else {
-            success = false
-        }
-
-        if success {
-            tryCounter = 0
-        } else if tryCounter < 5 {
-            tryCounter += 1
-            saveFCMToken(token: token, deviceId: deviceId, deviceName: deviceName)
-        } else {
-            tryCounter = 0
         }
     }
 
@@ -84,11 +43,27 @@ class UserHelper {
                     UserDefaults.standard.set(teacherData, forKey: "TeacherData")
                 }
 
-                if self.delegate.responds (to: #selector(UserDelegate.userLoggedIn)) {
-                    self.delegate!.userLoggedIn!()
+                if let token = self.defaults.string(forKey: "Token"), let deviceId = self.defaults.string(forKey: "DeviceID"), let deviceName = self.defaults.string(forKey: "DeviceName"){
+
+                    let lstParams: [String: AnyObject] = ["phone": userName as AnyObject, "fcmToken": token as AnyObject, "deviceName": deviceName as AnyObject, "deviceId": deviceId as AnyObject]
+                    AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_TOKEN, lstParam: lstParams) {
+                        response, status in
+                        if status {
+                            if self.delegate.responds (to: #selector(UserDelegate.userLoggedIn)) {
+                                self.delegate!.userLoggedIn!()
+                            }
+                        } else {
+                            if self.delegate.responds(to: #selector(UserDelegate.userCouldNotLoggedIn(error:))) {
+                                self.delegate!.userCouldNotLoggedIn!(error: JSON(response).stringValue)
+                            }
+                        }
+                    }
+                }else{
+                    if self.delegate.responds(to: #selector(UserDelegate.userCouldNotLoggedIn(error:))) {
+                        self.delegate!.userCouldNotLoggedIn!(error: "token isn't set")
+                    }
                 }
-            }
-            else {
+            }else {
                 if self.delegate.responds(to: #selector(UserDelegate.userCouldNotLoggedIn(error:))) {
                     self.delegate!.userCouldNotLoggedIn!(error: JSON(response).stringValue)
                 }
@@ -102,8 +77,25 @@ class UserHelper {
             response, status in
             if status {
                 //signup handler
-                if self.delegate.responds (to: #selector(UserDelegate.userLoggedIn)) {
-                    self.delegate!.userLoggedIn!()
+                if let token = self.defaults.string(forKey: "Token"), let deviceId = self.defaults.string(forKey: "DeviceID"), let deviceName = self.defaults.string(forKey: "DeviceName"){
+
+                    let lstParams: [String: AnyObject] = ["phone": userName as AnyObject, "fcmToken": token as AnyObject, "deviceName": deviceName as AnyObject, "deviceId": deviceId as AnyObject]
+                    AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_TOKEN, lstParam: lstParams) {
+                        response, status in
+                        if status {
+                            if self.delegate.responds (to: #selector(UserDelegate.userLoggedIn)) {
+                                self.delegate!.userLoggedIn!()
+                            }
+                        } else {
+                            if self.delegate.responds(to: #selector(UserDelegate.userCouldNotLoggedIn(error:))) {
+                                self.delegate!.userCouldNotLoggedIn!(error: JSON(response).stringValue)
+                            }
+                        }
+                    }
+                }else{
+                    if self.delegate.responds(to: #selector(UserDelegate.userCouldNotLoggedIn(error:))) {
+                        self.delegate!.userCouldNotLoggedIn!(error: "token isn't set")
+                    }
                 }
             }
             else {
