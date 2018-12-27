@@ -13,6 +13,8 @@ import SwiftyJSON
 
 class AlamofireReq: NSObject {
     let BASE_URL = "http://188.40.189.4:3030/"
+//    let BASE_URL = "http://127.0.0.1:8000/"
+
     static let sharedApi: AlamofireReq = {
         let instance = AlamofireReq()
 

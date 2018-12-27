@@ -37,18 +37,18 @@ class UserHelper {
 
     @objc func setFCMToken(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
-        if let fcm = userInfo["token"] as? String {
-            saveFCMToken(token: fcm)
+        if let fcmToken = userInfo["token"] as? String, let devId = userInfo["deviceId"] as? String, let devName = userInfo["deviceName"] as? String {
+            saveFCMToken(token: fcmToken, deviceId: devId, deviceName: devName)
         }
     }
 
-    func saveFCMToken(token: String) {
+    func saveFCMToken(token: String, deviceId: String, deviceName: String) {
         var success = true
 
         defaults.set(token, forKey: "Token")
         let decoder = try? JSONDecoder().decode(Teacher.self, from: defaults.object(forKey: "TeacherData") as! Data)
         if let tchrData = decoder {
-            let lstParams: [String: AnyObject] = ["phone": tchrData.phone as AnyObject, "fcmToken": token as AnyObject]
+            let lstParams: [String: AnyObject] = ["phone": tchrData.phone as AnyObject, "fcmToken": token as AnyObject, "deviceName": deviceName as AnyObject, "deviceId": deviceId as AnyObject]
             AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_TOKEN, lstParam: lstParams) {
                 response, status in
                 if status {
@@ -65,7 +65,7 @@ class UserHelper {
             tryCounter = 0
         } else if tryCounter < 5 {
             tryCounter += 1
-            saveFCMToken(token: token)
+            saveFCMToken(token: token, deviceId: deviceId, deviceName: deviceName)
         } else {
             tryCounter = 0
         }
