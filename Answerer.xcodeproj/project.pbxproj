@@ -34,7 +34,7 @@
 		57A3D0C5207D34D4003A84AB /* AppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3D0C4207D34D4003A84AB /* AppTools.swift */; };
 		57D663312125AF1A00551D14 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D663302125AF1A00551D14 /* Chat.swift */; };
 		57F747E2212E02F1003EEE8D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F747E1212E02F1003EEE8D /* ChatViewController.swift */; };
-		845B357121A1C23E0031D1C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 845B357021A1C23E0031D1C3 /* GoogleService-Info.plist */; };
+		840B38A921D4FD020028BF60 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 840B38A821D4FD010028BF60 /* GoogleService-Info.plist */; };
 		84A01DE9207CE80F00155842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A01DE8207CE80F00155842 /* AppDelegate.swift */; };
 		84A01DEB207CE80F00155842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A01DEA207CE80F00155842 /* ViewController.swift */; };
 		84A01DEE207CE80F00155842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A01DEC207CE80F00155842 /* Main.storyboard */; };
@@ -99,7 +99,7 @@
 		57D663302125AF1A00551D14 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		57F747E1212E02F1003EEE8D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		824788DD0D6CDE9541DABDD7 /* Pods-AnswererUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnswererUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnswererUITests/Pods-AnswererUITests.release.xcconfig"; sourceTree = "<group>"; };
-		845B357021A1C23E0031D1C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		840B38A821D4FD010028BF60 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84A01DE5207CE80F00155842 /* Answerer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Answerer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A01DE8207CE80F00155842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A01DEA207CE80F00155842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -227,9 +227,9 @@
 				18D3B68B21A86F3B00ED56D3 /* MessageInputAreaViewController.xib */,
 				18D3B68C21A86F3B00ED56D3 /* VoiceRecorderViewController.swift */,
 				18D3B68E21A86F3C00ED56D3 /* VoiceRecorderViewController.xib */,
+				840B38A821D4FD010028BF60 /* GoogleService-Info.plist */,
 				84A01DF2207CE80F00155842 /* Assets.xcassets */,
 				84A01DF4207CE80F00155842 /* LaunchScreen.storyboard */,
-				845B357021A1C23E0031D1C3 /* GoogleService-Info.plist */,
 				84A01DF7207CE80F00155842 /* Info.plist */,
 			);
 			path = Answerer;
@@ -412,10 +412,10 @@
 				84A01DF6207CE80F00155842 /* LaunchScreen.storyboard in Resources */,
 				84A01DF3207CE80F00155842 /* Assets.xcassets in Resources */,
 				18D3B68F21A86F3C00ED56D3 /* MessageInputAreaViewController.xib in Resources */,
-				845B357121A1C23E0031D1C3 /* GoogleService-Info.plist in Resources */,
 				18D3B69221A86F3C00ED56D3 /* VoiceRecorderViewController.xib in Resources */,
 				572D27C221159C7500DBBA37 /* Chat.storyboard in Resources */,
 				84A01DEE207CE80F00155842 /* Main.storyboard in Resources */,
+				840B38A921D4FD020028BF60 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

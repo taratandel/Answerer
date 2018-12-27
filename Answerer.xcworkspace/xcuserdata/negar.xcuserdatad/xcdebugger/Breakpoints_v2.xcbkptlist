@@ -9,14 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Answerer/AppDelegate.swift"
-            timestampString = "567354645.421429"
+            filePath = "Answerer/Helpers/UserHelper.swift"
+            timestampString = "567606606.819079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "application(_:didReceiveRemoteNotification:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "login(userName:password:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Answerer.UserHelper.login(userName: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "Answerer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/negar/Desktop/project/iOS_Swift/Answerer/Answerer/Helpers/UserHelper.swift"
+                  timestampString = "567606607.39241"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "297">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftyJSON.JSON, Swift.Bool) -&gt; () in Answerer.UserHelper.login(userName: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "Answerer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/negar/Desktop/project/iOS_Swift/Answerer/Answerer/Helpers/UserHelper.swift"
+                  timestampString = "567606607.395841"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "87">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
