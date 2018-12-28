@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification response: [AnyHashable : Any]) {
         guard
-            let conversationId = response[AnyHashable("studentId")] as? String,
+            let studentId = response[AnyHashable("studentId")] as? String,
             let questionType = response[AnyHashable("questionType")] as? String,
             let message = response[AnyHashable("message")] as? String
             else {
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
                 return
         }
         let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "acceptOrDecline") as! AcceptOrDeclineViewController
-        chatVC.conversationId = conversationId
+        chatVC.studentId = studentId
         chatVC.questionType = questionType
         chatVC.message = message
         self.window?.rootViewController = chatVC

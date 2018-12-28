@@ -19,6 +19,7 @@ class AcceptOrDeclineViewController: UIViewController {
     var i = 0
     
     var conversationId = ""
+    var studentId = ""
     var questionType = ""
     var message = ""
     
@@ -35,11 +36,12 @@ class AcceptOrDeclineViewController: UIViewController {
     @IBAction func acceptQuestion(_ sender: Any) {
         
         var payload = [String: AnyObject]()
-        conversationId =  UUID().uuidString
-        payload["conversationId"] = conversationId as AnyObject
         let decoder = try? JSONDecoder().decode(Teacher.self, from: UserDefaults.standard.object(forKey: "TeacherData") as! Data)
         if let teacherDic = decoder {
+            self.conversationId =  UUID().uuidString
+            payload["conversationId"] = self.conversationId as AnyObject
             payload["teacherId"]  = teacherDic.phone as AnyObject
+            payload["studentId"] = studentId as AnyObject
         }
         else {
             return
@@ -51,8 +53,7 @@ class AcceptOrDeclineViewController: UIViewController {
                 ViewHelper.showToastMessage(message: "You lost Your Chance to Accept")
                 self.rejectTheQuestion()
             } else {
-                let lstParams: [String: AnyObject] = ["conversationId": self.conversationId as AnyObject, "isTeacher": false as AnyObject, "message": self.message
-                    as AnyObject]
+                let lstParams: [String: AnyObject] = ["conversationId": self.conversationId as AnyObject, "isTeacher": false as AnyObject, "message": self.message as AnyObject]
                 var j = 0
                 while j < 5 {
                     do {
@@ -109,7 +110,7 @@ class AcceptOrDeclineViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "acceptedChat" {
             if let desVC = segue.destination as? ChatViewController {
-                desVC.conversationID = conversationId
+                desVC.conversationID = self.conversationId
             }
         }
     }
