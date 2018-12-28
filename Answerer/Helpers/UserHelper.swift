@@ -36,7 +36,7 @@ class UserHelper {
             response, status in
             if status {
                 //login handler
-                let data = JSON(response["userData"])
+                let data = JSON(response)
                 let tchrData = Teacher.buildSingle(jsonData: data)
                 let encoder = JSONEncoder()
                 if let teacherData = try? encoder.encode(tchrData) {

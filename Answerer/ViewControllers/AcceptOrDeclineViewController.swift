@@ -89,7 +89,7 @@ class AcceptOrDeclineViewController: UIViewController {
     }
     
     @objc func timerAction() {
-        if i > 15 {
+        if i < 15 {
             i += 1
             self.Timerss.text = "\(15 - i)"
         } else {
@@ -99,7 +99,10 @@ class AcceptOrDeclineViewController: UIViewController {
     }
     
     func rejectTheQuestion() {
-        performSegue(withIdentifier: "declinedChat", sender: self)
+        let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
+        let nv = UINavigationController()
+        nv.viewControllers = [chatVC]
+        present(nv, animated: true, completion: nil)
     }
     
     deinit {
