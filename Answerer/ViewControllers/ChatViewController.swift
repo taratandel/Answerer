@@ -187,13 +187,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func sendChatStatus(isSucceded: Bool) {
         if isSucceded{
-            let chat = Chat()
-            chat.isTeacher = true
-            chat.message = ""
-            chat.timeStamp = AppTools.gettingCurrentDateAndTime()
-            lstOFChats.append(chat)
             chatTable.reloadData()
-            
         }
         else {
             ViewHelper.showToastMessage(message: "Error, Please check the internet and try again")
