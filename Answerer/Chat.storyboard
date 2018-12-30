@@ -97,7 +97,7 @@
         <!--Chat View Controller-->
         <scene sceneID="640-GV-vLu">
             <objects>
-                <viewController id="ZUj-S1-ilD" customClass="ChatViewController" customModule="Answerer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="ZUj-S1-ilD" customClass="ChatViewController" customModule="Answerer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sDF-R2-sgj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
