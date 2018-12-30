@@ -93,7 +93,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     @IBAction func endChat(_ sender: Any) {
-        chatHelper.sendChat(message: "", filePath: nil, type: 4, images: nil)
+        chatHelper.sendChat(isTeacher: true, message: "", filePath: nil, type: 4, images: nil)
     }
     @objc func keyboardWillHide(_ notification: Notification){
         self.viewBotton.constant = 0
@@ -207,7 +207,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 extension ChatViewController: MessageInputAreaViewControllerDelegate {
     func sendChat(message: String?, image: UIImage?, filePath: URL?, type: Int) {
-        chatHelper.sendChat(message: message, filePath: filePath, type: type, images: image)
+        chatHelper.sendChat(isTeacher: true, message: message, filePath: filePath, type: type, images: image)
     }
     
     func adjustInputAreaHeightConstraint(height: CGFloat) {

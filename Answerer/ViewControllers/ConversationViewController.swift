@@ -15,8 +15,11 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var conversationTable: UITableView!
     var conversations = [ChatConversation()]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getConversations()
+
         self.navigationController?.navigationItem.hidesBackButton = true
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
@@ -25,8 +28,12 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
         conversationTable.delegate = self
         conversationTable.dataSource = self
         conversationTable.isHidden = true
+
         messageHelper.convDelegate = self
         indicator.startAnimating()
+
+        conversationTable.layer.borderWidth = 4.0
+        conversationTable.layer.borderColor = UIColor.white.cgColor
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -50,8 +57,8 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
     func getConversations() {
         if (defaults.object(forKey: "TeacherData") != nil){
             let decoder = try? JSONDecoder().decode(Teacher.self, from: defaults.object(forKey: "TeacherData") as! Data)
-            if let stdPhone = decoder?.phone {
-            messageHelper.getConversations(teacherId: stdPhone)
+            if let tchrPhone = decoder?.phone {
+            messageHelper.getConversations(teacherId: tchrPhone)
             }
         }else{
             ViewHelper.showToastMessage(message: "please login!")
@@ -77,9 +84,9 @@ class ConversationViewController: UIViewController,  UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! ConversationTableViewCell
-        let chatVC = SegueHelper.createViewController(storyboardName: "Main", viewControllerId: "ChatVC") as! ChatViewController
+        let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatViewController") as! ChatViewController
         chatVC.conversationID = cell.conversationId
-        chatVC.conversationIsEnded = conversations[indexPath.row].isEnd
+        chatVC.conversationIsEnded = cell.isEnd
         SegueHelper.pushViewController(sourceViewController: self, destinationViewController: chatVC)
     }
     func getConversationSuccessfully(lstOfConversations: [ChatConversation]) {

@@ -10,31 +10,35 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class AcceptOrDeclineViewController: UIViewController {
+class AcceptOrDeclineViewController: UIViewController, sendChatDelegate {
     
     @IBOutlet weak var questionTitle: UILabel!
     @IBOutlet weak var Timerss: UILabel!
     
     var timer: Timer?
-    var i = 0
+    var counter = 0
+    var sendCounter = 0
     
     var conversationId = ""
     var studentId = ""
     var questionType = ""
     var message = ""
+
+    let chatHelper = ChatHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         questionTitle.text = message
+        chatHelper.sendDelegate = self
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)    }
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)}
     
     @IBAction func acceptQuestion(_ sender: Any) {
-        
+        self.Timerss.isHidden = true
         var payload = [String: AnyObject]()
         let decoder = try? JSONDecoder().decode(Teacher.self, from: UserDefaults.standard.object(forKey: "TeacherData") as! Data)
         if let teacherDic = decoder {
@@ -42,56 +46,37 @@ class AcceptOrDeclineViewController: UIViewController {
             payload["conversationId"] = self.conversationId as AnyObject
             payload["teacherId"]  = teacherDic.phone as AnyObject
             payload["studentId"] = studentId as AnyObject
-        }
-        else {
+        }else {
             return
         }
         
         AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_RESPONSE, lstParam: payload) {
             response, status in
             if !status {
-                ViewHelper.showToastMessage(message: "You lost Your Chance to Accept")
+                ViewHelper.showToastMessage(message: response["message"].stringValue)
                 self.rejectTheQuestion()
             } else {
-                let lstParams: [String: AnyObject] = ["conversationId": self.conversationId as AnyObject, "isTeacher": false as AnyObject, "message": self.message as AnyObject]
-                var j = 0
-                while j < 5 {
-                    do {
-                        self.sendMessageFromStudent(lstParams: lstParams, completionHandler: {
-                            sendMessageResponse, sendMessageStatus in
-                            if sendMessageStatus {
-                                self.performSegue(withIdentifier: "acceptedChat", sender: self)
-                                self.timer = nil
-                                self.i = 0
-                                return
-                            } else {
-                                j += 1
-                            }
-                        })
-                    }
-                }
-                self.performSegue(withIdentifier: "acceptedChat", sender: self)
-                self.timer = nil
-                self.i = 0
+                self.sendMessageFromStudent()
             }
         }
     }
 
-    func sendMessageFromStudent(lstParams: [String: AnyObject], completionHandler: @escaping (JSON, Bool) -> Void) {
-        AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_MESSAGES, lstParam: lstParams, onCompletion: completionHandler)
+    func sendMessageFromStudent() {
+        chatHelper.conversationId = conversationId
+        self.chatHelper.sendChat(isTeacher: false, message: self.message, filePath: nil, type: 3, images: nil)
     }
     
     @IBAction func declineQuestions(_ sender: Any) {
         rejectTheQuestion()
         timer = nil
-        i = 0
+        counter = 0
 
     }
     
     @objc func timerAction() {
-        if i < 15 {
-            i += 1
-            self.Timerss.text = "\(15 - i)"
+        if counter < 60 {
+            counter += 1
+            self.Timerss.text = "\(60 - counter)"
         } else {
             timer?.invalidate()
             rejectTheQuestion()
@@ -107,7 +92,7 @@ class AcceptOrDeclineViewController: UIViewController {
     
     deinit {
         timer = nil
-        i = 0
+        counter = 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -117,6 +102,22 @@ class AcceptOrDeclineViewController: UIViewController {
             }
         }
     }
+    func sendChatStatus(isSucceded: Bool) {
+        if isSucceded{
+            self.performSegue(withIdentifier: "acceptedChat", sender: self)
+            self.timer = nil
+            self.sendCounter = 0
+        }else{
+            if self.sendCounter < 5 {
+                self.sendMessageFromStudent()
+                sendCounter += 1
+            }else{
+                ViewHelper.showToastMessage(message: "the student can't reach your response")
+                sendCounter = 0
+            }
+        }
+    }
+
     /*
      // MARK: - Navigation
      

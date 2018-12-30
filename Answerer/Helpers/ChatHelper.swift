@@ -27,7 +27,7 @@ protocol getConversationsDelegate: class {
 class ChatHelper: NSObject {
     var delegate: getChatDelegate!
     var sendDelegate: sendChatDelegate!
-    weak var convDelegate: getConversationsDelegate?
+    var convDelegate: getConversationsDelegate?
     var conversationId = ""
     
     @objc func getChat() {
@@ -48,12 +48,12 @@ class ChatHelper: NSObject {
         }
     }
     
-    func sendChat(message: String?, filePath: URL?, type: Int, images: UIImage?) {
+    func sendChat(isTeacher: Bool, message: String?, filePath: URL?, type: Int, images: UIImage?) {
         var url = ""
         switch type {
         case 2:
             url = URLHelper.SEND_VOICE
-            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": "" as AnyObject]
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": isTeacher as AnyObject, "message": "" as AnyObject]
             AlamofireReq.sharedApi.sendPostMPReq(urlString: url, lstParam: lstParams, image: nil, filePath: filePath, onCompletion: {
                 response, status in
                 if status {
@@ -65,7 +65,7 @@ class ChatHelper: NSObject {
 
         case 1:
             url = URLHelper.SEND_IMAGE
-            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": "" as AnyObject]
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": isTeacher as AnyObject, "message": "" as AnyObject]
             AlamofireReq.sharedApi.sendPostMPReq(urlString: url, lstParam: lstParams, image: images, filePath: nil, onCompletion: {
                 response, status in
                 if status {
@@ -76,11 +76,10 @@ class ChatHelper: NSObject {
             })
         case 4:
             url = URLHelper.SEND_MESSAGES
-            let lstParams: [String:AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": ""
+            let lstParams: [String:AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": isTeacher as AnyObject, "message": ""
                 as AnyObject, "isEnd": true as AnyObject]
             
             AlamofireReq.sharedApi.sendPostReq(urlString: url, lstParam: lstParams) {
-                
                 response, status in
                 if status {
                     self.sendDelegate.sendChatStatus(isSucceded: true)
@@ -91,10 +90,8 @@ class ChatHelper: NSObject {
             }
         default:
             url = URLHelper.SEND_MESSAGES
-            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": message
-             as AnyObject]
+            let lstParams: [String: AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": isTeacher as AnyObject, "message": message as AnyObject]
             AlamofireReq.sharedApi.sendPostReq(urlString: url, lstParam: lstParams) {
-                
                 response, status in
                 if status {
                     self.sendDelegate.sendChatStatus(isSucceded: true)
@@ -112,24 +109,23 @@ class ChatHelper: NSObject {
     }
 
     func getConversations(teacherId: String) {
-        func getConversation(studentId: String) {
-            let lstParams: [String: AnyObject] = ["studentId": studentId as AnyObject]
-            AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.GET_CONVS, lstParam: lstParams, onCompletion: {
-                response, status in
-                if status {
-                    var conversations = [ChatConversation]()
-                    let msg = JSON(response["conversations"])
-                    conversations = ChatConversation.buildList(jsonData: msg)
-                    
-                    if self.convDelegate != nil {
-                        self.convDelegate?.getConversationSuccessfully(lstOfConversations: conversations)
-                    }
-                } else {
-                    if self.convDelegate != nil {
-                        self.convDelegate?.failedTogetConv(isSucceded: false, error: "\(response)")
-                    }
+        let lstParams: [String: AnyObject] = ["teacherId": teacherId as AnyObject]
+        AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.GET_CONVS, lstParam: lstParams, onCompletion: {
+            response, status in
+            if status {
+                var conversations = [ChatConversation]()
+                let msg = JSON(response)
+                conversations = ChatConversation.buildList(jsonData: msg)
+
+                if self.convDelegate != nil {
+                    self.convDelegate?.getConversationSuccessfully(lstOfConversations: conversations)
                 }
-            })
-        }
+            } else {
+                if self.convDelegate != nil {
+                    self.convDelegate?.failedTogetConv(isSucceded: false, error: "\(response)")
+                }
+            }
+        })
     }
+
 }
