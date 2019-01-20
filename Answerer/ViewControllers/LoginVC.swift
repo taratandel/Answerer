@@ -8,12 +8,12 @@
 
 import UIKit
 
-class LoginVC: UIViewController, UserDelegate {
+class LoginVC: UIViewController, UserDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var indic: UIActivityIndicatorView!
-    
+
     var userHelper = UserHelper()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,12 @@ class LoginVC: UIViewController, UserDelegate {
         self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func loginPressed(_ sender: Any) {
         if usernameTF.text != nil && passwordTF.text != nil {
             self.indic.isHidden = false
@@ -53,7 +53,16 @@ class LoginVC: UIViewController, UserDelegate {
         ViewHelper.showToastMessage(message: error)
     }
 
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameTF {
+            passwordTF.becomeFirstResponder()
+        } else {
+            dismissKeyboard()
+        }
+        return true
+    }
+
+
     /*
     // MARK: - Navigation
 

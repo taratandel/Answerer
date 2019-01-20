@@ -8,19 +8,19 @@
 
 import UIKit
 
-class RegisterVC: UIViewController, UserDelegate {
+class RegisterVC: UIViewController, UserDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var password2TF: UITextField!
     @IBOutlet weak var password1TF: UITextField!
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
-    
+
     @IBOutlet weak var indic: UIActivityIndicatorView!
-    
+
     var userHelper = UserHelper()
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indic.isHidden = true
@@ -32,24 +32,24 @@ class RegisterVC: UIViewController, UserDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func registerPressed(_ sender: Any) {
-        if phoneTF.text?.count == 11 && phoneTF.text != nil && emailTF.text != nil && usernameTF.text != nil{
+        if phoneTF.text?.count == 11 && phoneTF.text != nil && emailTF.text != nil && usernameTF.text != nil {
             if password1TF.text != nil && password2TF.text != nil && password1TF.text == password2TF.text {
-     
-                
+
+
                 userHelper.signup(userName: usernameTF.text!, password: password1TF.text!, phone: phoneTF.text!, email: emailTF.text!)
             }
             else {
                 ViewHelper.showToastMessage(message: "Passwords should match")
             }
-        }else {
-            
+        } else {
+
             ViewHelper.showToastMessage(message: "All fields are required")
         }
-        
+
     }
-    
+
     func userLoggedIn() {
         self.indic.isHidden = true
         self.indic.stopAnimating()
@@ -66,15 +66,29 @@ class RegisterVC: UIViewController, UserDelegate {
         let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
         let nv = UINavigationController()
         nv.viewControllers = [chatVC]
-        present(nv, animated: true, completion: nil)    }
-    
+        present(nv, animated: true, completion: nil) }
+
     func userCouldNotLoggedIn(error: String) {
         self.indic.isHidden = true
         self.indic.stopAnimating()
         ViewHelper.showToastMessage(message: error)
     }
-    
-    
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameTF {
+            emailTF.becomeFirstResponder()
+        } else if textField == emailTF {
+            phoneTF.becomeFirstResponder()
+        } else if textField == phoneTF {
+            password1TF.becomeFirstResponder()
+        } else if textField == password1TF {
+            password2TF.becomeFirstResponder()
+        } else {
+            dismissKeyboard()
+        }
+        return true
+    }
+
     /*
     // MARK: - Navigation
 

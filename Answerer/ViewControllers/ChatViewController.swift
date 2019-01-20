@@ -15,11 +15,11 @@ import MobileCoreServices
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, getChatDelegate, sendChatDelegate {
     @IBOutlet weak var viewBotton: NSLayoutConstraint!
     @IBOutlet weak var inputAreaHeightConstraint: NSLayoutConstraint!
-    
+
     @IBOutlet weak var chatTable: UITableView!
-    
+
     @IBOutlet weak var inputAreaView: UIView!
-    
+
     var lstOFChats = [Chat]()
     let chatHelper = ChatHelper()
     var lastIndexPath = IndexPath()
@@ -28,11 +28,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     var currentVoiceCell: VoiceChatTableViewCell!
 
-    
+
     lazy var messageInputAreaVC: MessageInputAreaViewController = {
         MessageInputAreaViewController(conversationID: conversationID, conversationIsEnded: conversationIsEnded)
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         chatHelper.delegate = self
@@ -40,25 +40,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatTable.rowHeight = UITableView.automaticDimension
         chatTable.estimatedRowHeight = 44
         chatHelper.requestChatEverySecond()
-            messageInputAreaVC.messageVC = self
-            messageInputAreaVC.delegate = self
-            addChild(messageInputAreaVC)
-            view.addSubview(messageInputAreaVC.view)
-            messageInputAreaVC.didMove(toParent: self)
+        messageInputAreaVC.messageVC = self
+        messageInputAreaVC.delegate = self
+        addChild(messageInputAreaVC)
+        view.addSubview(messageInputAreaVC.view)
+        messageInputAreaVC.didMove(toParent: self)
 
         AudioPlayInstance.delegate = self
-            UIView.performWithoutAnimation {
-                inputAreaView.addSubview(messageInputAreaVC.view)
-            }
-        
+        UIView.performWithoutAnimation {
+            inputAreaView.addSubview(messageInputAreaVC.view)
+        }
+
         chatHelper.sendDelegate = self
         chatTable.separatorStyle = .none
         chatTable.re.delegate = self
         self.hideKeyboardWhenTappedAround()
-        
-        
-        
-        
+
+
+
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
@@ -73,7 +73,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         )
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -84,8 +84,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.endEditing(true)
         AudioPlayInstance.stopPlayer()
     }
-    
-    @objc func keyboardWillShow(_ notification: Notification){
+
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
@@ -95,10 +95,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func endChat(_ sender: Any) {
         chatHelper.sendChat(isTeacher: true, message: "", filePath: nil, type: 4, images: nil)
     }
-    @objc func keyboardWillHide(_ notification: Notification){
+    @objc func keyboardWillHide(_ notification: Notification) {
         self.viewBotton.constant = 0
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -106,9 +106,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return lstOFChats.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell : UITableViewCell = UITableViewCell()
-        if lstOFChats.count > 0{
+
+        var cell: UITableViewCell = UITableViewCell()
+        if lstOFChats.count > 0 {
             let reverseindexpath = (lstOFChats.count - 1) - indexPath.row
             let currentChat = lstOFChats[reverseindexpath]
             if currentChat.type == 0 {
@@ -127,7 +127,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     celsl.textMessage?.layer.cornerRadius = 5
                     celsl.timeStamp?.text = AppTools.gettingDataOfTheMessage(dateStr: currentChat.timeStamp)
                     cell = celsl
-                    
+
                 }
             }
             else if currentChat.type == 2 {
@@ -146,10 +146,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     celsl.indexpathraw = indexPath.row
                     celsl.parentVeiwController = self
                     cell = celsl
-                    
+
                 }
             }
-                
+
             else if currentChat.type == 1 {
                 if currentChat.isTeacher {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImageChatTableViewCell
@@ -179,14 +179,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
+
     func faildToGetChatSuccessfully(isSucceded: Bool, error: String) {
         if !isSucceded {
             ViewHelper.showToastMessage(message: error)
         }
     }
     func sendChatStatus(isSucceded: Bool) {
-        if isSucceded{
+        if isSucceded {
             chatTable.reloadData()
         }
         else {
@@ -195,7 +195,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if chatTable.numberOfRows(inSection: 0) > 0 {
             let indexPath = IndexPath(row: 0, section: 0)
             chatTable.scrollToRow(at: indexPath, at: .top, animated: true)
-        }        
+        }
     }
 }
 
@@ -203,7 +203,7 @@ extension ChatViewController: MessageInputAreaViewControllerDelegate {
     func sendChat(message: String?, image: UIImage?, filePath: URL?, type: Int) {
         chatHelper.sendChat(isTeacher: true, message: message, filePath: filePath, type: type, images: image)
     }
-    
+
     func adjustInputAreaHeightConstraint(height: CGFloat) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
             self.inputAreaHeightConstraint.constant = height
@@ -221,11 +221,11 @@ extension ChatViewController: PlayAudioDelegate, ContactAndVoiceMessageCellProto
 
     func cellDidTapedVoiceButton(_ cell: VoiceChatTableViewCell, isPlayingVoice: Bool, index: Int) {
         if self.currentVoiceCell != nil && self.currentVoiceCell != cell {
-            ViewHelper.showToastMessage(message:"finished")
+            ViewHelper.showToastMessage(message: "finished")
         }
         if isPlayingVoice {
             self.currentVoiceCell = cell
-            let dataDecoded:Data = Data(base64Encoded: lstOFChats[index].file, options: Data.Base64DecodingOptions(rawValue: 0)) ?? Data()
+            let dataDecoded: Data = Data(base64Encoded: lstOFChats[index].file, options: Data.Base64DecodingOptions(rawValue: 0)) ?? Data()
             AudioPlayInstance.playSoundWithPath(dataDecoded)
         } else {
             AudioPlayInstance.stopPlayer()

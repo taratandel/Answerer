@@ -10,9 +10,9 @@ import UIKit
 
 class ImageViewController: UIViewController {
 
-    
+
     @IBOutlet weak var image: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
@@ -23,7 +23,7 @@ class ImageViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    
+
 
     /*
     // MARK: - Navigation

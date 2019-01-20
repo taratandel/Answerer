@@ -21,16 +21,16 @@ class WelcomViewController: UIViewController {
         super.viewWillAppear(true)
 
         let defaults = UserDefaults()
-        if defaults.object(forKey: "TeacherData") != nil{
+        if defaults.object(forKey: "TeacherData") != nil {
             let chatVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "ChatConversationViewController")
             let nv = UINavigationController()
             nv.viewControllers = [chatVC]
             present(nv, animated: true, completion: nil)
-        }else {
+        } else {
             performSegue(withIdentifier: "ToLoginView", sender: self)
         }
     }
-    
+
 
     /*
     // MARK: - Navigation

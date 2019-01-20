@@ -72,12 +72,11 @@ class ChatHelper: NSObject {
                     self.sendDelegate.sendChatStatus(isSucceded: true)
                 } else {
                     self.sendDelegate.sendChatStatus(isSucceded: false)
-                    }
+                }
             })
         case 4:
             url = URLHelper.SEND_MESSAGES
-            let lstParams: [String:AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": isTeacher as AnyObject, "message": ""
-                as AnyObject, "isEnd": true as AnyObject]
+            let lstParams: [String:AnyObject] = ["conversationId": conversationId as AnyObject, "isTeacher": true as AnyObject, "message": " " as AnyObject, "isEnd": true as AnyObject]
             
             AlamofireReq.sharedApi.sendPostReq(urlString: url, lstParam: lstParams) {
                 response, status in

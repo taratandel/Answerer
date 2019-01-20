@@ -79,7 +79,7 @@ class UserHelper {
                 //signup handler
                 if let token = self.defaults.string(forKey: "Token") {
 
-                    let lstParams: [String: AnyObject] = ["phone": userName as AnyObject, "fcmToken": token as AnyObject, "deviceName": UIDevice.current.name as AnyObject, "deviceId": UIDevice.current.identifierForVendor!.uuidString as AnyObject]
+                    let lstParams: [String: AnyObject] = ["phone": phone as AnyObject, "fcmToken": token as AnyObject, "deviceName": UIDevice.current.name as AnyObject, "deviceId": UIDevice.current.identifierForVendor!.uuidString as AnyObject]
                     AlamofireReq.sharedApi.sendPostReq(urlString: URLHelper.SEND_TOKEN, lstParam: lstParams) {
                         response, status in
                         if status {
