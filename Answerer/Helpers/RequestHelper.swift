@@ -39,7 +39,7 @@ class AlamofireReq: NSObject {
         let url = BASE_URL + urlString
         Alamofire.upload(multipartFormData: { multipartFormData in
             if let images = image,  let imageData = images.jpegData(compressionQuality: 0.8) {
-                multipartFormData.append(imageData, withName: "image", fileName: "photo.jpg", mimeType: "jpg/png")
+                multipartFormData.append(imageData, withName: "image", fileName: lstParam["conversationId"] as! String, mimeType: "jpg/png")
             } else if let path = filePath, let voiceContent = FileManager.default.contents(atPath: path.path) {
                 multipartFormData.append(voiceContent, withName: "file", fileName: path.lastPathComponent, mimeType: "audio/m4a")
                 
