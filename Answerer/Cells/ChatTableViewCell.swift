@@ -28,16 +28,24 @@ class ImageChatTableViewCell : UITableViewCell {
     @IBOutlet weak var imageCell: UIImageView!
     var message = Chat()
     var parentVC = ChatViewController()
+
     @IBAction func loadData(_ sender: Any) {
         let imageVC = SegueHelper.createViewController(storyboardName: "Chat", viewControllerId: "imagePreview") as! ImageViewController
-        imageVC.image.image = imageCell.image
+        imageVC.imageContent = imageCell.image!
         SegueHelper.presentViewController(sourceViewController: parentVC, destinationViewController: imageVC)
     }
+
     func showImage() {
-        let dataDecoded:Data = Data(base64Encoded: message.image, options: Data.Base64DecodingOptions(rawValue: 0))!
-        if let decodedimage:UIImage = UIImage(data: dataDecoded) {
-    print(decodedimage)
-    imageCell.image = decodedimage
+        if message.image.count == 0{
+            imageCell.image = UIImage(named: "noImg")
+        }else{
+            do {
+                let url = URL(string: message.image)
+                let data = try Data(contentsOf: url!)
+                self.imageCell.image = UIImage(data: data)
+            }catch{
+                imageCell.image = UIImage(named: "noImg")
+            }
         }
     }
 
@@ -68,9 +76,10 @@ class VoiceChatTableViewCell: UITableViewCell {
     @IBOutlet weak var playVoiceButton: UIButton!
     weak var delegate: ContactAndVoiceMessageCellProtocol?
     weak var parentVeiwController: ChatViewController?
-    var message = Chat()
 
+    var message = Chat()
     var indexpathraw = Int()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -111,7 +111,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if lstOFChats.count > 0 {
             let reverseindexpath = (lstOFChats.count - 1) - indexPath.row
             let currentChat = lstOFChats[reverseindexpath]
-            if currentChat.type == 0 {
+            if currentChat.messageType == 0 {
                 if currentChat.isTeacher {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "textCell") as! TextChatTableViewCell
                     celsl.textMessage?.text = "\n" + currentChat.message + "\n"
@@ -119,8 +119,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     celsl.textMessage.clipsToBounds = true
                     celsl.timeStamp?.text = AppTools.gettingDataOfTheMessage(dateStr: currentChat.timeStamp)
                     cell = celsl
-                }
-                else {
+                }else {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "textCellstd") as! TextChatTableViewCell
                     celsl.textMessage?.text = "\n" + currentChat.message + "\n"
                     celsl.textMessage.clipsToBounds = true
@@ -129,39 +128,34 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     cell = celsl
 
                 }
-            }
-            else if currentChat.type == 2 {
+            }else if currentChat.messageType == 2 {
                 if currentChat.isTeacher {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "voiceCell") as! VoiceChatTableViewCell
-                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.message = currentChat
                     celsl.delegate = self
                     celsl.indexpathraw = indexPath.row
                     celsl.parentVeiwController = self
                     cell = celsl
-                }
-                else {
+                }else {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "voiceCellstd") as! VoiceChatTableViewCell
-                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.message = currentChat
                     celsl.delegate = self
                     celsl.indexpathraw = indexPath.row
                     celsl.parentVeiwController = self
                     cell = celsl
 
                 }
-            }
-
-            else if currentChat.type == 1 {
+            }else if currentChat.messageType == 1 {
                 if currentChat.isTeacher {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImageChatTableViewCell
                     celsl.parentVC = self
-                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.message = currentChat
                     celsl.showImage()
                     cell = celsl
-                }
-                else {
+                }else {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "imageCellstd") as! ImageChatTableViewCell
                     celsl.parentVC = self
-                    celsl.message = lstOFChats[indexPath.row]
+                    celsl.message = currentChat
                     celsl.showImage()
                     cell = celsl
                 }
@@ -186,6 +180,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     func sendChatStatus(isSucceded: Bool) {
+        self.messageInputAreaVC.waitingView.isHidden = true
         if isSucceded {
             chatTable.reloadData()
         }

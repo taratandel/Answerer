@@ -23,6 +23,7 @@
                 <outlet property="textView" destination="BwS-Qd-gNv" id="neW-OH-A2Q"/>
                 <outlet property="textViewLeftConstraint" destination="w4S-Ib-hGH" id="1bn-aA-45r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="waitingView" destination="5NU-EO-54o" id="loi-Qb-f89"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -117,6 +118,19 @@
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5NU-EO-54o">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8bf-vo-ZXT">
+                            <rect key="frame" x="177.5" y="15" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="8bf-vo-ZXT" firstAttribute="centerX" secondItem="5NU-EO-54o" secondAttribute="centerX" id="IJx-YT-J9h"/>
+                        <constraint firstItem="8bf-vo-ZXT" firstAttribute="centerY" secondItem="5NU-EO-54o" secondAttribute="centerY" id="bOF-af-wRZ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -128,6 +142,7 @@
                 <constraint firstItem="B6X-IT-djb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IaC-JN-ogP"/>
                 <constraint firstItem="BwS-Qd-gNv" firstAttribute="left" secondItem="i5M-Pr-FkT" secondAttribute="left" constant="8" id="MDm-ZV-JhM"/>
                 <constraint firstItem="A53-pn-QqW" firstAttribute="left" secondItem="5dR-hu-37K" secondAttribute="right" constant="4" id="NXq-MG-FQm"/>
+                <constraint firstItem="5NU-EO-54o" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="OGq-0S-KdM"/>
                 <constraint firstItem="B6X-IT-djb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PFs-WG-gwd"/>
                 <constraint firstAttribute="trailing" secondItem="B6X-IT-djb" secondAttribute="trailing" id="R1d-YD-eKs"/>
                 <constraint firstItem="BwS-Qd-gNv" firstAttribute="top" secondItem="B6X-IT-djb" secondAttribute="bottom" constant="4" id="Var-mR-F3B"/>
@@ -135,9 +150,12 @@
                 <constraint firstItem="DVa-Kn-Q6v" firstAttribute="centerY" secondItem="Xa1-6b-BcS" secondAttribute="centerY" constant="0.5" id="ZLq-zz-2YM"/>
                 <constraint firstItem="Xa1-6b-BcS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="4" id="bgY-Go-f3p"/>
                 <constraint firstItem="9VO-WB-P8E" firstAttribute="centerY" secondItem="Xa1-6b-BcS" secondAttribute="centerY" id="dsq-et-z7g"/>
+                <constraint firstItem="5NU-EO-54o" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gq4-Ya-wdb"/>
+                <constraint firstItem="5NU-EO-54o" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="hVp-d4-ekk"/>
                 <constraint firstItem="A53-pn-QqW" firstAttribute="centerY" secondItem="DVa-Kn-Q6v" secondAttribute="centerY" constant="-0.5" id="hr5-mb-Hwi"/>
                 <constraint firstItem="819-vg-c6i" firstAttribute="centerY" secondItem="A53-pn-QqW" secondAttribute="centerY" id="iVg-4A-9NR"/>
                 <constraint firstItem="DVa-Kn-Q6v" firstAttribute="left" secondItem="Xa1-6b-BcS" secondAttribute="right" id="l2W-0p-qPI"/>
+                <constraint firstItem="5NU-EO-54o" firstAttribute="width" secondItem="B6X-IT-djb" secondAttribute="width" id="m1C-uK-mXn"/>
                 <constraint firstItem="5dR-hu-37K" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="1" id="nap-FP-KL6"/>
                 <constraint firstItem="A53-pn-QqW" firstAttribute="width" secondItem="DVa-Kn-Q6v" secondAttribute="width" constant="-16" id="r1P-jY-5PA"/>
                 <constraint firstAttribute="bottom" secondItem="BwS-Qd-gNv" secondAttribute="bottom" constant="4" id="vPu-CH-bZq"/>
@@ -150,7 +168,7 @@
         </view>
     </objects>
     <resources>
-        <image name="attachment" width="48" height="48"/>
+        <image name="attachment" width="37.5" height="37.5"/>
         <image name="mic" width="48" height="48"/>
     </resources>
 </document>

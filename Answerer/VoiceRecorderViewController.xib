@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoiceRecorderViewController" customModule="Divar" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoiceRecorderViewController" customModule="Answerer" customModuleProvider="target">
             <connections>
                 <outlet property="blinkingView" destination="RVZ-yS-4JZ" id="oKs-kx-GRD"/>
                 <outlet property="duration" destination="q68-O7-qOn" id="wr8-xz-qVG"/>
@@ -29,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adfafa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q68-O7-qOn">
-                    <rect key="frame" x="32" y="8" width="45.5" height="26"/>
+                    <rect key="frame" x="32" y="8" width="45" height="26"/>
                     <fontDescription key="fontDescription" name="IRANSans-Light" family="IRANSans" pointSize="16"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -71,6 +71,6 @@
         </view>
     </objects>
     <resources>
-        <image name="deleteVoice" width="48" height="48"/>
+        <image name="deleteVoice" width="75" height="75"/>
     </resources>
 </document>

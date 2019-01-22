@@ -10,11 +10,15 @@ import Foundation
 import SwiftyJSON
 
 class ChatConversation: NSObject {
+
     var name = ""
     var date = ""
     var conversationId = ""
     var questionType = ""
     var isEnd = false
+    var isRated = false
+    var studentName = ""
+    var studentId = ""
     
     class func buildSingle(jsonData: JSON) -> ChatConversation {
         let conversation = ChatConversation()
@@ -27,6 +31,9 @@ class ChatConversation: NSObject {
         }
         conversation.questionType = jsonData["questionType"].stringValue
         conversation.isEnd = jsonData["isEnd"].boolValue
+        conversation.isRated = jsonData["isRated"].boolValue
+        conversation.studentName = jsonData["studentName"].stringValue
+        conversation.studentId = jsonData["studentId"].stringValue
         let calendar = NSCalendar.current
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX'Z'"

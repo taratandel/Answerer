@@ -17,8 +17,8 @@ class URLHelper : NSObject {
     // chat urls
     static let GET_MESSAGES = "chat/get/"
     static let SEND_MESSAGES = "chat/send/"
-    static let SEND_VOICE = "chat/voice/"
-    static let SEND_IMAGE = "chat/image/"
+    static let SEND_VOICE = "chat/sendfile/"
+    static let SEND_IMAGE = "chat/sendimage/"
     static let GET_CONVS = "chat/getconversations/"
 
     //teacher url
