@@ -12,7 +12,7 @@ target 'Answerer' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'TGCameraViewController'
-  
+
   target 'AnswererTests' do
     inherit! :search_paths
     # Pods for testing

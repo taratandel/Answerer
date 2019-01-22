@@ -126,24 +126,22 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     celsl.textMessage?.layer.cornerRadius = 5
                     celsl.timeStamp?.text = AppTools.gettingDataOfTheMessage(dateStr: currentChat.timeStamp)
                     cell = celsl
-
                 }
             }else if currentChat.messageType == 2 {
                 if currentChat.isTeacher {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "voiceCell") as! VoiceChatTableViewCell
                     celsl.message = currentChat
                     celsl.delegate = self
-                    celsl.indexpathraw = indexPath.row
+                    celsl.indexpathraw = reverseindexpath
                     celsl.parentVeiwController = self
                     cell = celsl
                 }else {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "voiceCellstd") as! VoiceChatTableViewCell
                     celsl.message = currentChat
                     celsl.delegate = self
-                    celsl.indexpathraw = indexPath.row
+                    celsl.indexpathraw = reverseindexpath
                     celsl.parentVeiwController = self
                     cell = celsl
-
                 }
             }else if currentChat.messageType == 1 {
                 if currentChat.isTeacher {
@@ -152,6 +150,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     celsl.message = currentChat
                     celsl.showImage()
                     cell = celsl
+
                 }else {
                     let celsl = tableView.dequeueReusableCell(withIdentifier: "imageCellstd") as! ImageChatTableViewCell
                     celsl.parentVC = self
@@ -212,16 +211,17 @@ extension ChatViewController: PlayAudioDelegate, ContactAndVoiceMessageCellProto
 
     func audioPlayStatus(status: AudioPlayerStatus) {
         ViewHelper.showToastMessage(message: status.rawValue)
+        currentVoiceCell.resetVoiceAnimation(audioPlayStatus: status)
     }
 
     func cellDidTapedVoiceButton(_ cell: VoiceChatTableViewCell, isPlayingVoice: Bool, index: Int) {
-        if self.currentVoiceCell != nil && self.currentVoiceCell != cell {
-            ViewHelper.showToastMessage(message: "finished")
+        if self.currentVoiceCell == cell {
+            ViewHelper.showToastMessage(message:"finished")
+            currentVoiceCell.resetVoiceAnimation(audioPlayStatus: .finished)
         }
         if isPlayingVoice {
             self.currentVoiceCell = cell
-            let dataDecoded: Data = Data(base64Encoded: lstOFChats[index].file, options: Data.Base64DecodingOptions(rawValue: 0)) ?? Data()
-            AudioPlayInstance.playSoundWithPath(dataDecoded)
+            AudioPlayInstance.startPlaying(lstOFChats[index])
         } else {
             AudioPlayInstance.stopPlayer()
         }

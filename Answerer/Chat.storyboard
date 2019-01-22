@@ -234,9 +234,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Hz-IM-mMX">
                                                     <rect key="frame" x="133" y="11" width="227" height="58"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4d-jf-9yJ">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4d-jf-9yJ">
                                                             <rect key="frame" x="8" y="0.0" width="211" height="58"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="PlayVoice"/>
                                                             <connections>
                                                                 <action selector="playVoice:" destination="sfc-il-9Db" eventType="touchUpInside" id="z9M-UJ-Rtu"/>
@@ -245,7 +244,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstItem="Q4d-jf-9yJ" firstAttribute="leading" secondItem="0Hz-IM-mMX" secondAttribute="leading" constant="8" id="8uc-h7-XR8"/>
+                                                        <constraint firstItem="Q4d-jf-9yJ" firstAttribute="height" secondItem="0Hz-IM-mMX" secondAttribute="height" id="9OY-Bb-EJ5"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Q4d-jf-9yJ" secondAttribute="trailing" constant="8" id="BjJ-F2-aly"/>
                                                         <constraint firstAttribute="width" secondItem="0Hz-IM-mMX" secondAttribute="height" multiplier="227:58" id="JKf-bp-K2g"/>
+                                                        <constraint firstItem="Q4d-jf-9yJ" firstAttribute="centerY" secondItem="0Hz-IM-mMX" secondAttribute="centerY" id="Skd-x9-gtf"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -339,22 +342,28 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="173-ic-ggm">
-                                                    <rect key="frame" x="8" y="8" width="248.5" height="63.5"/>
+                                                    <rect key="frame" x="8" y="8" width="227" height="58"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSt-Kl-0gf">
-                                                            <rect key="frame" x="8" y="0.0" width="56" height="58"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" title="Button"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSt-Kl-0gf">
+                                                            <rect key="frame" x="8" y="0.0" width="211" height="58"/>
+                                                            <state key="normal" title="Play Voice"/>
+                                                            <connections>
+                                                                <action selector="playVoice:" destination="mXj-kI-JPD" eventType="touchUpInside" id="1K3-VL-4BF"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstItem="QSt-Kl-0gf" firstAttribute="height" secondItem="173-ic-ggm" secondAttribute="height" id="08o-Kd-EPD"/>
+                                                        <constraint firstItem="QSt-Kl-0gf" firstAttribute="leading" secondItem="173-ic-ggm" secondAttribute="leading" constant="8" id="4Nn-An-SNM"/>
                                                         <constraint firstAttribute="width" secondItem="173-ic-ggm" secondAttribute="height" multiplier="227:58" id="axd-nS-ha2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="QSt-Kl-0gf" secondAttribute="trailing" constant="8" id="nl5-Dz-wXb"/>
+                                                        <constraint firstItem="QSt-Kl-0gf" firstAttribute="centerY" secondItem="173-ic-ggm" secondAttribute="centerY" id="yZe-A8-3Wu"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="173-ic-ggm" firstAttribute="bottom" secondItem="x18-wD-ptX" secondAttribute="bottomMargin" id="E87-wh-4cb"/>
+                                                <constraint firstItem="173-ic-ggm" firstAttribute="bottom" secondItem="x18-wD-ptX" secondAttribute="bottomMargin" constant="-5.5" id="E87-wh-4cb"/>
                                                 <constraint firstItem="173-ic-ggm" firstAttribute="leading" secondItem="x18-wD-ptX" secondAttribute="leadingMargin" id="mLU-zT-5aF"/>
                                                 <constraint firstItem="173-ic-ggm" firstAttribute="top" secondItem="x18-wD-ptX" secondAttribute="topMargin" id="zxj-Ub-YfV"/>
                                             </constraints>
@@ -441,7 +450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOP-Gy-YpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1836" y="121"/>
+            <point key="canvasLocation" x="1836" y="120.98950524737631"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="EPr-Mm-BKd">
